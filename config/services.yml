@@ -7,6 +7,10 @@ services:
             - '../src/Entity/'
             - '../src/TablerBundle.php'
 
+    KevinPapst\TablerBundle\Controller\:
+        resource: '../src/Controller/'
+        tags: ['controller.service_arguments']
+
     KevinPapst\TablerBundle\EventSubscriber\:
         resource: '../src/EventSubscriber/'
 
