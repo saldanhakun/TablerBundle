@@ -27,7 +27,8 @@
         "symfony/twig-bridge": "^7.3",
         "twig/twig": "^3.21",
         "symfony/uid": "7.3.*",
-        "saldanhakun/doctrine-bundle": "dev-master"
+        "saldanhakun/doctrine-bundle": "dev-master",
+        "symfonycasts/verify-email-bundle": "^1.17"
     },
     "require-dev": {
         "symfony/framework-bundle" : "^7.3",

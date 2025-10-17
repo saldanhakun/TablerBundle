@@ -9,6 +9,7 @@
 
 namespace KevinPapst\TablerBundle\Security;
 
+use KevinPapst\TablerBundle\Entity\User;
 use KevinPapst\TablerBundle\Router\AbstractAppRouteHelper;
 use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\HttpKernel\KernelInterface;
@@ -128,14 +129,20 @@ abstract class TablerAppAccessControl
         }
     }
 
+    protected function strictIgnoreSupport(bool $strict): bool
+    {
+        if ($strict) return !$this->isSupport();
+        return true;
+    }
+
     public function isApi(bool $strict = false): bool
     {
-        return $this->security->isGranted(self::ROLE_API);
+        return $this->security->isGranted(self::ROLE_API) && $this->strictIgnoreSupport($strict);
     }
 
     public function isAdmin(bool $strict = false): bool
     {
-        return $this->security->isGranted(self::ROLE_ADMIN);
+        return $this->security->isGranted(self::ROLE_ADMIN) && $this->strictIgnoreSupport($strict);
     }
 
     public function isSupport(): bool
@@ -146,6 +153,16 @@ abstract class TablerAppAccessControl
     public function getUser(): ?UserInterface
     {
         return $this->security->getUser();
+    }
+
+    public function getUserProfile(): ?User
+    {
+        $user = $this->security->getUser();
+        if ($user instanceof User) {
+            return $user;
+        }
+
+        return null;
     }
 
     public function getMainRoleOf(UserInterface $user): ?string
