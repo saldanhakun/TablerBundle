@@ -37,9 +37,9 @@ final class RuntimeExtension implements RuntimeExtensionInterface
         private readonly ContextHelper $helper,
         private readonly array $routes,
         private readonly array $icons,
-        string $locales
+        private readonly array $options
     ) {
-        $this->locales = explode('|', trim($locales));
+        $this->locales = explode('|', trim($this->options['locales'] ?? 'en'));
     }
 
     public function getRouteByAlias(string $routeName): string

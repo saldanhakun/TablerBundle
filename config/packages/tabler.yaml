@@ -26,6 +26,8 @@ tabler:
         user_menu_condensed: true
         # url to your company logo (if not with a protocol, the asset() helper will be used to create the url
         logo_url: ~
+        # Idiomas do Demo
+        locales: 'en|es|pt_BR'
 
     knp_menu:
         enable: false

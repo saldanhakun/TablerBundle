@@ -1,5 +1,15 @@
 services:
 
+    KevinPapst\TablerBundle\:
+        resource: '../src/'
+        exclude:
+            - '../src/DependencyInjection/'
+            - '../src/Entity/'
+            - '../src/TablerBundle.php'
+
+    KevinPapst\TablerBundle\EventSubscriber\:
+        resource: '../src/EventSubscriber/'
+
     KevinPapst\TablerBundle\Twig\RuntimeExtension:
         class: KevinPapst\TablerBundle\Twig\RuntimeExtension
         arguments:
@@ -7,7 +17,7 @@ services:
             - '@tabler_bundle.context_helper'
             - '%tabler_bundle.routes%'
             - '%tabler_bundle.icons%'
-            - '%app_locales%'
+            - '%tabler_bundle.options%'
         tags:
             - { name: twig.runtime }
 
