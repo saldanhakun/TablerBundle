@@ -7,6 +7,7 @@ services:
             - '@tabler_bundle.context_helper'
             - '%tabler_bundle.routes%'
             - '%tabler_bundle.icons%'
+            - '%app_locales%'
         tags:
             - { name: twig.runtime }
 
