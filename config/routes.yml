@@ -1,0 +1,12 @@
+controllers:
+    resource: '../src/Controller/'
+    exclude:
+        - '../src/Controller/DemoController.php'
+    type: attribute
+
+demo:
+    resource: '../src/Controller/DemoController.php'
+    type: attribute
+    requirements:
+        _locale: '%app_locales%'
+
