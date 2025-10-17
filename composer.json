@@ -1,5 +1,5 @@
 {
-    "name": "kevinpapst/tabler-bundle",
+    "name": "saldanhakun/tabler-bundle",
     "type": "symfony-bundle",
     "description": "Admin/Backend theme bundle for Symfony based on Tabler.io",
     "license": "MIT",
