@@ -1,0 +1,8 @@
+{#
+O Bundle utiliza uma versão distribuída do Tabler, que está bem desatualizada (antes da v1.0)
+O que fazemos aqui é substituir as folhas carregas pelo entrypoint da aplicação, que carrega o
+Tabler 1.4+ diretamente incorporado.
+#}
+
+{# <script src="{{ asset('bundles/tabler/tabler.js') }}?{{ tabler_asset_version() }}"></script> #}
+{{ encore_entry_script_tags(entrypoint|default('demo')) }}

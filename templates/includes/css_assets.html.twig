@@ -1,0 +1,12 @@
+{#
+O Bundle utiliza uma versão distribuída do Tabler, que está bem desatualizada (antes da v1.0)
+O que fazemos aqui é substituir as folhas carregas pelo entrypoint da aplicação, que carrega o
+Tabler 1.4+ diretamente incorporado.
+#}
+{% if tabler_bundle.isRightToLeft() %}
+    {# <link rel="stylesheet" href="{{ asset('bundles/tabler/tabler-rtl.css') }}?{{ tabler_asset_version() }}"> #}
+    {% deprecated 'Não temos compatibilidade com RTL. Sorry' %}
+{% endif %}
+
+{# <link rel="stylesheet" href="{{ asset('bundles/tabler/tabler.css') }}?{{ tabler_asset_version() }}"> #}
+{{ encore_entry_link_tags(entrypoint|default('demo')) }}

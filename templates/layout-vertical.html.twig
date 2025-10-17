@@ -6,24 +6,9 @@ by adding this code to your own base template:
 
 Enjoy your theme!
 #}
-<!doctype html{% block html_start %}{% endblock %}>
-<html lang="{{ app.request.locale }}"{% if tabler_bundle.isRightToLeft() %} dir="rtl"{% endif %}>
-<head>
-    {% block head %}
-        {% include '@Tabler/includes/html_head.html.twig' %}
-    {% endblock %}
-    <title>{% block title %}{{ block('page_title') }}{% endblock %}</title>
-    {% block stylesheets %}
-        {% if tabler_bundle.isRightToLeft() %}
-            <link rel="stylesheet" href="{{ asset('bundles/tabler/tabler-rtl.css') }}?{{ tabler_asset_version() }}">
-        {% else %}
-            <link rel="stylesheet" href="{{ asset('bundles/tabler/tabler.css') }}?{{ tabler_asset_version() }}">
-        {% endif %}
-    {% endblock %}
-</head>
-<body{% block body_start %}{% endblock %} class="{{ 'antialiased'|tabler_body }} {% block body_class %}{% endblock %}" data-bs-theme="{{ tabler_theme() }}">
-{% block after_body_start %}{% endblock %}
-<div class="page">
+{% extends '@Tabler/layout.html.twig' %}
+
+{% block container_before %}
     {% set navbarStartContent = block('navbar_start') %}
     {% set navbarNotificationsContent = block('navbar_notifications') %}
     {% set navbarUserContent = block('navbar_user') %}
@@ -75,7 +60,9 @@ Enjoy your theme!
         {% endif %}
     {% endblock %}
     {# *************************** #}
+{% endblock %}
 
+{% block container %}
     {% block page_wrapper %}
         <div id="{% block page_wrapper_id %}{% endblock %}" class="page-wrapper {% block page_wrapper_class %}{% endblock %}">
             {% block page_header %}
@@ -115,7 +102,7 @@ Enjoy your theme!
                         </div>
                     </div>
                 </div>
-            {% endblock %}
+            {% endblock %}{# page_header #}
 
             {% block page_body %}
                 <div class="page-body">
@@ -133,7 +120,7 @@ Enjoy your theme!
                         </div>
                     </div>
                 </div>
-            {% endblock %}
+            {% endblock %}{# page_body #}
 
             {% block footer %}
                 <footer id="{% block footer_id %}{% endblock %}" class="footer footer-transparent d-print-none {% block footer_class %}{% endblock %}">
@@ -141,16 +128,10 @@ Enjoy your theme!
                         {% include '@Tabler/includes/footer.html.twig' %}
                     </div>
                 </footer>
-            {% endblock %}
+            {% endblock %}{# page_footer #}
         </div>
-    {% endblock %}
-</div>
-
-{% block javascripts %}
-    <script src="{{ asset('bundles/tabler/tabler.js') }}?{{ tabler_asset_version() }}"></script>
-{% endblock %}
-</body>
-</html>
+    {% endblock %}{# page_wrapper #}
+{% endblock %}{# container #}
 
 {% macro navbar(navbar_start, navbar_notifications, navbar_user, navbar_end) %}
     {% block navbar_start %}{{ (navbar_start ?? '') | raw }}{% endblock %}

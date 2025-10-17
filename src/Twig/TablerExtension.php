@@ -25,6 +25,8 @@ class TablerExtension extends AbstractExtension
             new TwigFilter('tabler_body', [RuntimeExtension::class, 'bodyClass']),
             new TwigFilter('tabler_route', [RuntimeExtension::class, 'getRouteByAlias']),
             new TwigFilter('tabler_icon', [RuntimeExtension::class, 'icon']),
+            new TwigFilter('language', [$this, 'getLanguageName']),
+            new TwigFilter('markdown', [$this, 'markdown'], ['is_safe' => ['html']]),
         ];
     }
 
@@ -41,6 +43,8 @@ class TablerExtension extends AbstractExtension
             new TwigFunction('tabler_theme', [RuntimeExtension::class, 'theme']),
             new TwigFunction('tabler_unique_id', [RuntimeExtension::class, 'uniqueId']),
             new TwigFunction('tabler_user', [RuntimeExtension::class, 'getUserDetails']),
+            new TwigFunction('locales', [$this, 'getLocales']),
+            new TwigFunction('tabler_breadcrumb', [$this, 'getBreadcrumbs'], ['is_safe' => ['html']]),
         ];
     }
 }

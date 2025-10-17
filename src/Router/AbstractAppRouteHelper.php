@@ -46,13 +46,25 @@ abstract class AbstractAppRouteHelper
 
     public function __construct(private readonly UrlGeneratorInterface $urlGenerator)
     {
-        $this->routers = [
+        $this->registerRouters([
             self::UI => new UiRouter($this),
             self::SECURITY => new SecurityRouter($this),
             self::MEDIA => new MediaRouter($this),
 
             //---NEW_ELEMENT---
-        ];
+        ]);
+    }
+
+    protected function registerRouters(array $routers): void
+    {
+        foreach ($routers as $key => $router) {
+            if ($router === null) {
+                unset($this->routers[$key]);
+            }
+            else {
+                $this->routers[$key] = $router;
+            }
+        }
     }
 
     public function generateUrl(string $route, array $parameters = [], bool $absolute = false): string

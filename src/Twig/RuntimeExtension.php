@@ -14,12 +14,20 @@ use KevinPapst\TablerBundle\Event\NotificationEvent;
 use KevinPapst\TablerBundle\Event\UserDetailsEvent;
 use KevinPapst\TablerBundle\Helper\ContextHelper;
 use KevinPapst\TablerBundle\Model\MenuItemInterface;
+use KevinPapst\TablerBundle\Screen\BreadCrumbEvent;
+use KevinPapst\TablerBundle\Screen\Screen;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Intl\Locales;
 use Twig\Extension\RuntimeExtensionInterface;
 
 final class RuntimeExtension implements RuntimeExtensionInterface
 {
+    /**
+     * @var string[]
+     */
+    private array $locales;
+
     /**
      * @param array<string, string|null> $routes
      * @param array<string, string> $icons
@@ -28,8 +36,10 @@ final class RuntimeExtension implements RuntimeExtensionInterface
         private readonly EventDispatcherInterface $eventDispatcher,
         private readonly ContextHelper $helper,
         private readonly array $routes,
-        private readonly array $icons
+        private readonly array $icons,
+        string $locales
     ) {
+        $this->locales = explode('|', trim($locales));
     }
 
     public function getRouteByAlias(string $routeName): string
@@ -128,5 +138,40 @@ final class RuntimeExtension implements RuntimeExtensionInterface
     public function uniqueId(string $prefix = '', bool $more_entropy = false): string
     {
         return uniqid($prefix, $more_entropy);
+    }
+
+    /**
+     * @return string[]
+     */
+    public function getLocales(): array
+    {
+        return $this->locales;
+    }
+
+    public function markdown(string $markdown): string
+    {
+        $parser = new \Parsedown();
+
+        return $parser->parse($markdown);
+    }
+
+    public function getLanguageName(string $language): string
+    {
+        return ucfirst(Locales::getName($language, $language));
+    }
+
+    /**
+     * @return MenuItemInterface[]
+     */
+    public function getBreadcrumbs(Screen $screen, Request $request): ?array
+    {
+        if (!$this->eventDispatcher->hasListeners(BreadCrumbEvent::class)) {
+            return null;
+        }
+
+        /** @var BreadCrumbEvent $event */
+        $event = $this->eventDispatcher->dispatch(new BreadCrumbEvent($screen, $request));
+
+        return $event->getItems();
     }
 }

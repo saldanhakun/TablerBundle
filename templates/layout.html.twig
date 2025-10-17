@@ -1,2 +1,35 @@
-{% deprecated 'The "layout.html.twig" template is deprecated, use "layout-horizontal.html.twig" instead.' %}
-{% extends '@Tabler/layout-horizontal.html.twig' %}
+<!doctype html{% block html_start %}{% endblock %}>
+<html lang="{{ app.request.locale }}"{% if tabler_bundle.isRightToLeft() %} dir="rtl"{% endif %}>
+<head>
+    {% block head %}
+        {% include '@Tabler/includes/html_head.html.twig' %}
+    {% endblock %}
+    {% block seo %}
+        <title>{% block title %}{{ block('page_title') }}{% endblock %}</title>
+    {% endblock %}
+    {% block stylesheets %}
+        {% if tabler_bundle.isRightToLeft() %}
+            <link rel="stylesheet" href="{{ asset('bundles/tabler/tabler-rtl.css') }}?{{ tabler_asset_version() }}">
+        {% else %}
+            {# <link rel="stylesheet" href="{{ asset('bundles/tabler/tabler.css') }}?{{ tabler_asset_version() }}"> #}
+            {{ encore_entry_link_tags(entrypoint|default('demo')) }}
+        {% endif %}
+    {% endblock %}
+</head>
+<body{% block body_start %}{% endblock %} class="{{ 'antialiased'|tabler_body }} {% block body_class %}{% endblock %}" data-bs-theme="{{ tabler_theme() }}">
+
+{% block after_body_start %}{% endblock %}
+{% block page_before %}{% endblock %}
+<div class="{% block page_classes %}page{% endblock %}">
+    {% block container_before %}{% endblock %}
+    {% block container %}{% endblock %}
+    {% block container_after %}{% endblock %}
+</div>
+{% block page_after %}{% endblock %}
+
+{% block javascripts %}
+    {{ encore_entry_script_tags(entrypoint|default('demo')) }}
+{% endblock %}
+{% block before_body_end %}{% endblock %}
+</body>
+</html>

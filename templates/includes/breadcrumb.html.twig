@@ -1,0 +1,38 @@
+{% if breadcrumbs is not defined %}
+    {% set breadcrumbs = tabler_breadcrumb(screen, app.request) %}
+{% endif %}
+
+{% if breadcrumbs is defined and breadcrumbs is not null %}
+    {% set type = type|default('bullets') %}
+    <ol class="breadcrumb breadcrumb-{{ type }}" aria-label="breadcrumbs">
+        {% for item in breadcrumbs %}
+            <li id="{{ item.identifier }}" class="breadcrumb-item{% if loop.last %} active" aria-current="page{% endif %}">
+                {% if item.route is empty %}
+                    <a class="nav-link">
+                        {{ _self.crumb_icon(item) }}
+                        <span class="nav-link-title">{{ item.label|trans({}, item.translationDomain) }}</span>
+                        {{ _self.crumb_badge(item) }}
+                    </a>
+                {% else %}
+                    <a class="nav-link" href="{{ '/' in item.route ? item.route : (item.route is null ? '#' : path(item.route|tabler_route, item.routeArgs)) }}">
+                        {{ _self.crumb_icon(item) }}
+                        <span class="nav-link-title">{{ item.label|trans({}, item.translationDomain) }}</span>
+                        {{ _self.crumb_badge(item) }}
+                    </a>
+                {% endif %}
+            </li>
+        {% endfor %}
+    </ol>
+{% endif %}
+
+{% macro crumb_icon(item) %}
+    {% if item.icon %}
+        <span class="nav-link-icon d-md-none d-lg-inline-block text-center">{{ tabler_icon(item.icon, false, item.icon) }}</span>
+    {% endif %}
+{% endmacro %}
+
+{% macro crumb_badge(item) %}
+    {% if item.badge is not null or item.badgeColor is not null %}
+        <span class="badge badge-sm bg-{{ item.badgeColor|default('blue') }} text-uppercase ms-2">{{ item.badge }}</span>
+    {% endif %}
+{% endmacro %}

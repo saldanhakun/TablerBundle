@@ -1,0 +1,30 @@
+{% set _icon = icon is defined and icon is not null ? tabler_icon(icon) : '' %}
+{% set _label = label|default('') %}
+{% if custom is defined %}
+    {{ custom|raw }}
+{% elseif href is defined %}
+    <a
+        href="{{ href }}"
+        {% if id is defined and id is not empty %}
+            id="{{ id }}"
+        {% endif %}
+        class="{{ class|default('btn btn-white') }}"
+        {% if target is defined and target is not empty %}
+            target="{{ target }}"
+        {% endif %}
+        {% if title is defined and title is not empty %}
+            title="{{ title }}"
+        {% endif %}
+    >{{ _icon|raw }}{{ _label|raw }}</a>
+{% else %}
+    <button
+        type="{{ type|default('button') }}"
+        {% if id is defined and id is not empty %}
+            id="{{ id }}"
+        {% endif %}
+        class="{{ class|default('btn btn-white') }}"
+        {% if title is defined and title is not empty %}
+            title="{{ title }}"
+        {% endif %}
+    >{{ _icon|raw }}{{ _label|raw }}</button>
+{% endif %}

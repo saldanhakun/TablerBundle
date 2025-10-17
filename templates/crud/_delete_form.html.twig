@@ -1,0 +1,5 @@
+{# para inclusão de um botão especial que exclui o registro (não utilizado) #}
+<form method="post" action="{{ path('the_route', {id: record.id}) }}" onsubmit="return confirm('Are you sure you want to delete this item?');">
+    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ record.id) }}">
+    <button class="btn">Delete</button>
+</form>

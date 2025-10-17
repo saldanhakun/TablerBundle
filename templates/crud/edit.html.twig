@@ -1,0 +1,19 @@
+{% extends '@Tabler/crud/crud.html.twig' %}
+
+{% block page_content %}
+
+    <div class="row">
+        {{ form_start(form) }}
+        {% if fieldsets is defined and fieldsets is not empty %}
+            {# @todo: suporte a um Card por Fieldset #}
+        {% else %}
+            {{ include('@Tabler/crud/_form.html.twig', {
+                form_card_title: describer.singular,
+                form_submit_label: button_label|default('Salvar'),
+                form_actions: single_actions,
+            }) }}
+        {% endif %}
+        {{ form_end(form) }}
+    </div>
+
+{% endblock %}

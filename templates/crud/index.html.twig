@@ -1,0 +1,40 @@
+{% extends '@Tabler/crud/crud.html.twig' %}
+
+{% block page_content %}
+
+    <table{{ action.renderTableAttributes|raw }}>
+        <thead>
+            <tr>
+                {% for column in action.enabledColumns %}
+                    <th {{ column.renderHeaderAttributes|raw }}>{{ column.renderLabel|raw }}</th>
+                {% endfor %}
+            </tr>
+        </thead>
+        <tbody>
+        {% for record in records %}
+            <tr {{ action.renderRowAttributes(record)|raw }}>
+                {% for column in action.enabledColumns %}
+                    {% if column.isLinkable %}
+                        <td {{ column.renderCellAttributes(record)|raw }}><a href="{{ path(column.linkRoute, column.generateRouteArguments(record)) }}">{{ column.renderCell(record)|raw }}</a></td>
+                    {% else %}
+                        <td {{ column.renderCellAttributes(record)|raw }}>{{ column.renderCell(record)|raw }}</td>
+                    {% endif %}
+                {% endfor %}
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="{{ action.enabledColumnSpans }}">{{ empty_message|raw }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+        {% if action.hasFooter %}
+            <tfoot>
+            <tr {{ action.renderFooterAttributes|raw }}>
+                {% for column in action.enabledColumns %}
+                    <td {{ column.renderFooterAttributes|raw }}>{{ column.renderFooter|raw }}</td>
+                {% endfor %}
+            </tr>
+            </tfoot>
+        {% endif %}
+    </table>
+{% endblock %}

@@ -1,0 +1,22 @@
+{# exibidor de um registro (não utilizado) #}
+{% extends '@Tabler/crud/crud.html.twig' %}
+
+{% block page_content %}
+
+    <div class="{{ show_card_width|default('col-8') }}">
+        {% embed '@Tabler/embeds/card.html.twig' with {
+            title: show_card_title|default("Detalhes "~describer.of),
+            use_footer: true,
+        } %}
+            {% block box_body %}
+                {{ dump(record) }}
+            {% endblock %}
+            {% block box_footer %}
+                {% for link in show_actions %}
+                    {{ include('@Tabler/includes/action-button.html.twig', link) }}
+                {% endfor %}
+            {% endblock %}
+        {% endembed %}
+    </div>
+
+{% endblock %}
