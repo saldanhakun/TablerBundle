@@ -9,11 +9,11 @@
 
 namespace KevinPapst\TablerBundle\Controller;
 
-use KevinPapst\TablerBundle\Entity\User;
-use KevinPapst\TablerBundle\RegistrationFormType;
-use KevinPapst\TablerBundle\Security\EmailVerifier;
 use Doctrine\ORM\EntityManagerInterface;
+use KevinPapst\TablerBundle\Entity\User;
+use KevinPapst\TablerBundle\Form\RegistrationFormType;
 use KevinPapst\TablerBundle\Router\AbstractAppRouteHelper;
+use KevinPapst\TablerBundle\Security\EmailVerifier;
 use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Bundle\SecurityBundle\Security;
@@ -21,7 +21,6 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Mime\Address;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
-use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Contracts\Translation\TranslatorInterface;
 use SymfonyCasts\Bundle\VerifyEmail\Exception\VerifyEmailExceptionInterface;
 
@@ -57,7 +56,7 @@ abstract class RegistrationController extends AbstractController
                     ->from(new Address('noreply@domain.example', 'SECURE_The_Name'))
                     ->to((string) $user->getEmail())
                     ->subject('Please Confirm your Email')
-                    ->htmlTemplate('security/confirmation_email.html.twig')
+                    ->htmlTemplate('@Tabler/security/confirmation_email.html.twig')
             );
 
             // do anything else you need here, like send an email

@@ -12,14 +12,11 @@ namespace KevinPapst\TablerBundle\Controller;
 use KevinPapst\TablerBundle\Form\FormDemoModelType;
 use KevinPapst\TablerBundle\Helper\ContextHelper;
 use KevinPapst\TablerBundle\Router\AbstractAppRouteHelper;
-use KevinPapst\TablerBundle\Security\TablerAppAccessControl;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Routing\Attribute\Route;
-use Symfony\Component\Security\Http\Attribute\IsGranted;
 
 ##[IsGranted(TablerAppAccessControl::ROLE_SUPPORT)]
 ##[Route(path: '/demo/{_locale}', name: AbstractAppRouteHelper::DEMO . '.')]
@@ -132,7 +129,7 @@ abstract class DemoController extends AbstractController
         $page = (int) $page;
 
         if ($page > 10) {
-            return $this->redirectToRoute('wizard', ['page' => 1]);
+            return $this->redirectToRoute(self::route('wizard'), ['page' => 1]);
         }
 
         return $this->render('demo/default/wizard.html.twig', [
@@ -151,32 +148,6 @@ abstract class DemoController extends AbstractController
     public function fullpage(): Response
     {
         return $this->render('demo/default/fullpage.html.twig');
-    }
-
-    ##[Route(path: '/documentation/{chapter}', name: 'documentation')]
-    public function documentation(?string $chapter = null): Response
-    {
-        if ($chapter === null) {
-            $chapter = 'index';
-        }
-
-        $docsDir = realpath(__DIR__ . '/../../vendor/kevinpapst/tabler-bundle/docs/') . '/';
-        $fullUrl = $docsDir . $chapter . '.md';
-
-        if (!file_exists($fullUrl)) {
-            throw $this->createNotFoundException();
-        }
-
-        $markdown = file_get_contents($fullUrl);
-        preg_match_all('/\((.*)\.md\)/', $markdown, $results, PREG_SET_ORDER);
-        foreach ($results as $result) {
-            $markdown = str_replace($result[0], '(' . $this->generateUrl('documentation', ['chapter' => $result[1]]) . ')', $markdown);
-        }
-
-        return $this->render('demo/default/documentation.html.twig', [
-            'chapter' => $chapter,
-            'docs' => $markdown,
-        ]);
     }
 
     ##[Route(path: '/error-403', name: 'error403')]
@@ -235,7 +206,7 @@ abstract class DemoController extends AbstractController
     {
         $requestStack->getSession()->set('theme', 'dark');
 
-        return $this->redirectToRoute('homepage');
+        return $this->redirectToRoute(self::route('homepage'));
     }
 
     ##[Route(path: '/light-mode', name: 'light-mode')]
@@ -243,7 +214,7 @@ abstract class DemoController extends AbstractController
     {
         $requestStack->getSession()->remove('theme');
 
-        return $this->redirectToRoute('homepage');
+        return $this->redirectToRoute(self::route('homepage'));
     }
 
     ##[Route(path: '/navbar-overlapping', name: 'navbar-overlapping')]

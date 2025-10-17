@@ -13,9 +13,6 @@ use KevinPapst\TablerBundle\Router\AbstractAppRouteHelper;
 use KevinPapst\TablerBundle\Security\TablerAppAccessControl;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\HttpKernel\Attribute\AsController;
-use Symfony\Component\Routing\Attribute\Route;
-use Symfony\Component\Security\Http\Attribute\IsGranted;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
 ##[Route(name: AbstractAppRouteHelper::SECURITY . '.')]
@@ -33,7 +30,7 @@ abstract class SecurityController extends AbstractController
         // last username entered by the user
         $lastUsername = $authenticationUtils->getLastUsername();
 
-        return $this->render('security/login.html.twig', ['last_username' => $lastUsername, 'error' => $error]);
+        return $this->render('@Tabler/security/login.html.twig', ['last_username' => $lastUsername, 'error' => $error]);
     }
 
     ##[Route(path: '/sair', name: 'logout', methods: ['GET'])]
@@ -46,13 +43,13 @@ abstract class SecurityController extends AbstractController
     ##[IsGranted(TablerAppAccessControl::ROLE_USER)]
     public function profile(TablerAppAccessControl $accessControl): Response
     {
-        return $this->render('security/profile.html.twig', ['profile' => $accessControl->getUserProfile()]);
+        return $this->render('@Tabler/security/profile.html.twig', ['profile' => $accessControl->getUserProfile()]);
     }
 
     ##[Route(path: '/recuperar-senha', name: 'reset', methods: ['GET', 'POST'])]
     public function reset(TablerAppAccessControl $accessControl): Response
     {
-        return $this->render('security/profile.html.twig', ['profile' => $accessControl->getUserProfile()]);
+        return $this->render('@Tabler/security/profile.html.twig', ['profile' => $accessControl->getUserProfile()]);
     }
 
     ##[Route(path: '/gerar-senha-forte', name: 'generate_password', methods: ['POST'])]

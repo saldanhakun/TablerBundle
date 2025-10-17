@@ -1,5 +1,11 @@
 services:
 
+    KevinPapst\TablerBundle\:
+        resource: '../src'
+        exclude:
+            - '../src/{Entity,DependencyInjection,TablerBundle.php}'
+        autowire: true
+
     KevinPapst\TablerBundle\Twig\RuntimeExtension:
         class: KevinPapst\TablerBundle\Twig\RuntimeExtension
         arguments:
@@ -26,6 +32,13 @@ services:
 
     KevinPapst\TablerBundle\Security\EmailVerifier:
         class: KevinPapst\TablerBundle\Security\EmailVerifier
+        autowire: true
+
+    KevinPapst\TablerBundle\EventSubscriber\:
+        resource: '../src/EventSubscriber/'
+        autowire: true
+        tags:
+            - { name: kernel.event_subscriber }
 
     KevinPapst\TablerBundle\Repository\UserRepository:
         class: KevinPapst\TablerBundle\Repository\UserRepository
@@ -33,7 +46,3 @@ services:
             - { name: doctrine.repository_service }
         arguments:
             - '@Doctrine\Common\Persistence\ManagerRegistry'
-
-    KevinPapst\TablerBundle\Screen\:
-        resource: '../src/Screen'
-        autowire: true
