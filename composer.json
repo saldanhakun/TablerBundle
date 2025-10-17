@@ -25,7 +25,9 @@
         "symfony/security-core": "^7.3",
         "symfony/translation": "^7.3",
         "symfony/twig-bridge": "^7.3",
-        "twig/twig": "^3.21"
+        "twig/twig": "^3.21",
+        "symfony/uid": "7.3.*",
+        "saldanhakun/doctrine-bundle": "dev-master"
     },
     "require-dev": {
         "symfony/framework-bundle" : "^7.3",
@@ -59,5 +61,26 @@
         ],
         "codestyle": "vendor/bin/php-cs-fixer fix --dry-run --verbose --show-progress=none",
         "codestyle-fix": "vendor/bin/php-cs-fixer fix"
+    },
+    "repositories": [
+        {
+            "type": "git",
+            "url": "git@bitbucket.org:saldanhakun/doctrine-bundle.git"
+        }
+    ],
+    "extra": {
+        "symfony": {
+            "allow-contrib": false,
+            "require": "7.3.*",
+            "docker": false
+        },
+        "enable-patching": false
+    },
+    "config": {
+        "allow-plugins": {
+            "symfony/runtime": true,
+            "symfony/flex": true,
+            "cweagans/composer-patches": true
+        }
     }
 }
