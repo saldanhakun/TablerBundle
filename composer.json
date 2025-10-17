@@ -5,34 +5,38 @@
     "license": "MIT",
     "authors": [
         {
+            "name": "Marcelo Saldanha",
+            "homepage": "https://marcelosaldanha.com.br"
+        },
+        {
             "name": "Kevin Papst",
             "homepage": "https://www.kevinpapst.de"
         }
     ],
     "require": {
-        "php": "^8.1",
-        "symfony/asset": "^6.0 || ^7.0",
-        "symfony/config": "^6.0 || ^7.0",
-        "symfony/dependency-injection": "^6.0 || ^7.0",
-        "symfony/event-dispatcher": "^6.0 || ^7.0",
-        "symfony/http-foundation": "^6.0 || ^7.0",
-        "symfony/http-kernel": "^6.0 || ^7.0",
-        "symfony/options-resolver": "^6.0 || ^7.0",
-        "symfony/security-core": "^6.0 || ^7.0",
-        "symfony/translation": "^6.0 || ^7.0",
-        "symfony/twig-bridge": "^6.0 || ^7.0",
-        "twig/twig": "^3.0"
+        "php": "^8.3",
+        "symfony/asset": "^7.3",
+        "symfony/config": "^7.3",
+        "symfony/dependency-injection": "^7.3",
+        "symfony/event-dispatcher": "^7.3",
+        "symfony/http-foundation": "^7.3",
+        "symfony/http-kernel": "^7.3",
+        "symfony/options-resolver": "^7.3",
+        "symfony/security-core": "^7.3",
+        "symfony/translation": "^7.3",
+        "symfony/twig-bridge": "^7.3",
+        "twig/twig": "^3.21"
     },
     "require-dev": {
-        "symfony/framework-bundle" : "^6.0 || ^7.0",
-        "friendsofphp/php-cs-fixer": "^3.0",
-        "phpunit/phpunit": "^9.0",
-        "phpstan/phpstan": "^2.0",
+        "symfony/framework-bundle" : "^7.3",
+        "friendsofphp/php-cs-fixer": "^3.88",
+        "phpunit/phpunit": "^12.4",
+        "phpstan/phpstan": "^2.1",
         "phpstan/phpstan-deprecation-rules": "^2.0",
         "phpstan/phpstan-phpunit": "^2.0",
         "phpstan/phpstan-strict-rules": "^2.0",
         "phpstan/phpstan-symfony": "^2.0",
-        "knplabs/knp-menu-bundle": "^3.0"
+        "knplabs/knp-menu-bundle": "^3.6"
     },
     "suggest" : {
         "knplabs/knp-menu-bundle" : "Allows easy menu integration"
