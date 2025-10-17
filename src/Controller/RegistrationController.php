@@ -25,14 +25,14 @@ use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Contracts\Translation\TranslatorInterface;
 use SymfonyCasts\Bundle\VerifyEmail\Exception\VerifyEmailExceptionInterface;
 
-#[Route(name: AbstractAppRouteHelper::SECURITY . '.')]
-class RegistrationController extends AbstractController
+##[Route(name: AbstractAppRouteHelper::SECURITY . '.')]
+abstract class RegistrationController extends AbstractController
 {
     public function __construct(private readonly EmailVerifier $emailVerifier)
     {
     }
 
-    #[Route('/cadastro', name: 'registration', methods: ['GET', 'POST'])]
+    ##[Route('/cadastro', name: 'registration', methods: ['GET', 'POST'])]
     public function registration(Request $request, UserPasswordHasherInterface $userPasswordHasher, Security $security, EntityManagerInterface $entityManager, AbstractAppRouteHelper $appRouteHelper): Response
     {
         $user = new User();
@@ -70,7 +70,7 @@ class RegistrationController extends AbstractController
         ]);
     }
 
-    #[Route('/confirmar-email', name: 'verify_email', methods: ['GET', 'POST'])]
+    ##[Route('/confirmar-email', name: 'verify_email', methods: ['GET', 'POST'])]
     public function verifyEmail(Request $request, TranslatorInterface $translator, AbstractAppRouteHelper $appRouteHelper): Response
     {
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');

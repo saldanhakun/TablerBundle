@@ -25,7 +25,7 @@ class CreateAction extends BaseFormAction
 
     public function getTemplate(): string
     {
-        return '@TablerBundle/crud/new.html.twig';
+        return '@Tabler/crud/new.html.twig';
     }
 
     public function getTitle(): string

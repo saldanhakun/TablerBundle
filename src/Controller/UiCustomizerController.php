@@ -17,11 +17,11 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
 
-#[IsGranted(TablerAppAccessControl::ROLE_USER)]
-#[Route(path: '/ui', name: AbstractAppRouteHelper::UI . '.')]
-class UiCustomizerController extends AbstractController
+##[IsGranted(TablerAppAccessControl::ROLE_USER)]
+##[Route(path: '/ui', name: AbstractAppRouteHelper::UI . '.')]
+abstract class UiCustomizerController extends AbstractController
 {
-    #[Route(path: '/dark-mode', name: 'dark_mode')]
+    ##[Route(path: '/dark-mode', name: 'dark_mode')]
     public function themeDark(RequestStack $requestStack): Response
     {
         $requestStack->getSession()->set('theme', 'dark');
@@ -29,7 +29,7 @@ class UiCustomizerController extends AbstractController
         return $this->redirectToRoute(AbstractAppRouteHelper::START);
     }
 
-    #[Route(path: '/light-mode', name: 'light_mode')]
+    ##[Route(path: '/light-mode', name: 'light_mode')]
     public function themeLight(RequestStack $requestStack): Response
     {
         $requestStack->getSession()->remove('theme');

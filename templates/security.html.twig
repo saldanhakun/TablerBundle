@@ -5,7 +5,9 @@
 {% block container %}
     <div class="{% block container_classes %}container container-tight py-4{% endblock %}">
         <div class="text-center mb-4">
-            <h1>{% block logo_login %}Tabler{% endblock %}</h1>
+            {% block security_logo %}
+                {% include '@Tabler/includes/security-logo.html.twig' %}
+            {% endblock %}
         </div>
 
         <div class="{% block card_classes %}card card-md{% endblock %}">

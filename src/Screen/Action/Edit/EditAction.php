@@ -25,7 +25,7 @@ class EditAction extends BaseFormAction
 
     public function getTemplate(): string
     {
-        return '@TablerBundle/crud/edit.html.twig';
+        return '@Tabler/crud/edit.html.twig';
     }
 
     public function getTitle(): string

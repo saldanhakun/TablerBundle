@@ -256,7 +256,7 @@ class ListAction extends DoctrineAction
 
     public function getTemplate(): string
     {
-        return '@TablerBundle/crud/index.html.twig';
+        return '@Tabler/crud/index.html.twig';
     }
 
     public function getTitle(): string

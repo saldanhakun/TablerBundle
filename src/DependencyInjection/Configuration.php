@@ -156,8 +156,8 @@ class Configuration implements ConfigurationInterface
                 ->scalarNode('logo_url')
                     ->defaultNull()
                 ->end()
-                ->scalarNode('security_cover_url')
-                    ->defaultValue('https://placehold.co/1000')
+                ->arrayNode('security_cover_url')
+                    ->addDefaultsIfNotSet(['https://placehold.co/1000'])
                 ->end()
                 ->scalarNode('locales')
                     ->defaultValue('en|es|pt_BR')
@@ -167,4 +167,5 @@ class Configuration implements ConfigurationInterface
 
         return $rootNode;
     }
+
 }

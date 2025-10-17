@@ -130,13 +130,16 @@ class ContextHelper extends \ArrayObject
         if (\is_string($cover)) {
             return $cover;
         }
+        if (\is_array($cover) && !empty($cover)) {
+            return $cover[random_int(0, count($cover)-1)];
+        }
 
         return '';
     }
 
-    public function setSecurityCoverUrl(string $url): void
+    public function setSecurityCoverUrl(string|array $url): void
     {
-        $this->setOption('security_cover_url', $url);
+        $this->setOption('security_cover_url', is_array($url) ? $url : [$url]);
     }
 
     /**

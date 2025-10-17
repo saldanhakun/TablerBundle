@@ -13,14 +13,15 @@ use KevinPapst\TablerBundle\Router\AbstractAppRouteHelper;
 use KevinPapst\TablerBundle\Security\TablerAppAccessControl;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpKernel\Attribute\AsController;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
-#[Route(name: AbstractAppRouteHelper::SECURITY . '.')]
-class SecurityController extends AbstractController
+##[Route(name: AbstractAppRouteHelper::SECURITY . '.')]
+abstract class SecurityController extends AbstractController
 {
-    #[Route(path: '/entrar', name: 'login', methods: ['GET', 'POST'])]
+    ##[Route(path: '/entrar', name: 'login', methods: ['GET', 'POST'])]
     public function login(AuthenticationUtils $authenticationUtils, AbstractAppRouteHelper $appRouteHelper): Response
     {
         if ($this->getUser()) {
@@ -35,26 +36,26 @@ class SecurityController extends AbstractController
         return $this->render('security/login.html.twig', ['last_username' => $lastUsername, 'error' => $error]);
     }
 
-    #[Route(path: '/sair', name: 'logout', methods: ['GET'])]
+    ##[Route(path: '/sair', name: 'logout', methods: ['GET'])]
     public function logout(): void
     {
         throw new \LogicException('This method can be blank - it will be intercepted by the logout key on your firewall.');
     }
 
-    #[Route(path: '/perfil', name: 'profile', methods: ['GET', 'POST'])]
-    #[IsGranted(TablerAppAccessControl::ROLE_USER)]
+    ##[Route(path: '/perfil', name: 'profile', methods: ['GET', 'POST'])]
+    ##[IsGranted(TablerAppAccessControl::ROLE_USER)]
     public function profile(TablerAppAccessControl $accessControl): Response
     {
         return $this->render('security/profile.html.twig', ['profile' => $accessControl->getUserProfile()]);
     }
 
-    #[Route(path: '/recuperar-senha', name: 'reset', methods: ['GET', 'POST'])]
+    ##[Route(path: '/recuperar-senha', name: 'reset', methods: ['GET', 'POST'])]
     public function reset(TablerAppAccessControl $accessControl): Response
     {
         return $this->render('security/profile.html.twig', ['profile' => $accessControl->getUserProfile()]);
     }
 
-    #[Route(path: '/gerar-senha-forte', name: 'generate_password', methods: ['POST'])]
+    ##[Route(path: '/gerar-senha-forte', name: 'generate_password', methods: ['POST'])]
     public function generatePassword(): Response
     {
         return $this->json([
