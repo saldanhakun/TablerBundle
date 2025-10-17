@@ -27,9 +27,9 @@
         "symfony/twig-bridge": "^7.3",
         "twig/twig": "^3.21",
         "symfony/uid": "7.3.*",
-        "saldanhakun/doctrine-bundle": "dev-master",
         "symfonycasts/verify-email-bundle": "^1.17",
-        "erusev/parsedown": "^1.7"
+        "erusev/parsedown": "^1.7",
+        "saldanhakun/doctrine-bundle": "^3.0"
     },
     "require-dev": {
         "symfony/framework-bundle" : "^7.3",
@@ -64,12 +64,6 @@
         "codestyle": "vendor/bin/php-cs-fixer fix --dry-run --verbose --show-progress=none",
         "codestyle-fix": "vendor/bin/php-cs-fixer fix"
     },
-    "repositories": [
-        {
-            "type": "git",
-            "url": "git@bitbucket.org:saldanhakun/doctrine-bundle.git"
-        }
-    ],
     "extra": {
         "symfony": {
             "allow-contrib": false,
