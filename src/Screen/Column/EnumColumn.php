@@ -9,7 +9,7 @@
 
 namespace KevinPapst\TablerBundle\Screen\Column;
 
-use App\Enum\BaseEnum;
+use Saldanhakun\BrazilianValidators\Enum\BaseEnum;
 
 class EnumColumn extends PropertyColumn
 {
