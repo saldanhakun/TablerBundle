@@ -44,7 +44,7 @@ final class TablerContextSubscriber implements EventSubscriberInterface
 
         $app = new Package(new JsonManifestVersionStrategy($this->kernel->getProjectDir() . '/public/build/manifest.json'));
         $this->packages->addPackage('app', $app);
-        $this->contextHelper->setLogoUrl($app->getUrl('build/images/main-logo.png'));
+        //$this->contextHelper->setLogoUrl($app->getUrl('build/images/main-logo.png'));
 
         $theme = $this->requestStack->getSession()->get('theme');
         if ($theme === null) {

@@ -1,4 +1,4 @@
-{% extends 'security.html.twig' %}
+{% extends '@Tabler/security.html.twig' %}
 
 {% block logo_login %}Tabler Demo - Login!{% endblock %}
 {% block login_box_msg %}
@@ -9,4 +9,20 @@
 <p>
     Please use <strong>admin</strong> / <strong>password</strong> to login!
 </p>
+{% endblock %}
+
+{% block stylesheets %}
+    {% if tabler_bundle.isRightToLeft() %}
+        <link rel="stylesheet" href="{{ asset('bundles/tabler/tabler-rtl.css', 'tabler') }}">
+    {% else %}
+        <link rel="stylesheet" href="{{ asset('bundles/tabler/demo.css', 'tabler') }}">
+    {% endif %}
+    <link rel="stylesheet" href="{{ asset('bundles/tabler/font-awesome.css', 'tabler') }}">
+{% endblock %}
+{% block javascripts %}
+    <script src="{{ asset('bundles/tabler/font-awesome.js', 'tabler') }}"></script>
+    <script src="{{ asset('bundles/tabler/tabler-dist.js', 'tabler') }}"></script>
+{% endblock %}
+{% block security_logo %}
+    <h1>Tabler</h1>
 {% endblock %}

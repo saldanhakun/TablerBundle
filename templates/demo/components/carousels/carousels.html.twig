@@ -1,4 +1,4 @@
-{% extends 'demo/layout.html.twig' %}
+{% extends '@Tabler/demo/layout.html.twig' %}
 
 {% block page_title %}Carousel demo{% endblock %}
 {% block page_subtitle %}{% endblock %}
@@ -6,11 +6,11 @@
 
 {% block page_content %}
 
-    {% embed 'demo/components/component_card_demo.html.twig' with {
+    {% embed '@Tabler/demo/components/component_card_demo.html.twig' with {
         fromPathUrl: true,
         renderWidth: '45%',
         codeTemplates: [
-            'demo/components/carousels/_carousel.html.twig',
+            '@Tabler/demo/components/carousels/_carousel.html.twig',
         ],
     } %}
         {% block box_title %}{{ tabler_icon('about') }} The "Carousel" macro{% endblock %}

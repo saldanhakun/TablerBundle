@@ -1,0 +1,11 @@
+/***
+ * Carrega os estilos do Tabler otimizados para telas com formulários
+ */
+
+@import './tabler-full.scss';
+//@import 'litepicker/dist/css/litepicker.css';
+//@import 'litepicker/dist/css/plugins/mobilefriendly.js.css';
+
+.form-check > input[type="checkbox"]:not([disabled]) {
+    cursor: pointer;
+}

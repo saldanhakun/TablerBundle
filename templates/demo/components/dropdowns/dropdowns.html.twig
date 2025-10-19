@@ -1,4 +1,4 @@
-{% extends 'demo/layout.html.twig' %}
+{% extends '@Tabler/demo/layout.html.twig' %}
 
 {% block page_title %}Dropdown demo{% endblock %}
 {% block page_subtitle %}{% endblock %}
@@ -6,22 +6,22 @@
 
 {% block page_content %}
 
-    {% embed 'demo/components/component_card_demo.html.twig' with {
+    {% embed '@Tabler/demo/components/component_card_demo.html.twig' with {
         fromPathUrl: true,
         codeTemplates: [
-            'demo/components/dropdowns/dropdown_full.html.twig',
-            'demo/components/dropdowns/dropdown_small.html.twig',
+            '@Tabler/demo/components/dropdowns/dropdown_full.html.twig',
+            '@Tabler/demo/components/dropdowns/dropdown_small.html.twig',
         ],
     } %}
         {% block box_title %}{{ tabler_icon('about') }} The "dropdown" renders a dropdown menu{% endblock %}
     {% endembed %}
 
-    {% embed 'demo/components/component_card_demo.html.twig' with {
+    {% embed '@Tabler/demo/components/component_card_demo.html.twig' with {
         fromPathUrl: true,
         codeTemplates: [
-            'demo/components/dropdowns/_dropdown_default.html.twig',
-            'demo/components/dropdowns/_dropdown_primary.html.twig',
-            'demo/components/dropdowns/_dropdown_danger.html.twig',
+            '@Tabler/demo/components/dropdowns/_dropdown_default.html.twig',
+            '@Tabler/demo/components/dropdowns/_dropdown_primary.html.twig',
+            '@Tabler/demo/components/dropdowns/_dropdown_danger.html.twig',
         ],
     } %}
         {% block box_title %}{{ tabler_icon('about') }} The "dropdown_button" renders a button with a dropdown menu{% endblock %}

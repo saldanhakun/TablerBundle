@@ -19,8 +19,14 @@ Encore
     // uncomment to create hashed filenames (e.g. app.abc123.css)
     .enableVersioning(Encore.isProduction())
 
-    .addEntry('tabler', './assets/tabler.js')
+    .addEntry('tabler-dist', './assets/tabler-dist.js')
     .addEntry('tabler-rtl', './assets/tabler-rtl.js')
+    .addEntry('tabler-granular', './assets/tabler-granular.js')
+    .addEntry('tabler-full', './assets/tabler-full.js')
+    .addEntry('demo', './assets/demo.js')
+    .addEntry('crud-list', './assets/crud-list.js')
+    .addEntry('crud-form', './assets/crud-form.js')
+    .addEntry('font-awesome', './assets/includes/font-awesome.js')
 
     // disabled as ""webpack-notifier": "^1.13"" id currently not compatible with ARM systems
     //.enableBuildNotifications()
@@ -39,14 +45,14 @@ Encore
 
     // add hash after file name
     .configureImageRule({
-        filename: 'images/[name][ext]?[hash:8]',
+        filename: 'images/[name].[hash:8][ext]',
     })
     .configureFontRule({
-        filename: 'fonts/[name][ext]?[hash:8]'
+        filename: 'fonts/[name].[hash:8][ext]'
     })
     .configureFilenames({
-        js: '[name].js?[chunkhash]',
-        css: '[name].css?[contenthash]',
+        js: '[name].[chunkhash].js',
+        css: '[name].[contenthash].css',
     })
 ;
 

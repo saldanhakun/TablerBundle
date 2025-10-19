@@ -1,8 +1,19 @@
-{#
-O Bundle utiliza uma versão distribuída do Tabler, que está bem desatualizada (antes da v1.0)
-O que fazemos aqui é substituir as folhas carregas pelo entrypoint da aplicação, que carrega o
-Tabler 1.4+ diretamente incorporado.
-#}
+{% deprecated "Você precisa fazer o override do includes/js_assets.html.twig para definir como carregar os assets" %}
 
-{# <script src="{{ asset('bundles/tabler/tabler.js') }}?{{ tabler_asset_version() }}"></script> #}
-{{ encore_entry_script_tags(entrypoint|default('demo')) }}
+<script src="{{ asset('bundles/tabler/font-awesome.js', 'tabler') }}"></script>
+
+{# Primeira opção: tabler nativo #}
+<script src="{{ asset('bundles/tabler/tabler-dist.js') }}"></script>
+
+{# Segunda opção: tabler completo, para uso genérico #}
+<script src="{{ asset('bundles/tabler/tabler-full.js') }}"></script>
+
+{# Terceira opção: tabler especializado em CRUD, listagens #}
+<script src="{{ asset('bundles/tabler/crud-list.js') }}"></script>
+
+{# Quarta opção: tabler especializado em CRUD, formulários #}
+<script src="{{ asset('bundles/tabler/crud-form.js') }}"></script>
+
+{# Quinta opção: tabler incorporado. Provavelmente a opção mais interessante para seu projeto #}
+{{ encore_entry_script_tags(entrypoint|default('tabler-full')) }}
+

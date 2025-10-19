@@ -3,6 +3,28 @@
 {% block logo_login %}Tabler Demo - Login!{% endblock %}
 {% block login_form_start %}
 <p>
-    Please use <strong>admin</strong> / <strong>password</strong> to login!
+    Please enter your <strong>username</strong> / <strong>password</strong> to login!
 </p>
+{% endblock %}
+
+{% block stylesheets %}
+    {% if tabler_bundle.isRightToLeft() %}
+        <link rel="stylesheet" href="{{ asset('bundles/tabler/tabler-rtl.css', 'tabler') }}">
+    {% else %}
+        <link rel="stylesheet" href="{{ asset('bundles/tabler/demo.css', 'tabler') }}">
+    {% endif %}
+    <link rel="stylesheet" href="{{ asset('bundles/tabler/font-awesome.css', 'tabler') }}">
+{% endblock %}
+
+{% block javascripts %}
+    <script src="{{ asset('bundles/tabler/font-awesome.js', 'tabler') }}"></script>
+    <script src="{{ asset('bundles/tabler/tabler-dist.js', 'tabler') }}"></script>
+{% endblock %}
+
+{% block container_after %}
+    {# <div> aberto no container_before! #}
+    </div>
+    <div class="col-12 col-lg-6 col-xl-8 d-none d-lg-block">
+        <div class="bg-cover h-100 min-vh-95" style="background-image: url(https://placehold.co/1500x1500)"></div>
+    </div>
 {% endblock %}

@@ -29,7 +29,7 @@ abstract class BaseFormAction extends RecordAction
         private readonly FormFactoryInterface $formFactory
     ) {
         parent::__construct($requestStack, $entityManager);
-        $this->setEntryPoint('forms');
+        $this->setEntryPoint('bundles/tabler/crud-form');
     }
 
     public function isAutoFlush(): bool

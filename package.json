@@ -13,6 +13,7 @@
         "copy-webpack-plugin": "^13.0.0",
         "core-js": "^3.38.0",
         "file-loader": "^6.2",
+        "highlight.js": "^11.11.1",
         "imask": "^7.6.1",
         "litepicker": "^2.0.12",
         "nouislider": "^15.8.1",

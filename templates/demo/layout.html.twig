@@ -1,4 +1,4 @@
-{% extends 'demo/layout-horizontal.html.twig' %}
+{% extends '@Tabler/layout-horizontal.html.twig' %}
 
 {% block page_title %}Demo application{% endblock %}
 {% block page_pretitle %}{% endblock %}
@@ -28,4 +28,26 @@
             </div>
         </div>
     </div>
+{% endblock %}
+
+{% block stylesheets %}
+    {% if tabler_bundle.isRightToLeft() %}
+        <link rel="stylesheet" href="{{ asset('bundles/tabler/tabler-rtl.css', 'tabler') }}">
+    {% else %}
+        <link rel="stylesheet" href="{{ asset('bundles/tabler/demo.css', 'tabler') }}">
+    {% endif %}
+    <link rel="stylesheet" href="{{ asset('bundles/tabler/font-awesome.css', 'tabler') }}">
+{% endblock %}
+
+{% block javascripts %}
+    <script src="{{ asset('bundles/tabler/font-awesome.js', 'tabler') }}"></script>
+    <script src="{{ asset('bundles/tabler/tabler-dist.js', 'tabler') }}"></script>
+{% endblock %}
+
+{% block app_logo %}
+    <h1 class="{% block navbar_brand_classes %}navbar-brand d-none-navbar-horizontal pe-0 pe-md-3 {% block navbar_brand_class %}navbar-brand-autodark{% endblock %}{% endblock %}">
+        <a href="{{ path('tabler_welcome'|tabler_route) }}">
+            <i class="far fa-smile" style="font-size: 32px"></i>
+        </a>
+    </h1>
 {% endblock %}

@@ -1,12 +1,22 @@
-{#
-O Bundle utiliza uma versão distribuída do Tabler, que está bem desatualizada (antes da v1.0)
-O que fazemos aqui é substituir as folhas carregas pelo entrypoint da aplicação, que carrega o
-Tabler 1.4+ diretamente incorporado.
-#}
-{% if tabler_bundle.isRightToLeft() %}
-    {# <link rel="stylesheet" href="{{ asset('bundles/tabler/tabler-rtl.css') }}?{{ tabler_asset_version() }}"> #}
-    {% deprecated 'Não temos compatibilidade com RTL. Sorry' %}
-{% endif %}
+{% deprecated "Você precisa fazer o override do includes/css_assets.html.twig para definir como carregar os assets" %}
+<link rel="stylesheet" href="{{ asset('bundles/tabler/font-awesome.css', 'tabler') }}">
 
-{# <link rel="stylesheet" href="{{ asset('bundles/tabler/tabler.css') }}?{{ tabler_asset_version() }}"> #}
-{{ encore_entry_link_tags(entrypoint|default('demo')) }}
+{% if tabler_bundle.isRightToLeft() %}
+    <link rel="stylesheet" href="{{ asset('bundles/tabler/tabler-rtl.css') }}">
+{% else %}
+    {# Primeira opção: tabler nativo #}
+    <link rel="stylesheet" href="{{ asset('bundles/tabler/tabler-dist.css') }}">
+
+    {# Segunda opção: tabler completo, para uso genérico #}
+    <link rel="stylesheet" href="{{ asset('bundles/tabler/tabler-full.css') }}">
+
+    {# Terceira opção: tabler especializado em CRUD, listagens #}
+    <link rel="stylesheet" href="{{ asset('bundles/tabler/crud-list.css') }}">
+
+    {# Quarta opção: tabler especializado em CRUD, formulários #}
+    <link rel="stylesheet" href="{{ asset('bundles/tabler/crud-form.css') }}">
+
+    {# Quinta opção: tabler incorporado. Provavelmente a opção mais interessante para seu projeto #}
+    {{ encore_entry_link_tags(entrypoint|default('tabler-full')) }}
+
+{% endif %}

@@ -1,4 +1,4 @@
-{% extends 'demo/layout.html.twig' %}
+{% extends '@Tabler/demo/layout.html.twig' %}
 
 {% block page_title %}Timeline demo{% endblock %}
 {% block page_subtitle %}{% endblock %}
@@ -6,12 +6,12 @@
 
 {% block page_content %}
 
-    {% embed 'demo/components/component_card_demo.html.twig' with {
+    {% embed '@Tabler/demo/components/component_card_demo.html.twig' with {
         fromPathUrl: true,
         codeTemplates: [
-            'demo/components/timelines/_timeline.html.twig',
-            'demo/components/timelines/_timeline_simple.html.twig',
-            'demo/components/timelines/_timeline_html.html.twig',
+            '@Tabler/demo/components/timelines/_timeline.html.twig',
+            '@Tabler/demo/components/timelines/_timeline_simple.html.twig',
+            '@Tabler/demo/components/timelines/_timeline_html.html.twig',
         ],
     } %}
         {% block box_title %}{{ tabler_icon('about') }} The "Timeline" macro{% endblock %}

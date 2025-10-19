@@ -1,19 +1,64 @@
 {
   "entrypoints": {
-    "tabler": {
-      "js": [
-        "/bundles/tabler/tabler.js?93a015f5fa936998e525"
-      ],
+    "tabler-dist": {
       "css": [
-        "/bundles/tabler/tabler.css?c89393dfd2f6ace3cb69"
+        "/bundles/tabler/tabler-dist.03b83b64f3759f7ce941.css"
+      ],
+      "js": [
+        "/bundles/tabler/tabler-dist.c7090e3c3f3cd07a3a88.js"
       ]
     },
     "tabler-rtl": {
-      "js": [
-        "/bundles/tabler/tabler-rtl.js?d0204fbdd29de36aaa14"
-      ],
       "css": [
-        "/bundles/tabler/tabler-rtl.css?0e8040795aef40dcf1fa"
+        "/bundles/tabler/tabler-rtl.81b24c5150b870449342.css"
+      ],
+      "js": [
+        "/bundles/tabler/tabler-rtl.80356891a1a87bcabda4.js"
+      ]
+    },
+    "tabler-granular": {
+      "js": [
+        "/bundles/tabler/tabler-granular.e35bfb5daae8763be552.js"
+      ]
+    },
+    "tabler-full": {
+      "css": [
+        "/bundles/tabler/tabler-full.72601366c6b9cbe3cbaf.css"
+      ],
+      "js": [
+        "/bundles/tabler/tabler-full.fa2140e0a526ed551479.js"
+      ]
+    },
+    "demo": {
+      "css": [
+        "/bundles/tabler/demo.3c790ba30e886d50c19a.css"
+      ],
+      "js": [
+        "/bundles/tabler/demo.49f50540be3ef448468d.js"
+      ]
+    },
+    "crud-list": {
+      "css": [
+        "/bundles/tabler/crud-list.12bbddd1011d0c8159a9.css"
+      ],
+      "js": [
+        "/bundles/tabler/crud-list.3560dc3f8f5b4d29bce9.js"
+      ]
+    },
+    "crud-form": {
+      "css": [
+        "/bundles/tabler/crud-form.13a05fac8721b719044c.css"
+      ],
+      "js": [
+        "/bundles/tabler/crud-form.82dceb150280d7db3fbc.js"
+      ]
+    },
+    "font-awesome": {
+      "css": [
+        "/bundles/tabler/font-awesome.265c0edae223a8296064.css"
+      ],
+      "js": [
+        "/bundles/tabler/font-awesome.f6fa83f07d7dde88e4d8.js"
       ]
     }
   }

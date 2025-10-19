@@ -23,7 +23,7 @@ abstract class TablerDocController extends AbstractController
             $chapter = 'index';
         }
 
-        $docsDir = realpath(__DIR__ . '/../../vendor/kevinpapst/tabler-bundle/docs/') . '/';
+        $docsDir = realpath(__DIR__ . '/../../docs/') . '/';
         $fullUrl = $docsDir . $chapter . '.md';
 
         if (!file_exists($fullUrl)) {
@@ -36,7 +36,7 @@ abstract class TablerDocController extends AbstractController
             $markdown = str_replace($result[0], '(' . $this->generateUrl(DemoController::route('documentation'), ['chapter' => $result[1]]) . ')', $markdown);
         }
 
-        return $this->render('demo/default/documentation.html.twig', [
+        return $this->render('@Tabler/demo/default/documentation.html.twig', [
             'chapter' => $chapter,
             'docs' => $markdown,
         ]);

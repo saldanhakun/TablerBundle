@@ -37,7 +37,7 @@ abstract class DemoController extends AbstractController
     ##[Route(path: '/third-level2', name: 'third_level2')]
     public function index(): Response
     {
-        return $this->render('demo/default/index.html.twig', []);
+        return $this->render('@Tabler/demo/default/index.html.twig', []);
     }
 
     ##[Route(path: '/forms', name: 'forms')]
@@ -46,7 +46,7 @@ abstract class DemoController extends AbstractController
         $form = $this->createForm(FormDemoModelType::class);
         $form = $this->handleForm($request, $form);
 
-        return $this->render('demo/default/form.html.twig', [
+        return $this->render('@Tabler/demo/default/form.html.twig', [
             'form' => $form->createView(),
         ]);
     }
@@ -54,73 +54,73 @@ abstract class DemoController extends AbstractController
     ##[Route(path: '/status', name: 'status')]
     public function status(): Response
     {
-        return $this->render('demo/components/status/status.html.twig');
+        return $this->render('@Tabler/demo/components/status/status.html.twig');
     }
 
     ##[Route(path: '/carousel', name: 'carousel')]
     public function carousel(): Response
     {
-        return $this->render('demo/components/carousels/carousels.html.twig');
+        return $this->render('@Tabler/demo/components/carousels/carousels.html.twig');
     }
 
     ##[Route(path: '/accordion', name: 'accordion')]
     public function accordion(): Response
     {
-        return $this->render('demo/components/accordion/accordion.html.twig');
+        return $this->render('@Tabler/demo/components/accordion/accordion.html.twig');
     }
 
     ##[Route(path: '/buttons', name: 'buttons')]
     public function buttons(): Response
     {
-        return $this->render('demo/components/buttons/buttons.html.twig');
+        return $this->render('@Tabler/demo/components/buttons/buttons.html.twig');
     }
 
     ##[Route(path: '/dropdown', name: 'dropdown')]
     public function dropdown(): Response
     {
-        return $this->render('demo/components/dropdowns/dropdowns.html.twig');
+        return $this->render('@Tabler/demo/components/dropdowns/dropdowns.html.twig');
     }
 
     ##[Route(path: '/alert', name: 'alert')]
     public function alert(): Response
     {
-        return $this->render('demo/components/alerts/alerts.html.twig');
+        return $this->render('@Tabler/demo/components/alerts/alerts.html.twig');
     }
 
     ##[Route(path: '/callout', name: 'callout')]
     public function callout(): Response
     {
-        return $this->render('demo/components/callouts/callouts.html.twig');
+        return $this->render('@Tabler/demo/components/callouts/callouts.html.twig');
     }
 
     ##[Route(path: '/modal', name: 'modal')]
     public function modal(): Response
     {
-        return $this->render('demo/components/modals/modals.html.twig');
+        return $this->render('@Tabler/demo/components/modals/modals.html.twig');
     }
 
     ##[Route(path: '/progressbar', name: 'progressbar')]
     public function progressbar(): Response
     {
-        return $this->render('demo/components/progressbar/progressbar.html.twig');
+        return $this->render('@Tabler/demo/components/progressbar/progressbar.html.twig');
     }
 
     ##[Route(path: '/offcanvas', name: 'offcanvas')]
     public function offcanvas(): Response
     {
-        return $this->render('demo/components/offcanvas/offcanvas.html.twig');
+        return $this->render('@Tabler/demo/components/offcanvas/offcanvas.html.twig');
     }
 
     ##[Route(path: '/cardnav', name: 'cardnav')]
     public function cardnav(): Response
     {
-        return $this->render('demo/components/cardnav/cardnav.html.twig');
+        return $this->render('@Tabler/demo/components/cardnav/cardnav.html.twig');
     }
 
     ##[Route(path: '/cardnav_vertical', name: 'cardnav_vertical')]
     public function cardnavVertical(): Response
     {
-        return $this->render('demo/components/cardnav/vertical.html.twig');
+        return $this->render('@Tabler/demo/components/cardnav/vertical.html.twig');
     }
 
     ##[Route(path: '/wizard/{page}', name: 'wizard', requirements: ['page' => "[1-9]\d*"], defaults: ['page' => 1])]
@@ -132,7 +132,7 @@ abstract class DemoController extends AbstractController
             return $this->redirectToRoute(self::route('wizard'), ['page' => 1]);
         }
 
-        return $this->render('demo/default/wizard.html.twig', [
+        return $this->render('@Tabler/demo/default/wizard.html.twig', [
             'page' => $page,
             'percent' => $page * 10,
         ]);
@@ -141,13 +141,13 @@ abstract class DemoController extends AbstractController
     ##[Route(path: '/timeline', name: 'timeline')]
     public function timeline(): Response
     {
-        return $this->render('demo/components/timelines/timelines.html.twig');
+        return $this->render('@Tabler/demo/components/timelines/timelines.html.twig');
     }
 
     ##[Route(path: '/full-page', name: 'full-page')]
     public function fullpage(): Response
     {
-        return $this->render('demo/default/fullpage.html.twig');
+        return $this->render('@Tabler/demo/default/fullpage.html.twig');
     }
 
     ##[Route(path: '/error-403', name: 'error403')]
@@ -174,7 +174,7 @@ abstract class DemoController extends AbstractController
         $form = $this->createForm(FormDemoModelType::class);
         $form = $this->handleForm($request, $form);
 
-        return $this->render('demo/default/form-horizontal.html.twig', [
+        return $this->render('@Tabler/demo/default/form-horizontal.html.twig', [
             'form' => $form->createView(),
         ]);
     }
@@ -182,7 +182,7 @@ abstract class DemoController extends AbstractController
     ##[Route(path: '/profile', name: 'profile')]
     public function profile(): Response
     {
-        return $this->render('demo/default/profile.html.twig', [
+        return $this->render('@Tabler/demo/default/profile.html.twig', [
             'user' => $this->getUser(),
         ]);
     }
@@ -222,13 +222,13 @@ abstract class DemoController extends AbstractController
     {
         $contextHelper->setIsNavbarOverlapping(true);
 
-        return $this->render('demo/default/index.html.twig', []);
+        return $this->render('@Tabler/demo/default/index.html.twig', []);
     }
 
     ##[Route(path: '/navbar-vertical', name: 'navbar-vertical')]
     public function navbarVertical(): Response
     {
-        return $this->render('demo/default/vertical-navbar.html.twig', []);
+        return $this->render('@Tabler/demo/default/vertical-navbar.html.twig', []);
     }
 
     ##[Route(path: '/right-to-left', name: 'layout-rtl')]
@@ -236,18 +236,18 @@ abstract class DemoController extends AbstractController
     {
         $contextHelper->setIsRightToLeft(true);
 
-        return $this->render('demo/default/index.html.twig', []);
+        return $this->render('@Tabler/demo/default/index.html.twig', []);
     }
 
     ##[Route(path: '/security-centered', name: 'security-centered')]
     public function securityCentered(ContextHelper $contextHelper): Response
     {
-        return $this->render('demo/login.html.twig', []);
+        return $this->render('@Tabler/demo/login.html.twig', []);
     }
 
     ##[Route(path: '/security-cover', name: 'security-cover')]
     public function securityCover(ContextHelper $contextHelper): Response
     {
-        return $this->render('demo/login-cover.html.twig', []);
+        return $this->render('@Tabler/demo/login-cover.html.twig', []);
     }
 }
