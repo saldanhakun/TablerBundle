@@ -57,7 +57,7 @@ abstract class DoctrineAction extends AbstractAction
     /** @var BaseFilter[] */
     public function getActiveFilters(): array
     {
-        return array_filter($this->filters, function (BaseFilter $filter) { return $filter->isActive(); });
+        return array_filter($this->filters, function (BaseFilter $filter) { return $filter->getIsActive(); });
     }
 
     public function getQueryBuilder(): ?QueryBuilder

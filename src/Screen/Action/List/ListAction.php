@@ -18,6 +18,7 @@ use KevinPapst\TablerBundle\Screen\Column\CallbackColumn;
 use KevinPapst\TablerBundle\Screen\Column\DateTimeColumn;
 use KevinPapst\TablerBundle\Screen\Column\EnumColumn;
 use KevinPapst\TablerBundle\Screen\Column\NumberColumn;
+use KevinPapst\TablerBundle\Screen\Column\PhoneColumn;
 use KevinPapst\TablerBundle\Screen\Column\PropertyColumn;
 use KevinPapst\TablerBundle\Screen\Column\TwigColumn;
 use Symfony\Component\HttpFoundation\RequestStack;
@@ -167,6 +168,13 @@ class ListAction extends DoctrineAction
     {
         $template = $this->twig->load($template);
         $column = (new TwigColumn($template));
+
+        return $this->pushColumn($column, $options);
+    }
+
+    public function pushPhoneColumn(PropertyPathInterface|string $property, array $options = []): self
+    {
+        $column = (new PhoneColumn($property, $this->twig));
 
         return $this->pushColumn($column, $options);
     }

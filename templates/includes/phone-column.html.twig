@@ -1,0 +1,13 @@
+<span class="actionable-phone">
+    <span class="phone">{{ phone_number }}</span>
+    {% if allow_call %}
+        <a href="tel:{{ digits_only }}" title="Iniciar uma chamada para este número" class="phone-action call"><i class="{{ icon }}"></i></a>
+    {% endif %}
+    {% if allow_chat %}
+        <a href="https://api.whatsapp.com/send?phone={{ digits_only }}{% if chat_starter is not empty %}&text={{ chat_starter|url_encode }}{% endif %}"
+           class="phone-action chat" title="Iniciar uma conversa no Whatsapp"
+        >
+            <i class="fab fa-whatsapp"></i>
+        </a>
+    {% endif %}
+</span>

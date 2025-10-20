@@ -43,12 +43,16 @@ abstract class BaseFilter
         return $this;
     }
 
-    protected function fromRequest(Request $request, ?string $default): ?string
+    protected function fromRequest(Request $request, array|string|null $default, string $listSeparator=''): array|string|null
     {
         if ($request->query->has($this->name)) {
             $str = html_entity_decode($request->query->get($this->name));
             if (!empty($str)) {
-                return $str;
+                if (empty($listSeparator)) {
+                    // Não suporta listas, ou vai tratar a parte (ex: json)
+                    return $str;
+                }
+                return explode($listSeparator, $str);
             }
         }
 

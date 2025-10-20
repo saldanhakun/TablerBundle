@@ -17,9 +17,9 @@ class TwigColumn extends AbstractColumn
     private ?array $context;
     private ?string $recordParamName = 'record';
 
-    public function __construct(TemplateWrapper $callback, ?array $context = [])
+    public function __construct(TemplateWrapper $template, ?array $context = [])
     {
-        $this->template = $callback;
+        $this->template = $template;
         $this->context = $context;
         parent::__construct();
     }

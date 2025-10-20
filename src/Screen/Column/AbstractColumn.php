@@ -27,6 +27,12 @@ abstract class AbstractColumn
     public function __construct()
     {
         $this->escaper = HtmlEscaper::singleton();
+        $this->configure();
+    }
+
+    protected function configure(): void
+    {
+        //nop
     }
 
     public function getLabel(): ?string
