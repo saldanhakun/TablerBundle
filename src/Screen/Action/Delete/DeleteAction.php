@@ -16,17 +16,15 @@ use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\Security\Csrf\CsrfToken;
 use Symfony\Component\Security\Csrf\CsrfTokenManagerInterface;
 use Symfony\Component\Security\Csrf\Exception\TokenNotFoundException;
+use Twig\Environment;
 
 class DeleteAction extends RecordAction
 {
     private bool $autoFlush = true;
 
-    public function __construct(
-        RequestStack $requestStack,
-        EntityManagerInterface $entityManager,
-        private readonly ?CsrfTokenManagerInterface $csrfTokenManager = null
-    ) {
-        parent::__construct($requestStack, $entityManager);
+    public function __construct(RequestStack $requestStack, Environment $twig, EntityManagerInterface $entityManager, private readonly ?CsrfTokenManagerInterface $csrfTokenManager = null)
+    {
+        parent::__construct($requestStack, $twig, $entityManager);
     }
 
     public function isAutoFlush(): bool

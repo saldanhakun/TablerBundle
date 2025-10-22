@@ -11,7 +11,9 @@ namespace KevinPapst\TablerBundle\Screen;
 
 use KevinPapst\TablerBundle\Router\AbstractAppRouteHelper;
 use KevinPapst\TablerBundle\Screen\Action\AbstractAction;
+use KevinPapst\TablerBundle\Screen\Element\Json;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
 
 abstract class Screen extends AbstractController
@@ -87,11 +89,28 @@ abstract class Screen extends AbstractController
         $action->execute();
         $params = $action->getTemplateContext();
         $this->appendActionLinks($action, $params);
+        $output = $action->getOutput();
+        if (empty($output)) {
+            return $this
+                ->copyTitles($action)
+                ->render($action->getTemplate(), $params)
+                ;
+        }
+        elseif ($output instanceof Json) {
+            return new JsonResponse($output->getData());
+        }
+        elseif ($action->getRequestStack()->getMainRequest()->isXmlHttpRequest()) {
+            return new Response($output);
+        }
+        else {
+            $params['content'] = $output;
+            return $this->render($this->getPageLayout($action), $params);
+        }
+    }
 
-        return $this
-            ->copyTitles($action)
-            ->render($action->getTemplate(), $params)
-        ;
+    protected function getPageLayout(AbstractAction $action): string
+    {
+        return '@Tabler/layout/page-full.html.twig';
     }
 
     protected function appendActionLinks(AbstractAction $action, array &$context): void

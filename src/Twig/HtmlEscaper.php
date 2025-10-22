@@ -35,7 +35,15 @@ final class HtmlEscaper
     {
         $html = '';
         foreach ($attr as $name => $value) {
-            $html .= \sprintf(' %s="%s"', self::safeAttribute($name), self::safeAttribute($value));
+            if ($value === null) {
+                $html .= sprintf(' %s', self::safeAttribute($name));
+            }
+            elseif ($value === true || $value === false) {
+                $html .= sprintf(' %s="%s"', self::safeAttribute($name), $value ? 'true' : 'false');
+            }
+            else {
+                $html .= \sprintf(' %s="%s"', self::safeAttribute($name), self::safeAttribute($value));
+            }
         }
 
         return $html;

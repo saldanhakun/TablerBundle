@@ -14,6 +14,7 @@ use Symfony\Component\Form\Exception\LogicException;
 use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\HttpFoundation\RequestStack;
+use Twig\Environment;
 
 abstract class BaseFormAction extends RecordAction
 {
@@ -24,11 +25,11 @@ abstract class BaseFormAction extends RecordAction
     private bool $isValid = false;
 
     public function __construct(
-        RequestStack $requestStack,
+        RequestStack $requestStack, Environment $twig,
         EntityManagerInterface $entityManager,
         private readonly FormFactoryInterface $formFactory
     ) {
-        parent::__construct($requestStack, $entityManager);
+        parent::__construct($requestStack, $twig, $entityManager);
         $this->setEntryPoint('bundles/tabler/crud-form');
     }
 

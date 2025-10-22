@@ -9,26 +9,52 @@
 
 namespace KevinPapst\TablerBundle\Screen\Action;
 
+use KevinPapst\TablerBundle\Screen\Element\Element;
 use KevinPapst\TablerBundle\Screen\Filter\BaseFilter;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\EntityRepository;
 use Doctrine\ORM\QueryBuilder;
 use Symfony\Component\HttpFoundation\RequestStack;
+use Twig\Environment;
 
 abstract class DoctrineAction extends AbstractAction
 {
     private ?EntityRepository $repository = null;
     private ?QueryBuilder $builder = null;
     private array $filters = [];
+    private ?Element $emptyAlert = null;
+    private ?Element $filterControl = null;
 
-    public function __construct(RequestStack $requestStack, private readonly EntityManagerInterface $entityManager)
+    public function __construct(RequestStack $requestStack, Environment $twig, private readonly EntityManagerInterface $entityManager)
     {
-        parent::__construct($requestStack);
+        parent::__construct($requestStack, $twig);
     }
 
     public function getEntityManager(): EntityManagerInterface
     {
         return $this->entityManager;
+    }
+
+    public function getEmptyAlert(): ?Element
+    {
+        return $this->emptyAlert;
+    }
+
+    public function setEmptyAlert(?Element $emptyAlert): self
+    {
+        $this->emptyAlert = $emptyAlert;
+        return $this;
+    }
+
+    public function getFilterControl(): ?Element
+    {
+        return $this->filterControl;
+    }
+
+    public function setFilterControl(?Element $filterControl): self
+    {
+        $this->filterControl = $filterControl;
+        return $this;
     }
 
     public function pushFilter(BaseFilter $filter): self

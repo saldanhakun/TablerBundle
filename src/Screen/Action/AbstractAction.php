@@ -9,36 +9,18 @@
 
 namespace KevinPapst\TablerBundle\Screen\Action;
 
-use Saldanhakun\DoctrineBundle\Describer\BaseDescriber;
+use KevinPapst\TablerBundle\Screen\AbstractUi;
+use KevinPapst\TablerBundle\Screen\Element\Element;
 use KevinPapst\TablerBundle\Screen\Screen;
-use KevinPapst\TablerBundle\Twig\HtmlEscaper;
-use Symfony\Component\HttpFoundation\RequestStack;
+use Saldanhakun\DoctrineBundle\Describer\BaseDescriber;
 use Symfony\Component\Uid\Ulid;
 
-abstract class AbstractAction
+abstract class AbstractAction extends AbstractUi
 {
-    private HtmlEscaper $escaper;
     private ?BaseDescriber $describer = null;
     private ?Screen $screen = null;
-    private array $fixedParams = [];
-    protected array $_params = [];
     private ?string $entryPoint = null;
-
-    public function __construct(
-        private readonly RequestStack $requestStack
-    ) {
-        $this->escaper = HtmlEscaper::singleton();
-    }
-
-    public function getEscaper(): HtmlEscaper
-    {
-        return $this->escaper;
-    }
-
-    public function getRequestStack(): RequestStack
-    {
-        return $this->requestStack;
-    }
+    protected ?Element $output=null;
 
     protected function identify(object $record): string
     {
@@ -85,32 +67,6 @@ abstract class AbstractAction
         return $this;
     }
 
-    public function getFixedParams(): array
-    {
-        return $this->fixedParams;
-    }
-
-    public function setFixedParams(array $fixedParams): self
-    {
-        $this->fixedParams = $fixedParams;
-
-        return $this;
-    }
-
-    abstract public function getTemplate(): string;
-
-    public function getTemplateContext(): array
-    {
-        return $this->_params;
-    }
-
-    abstract public function getTitle(): string;
-
-    public function getSubTitle(): string
-    {
-        return '';
-    }
-
     protected function preExecute(): void
     {
         $this->_params = array_merge(array_filter([
@@ -118,7 +74,7 @@ abstract class AbstractAction
             'screen' => $this->getScreen(),
             'describer' => $this->getDescriber(),
             'entrypoint' => $this->getEntryPoint(),
-        ]), $this->fixedParams);
+        ]), $this->getFixedParams());
     }
 
     abstract protected function run(): void;
@@ -150,5 +106,17 @@ abstract class AbstractAction
     public function isSingleAction(): bool
     {
         return false;
+    }
+
+    abstract public function getTitle(): string;
+
+    public function getSubTitle(): string
+    {
+        return '';
+    }
+
+    public function getOutput(): ?Element
+    {
+        return $this->output;
     }
 }
