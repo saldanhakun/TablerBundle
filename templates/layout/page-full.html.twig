@@ -1,0 +1,17 @@
+{% extends page_layout|default('@Tabler/layout-horizontal.html.twig') %}
+
+{% block page_title %}{{ screen.title|raw }}{% endblock %}
+{% block page_subtitle %}{{ screen.subtitle|raw }}{% endblock %}
+{% block page_pretitle %}<i class="fa fa-dashboard"></i>Administração{% endblock %}
+{% block breadcrumb %}
+    {{ include('@Tabler/includes/breadcrumb.html.twig') }}
+{% endblock %}
+{% block page_actions %}
+    {% for link in global_actions %}
+        {{ include('@Tabler/includes/action-button.html.twig', link) }}
+    {% endfor %}
+{% endblock %}
+
+{% block page_content %}
+    {{ content|raw }}
+{% endblock %}

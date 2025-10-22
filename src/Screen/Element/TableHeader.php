@@ -25,7 +25,6 @@ class TableHeader extends Element
     protected function renderContent(): string
     {
         $this->getTr()->setContent(implode('', $this->loadColumns(true)));
-        dump($this);
         $this->setContent($this->getTr()->render());
         return parent::renderContent();
     }

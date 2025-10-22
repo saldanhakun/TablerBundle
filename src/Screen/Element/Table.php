@@ -50,7 +50,6 @@ class Table extends Element
 
     protected function renderContent(): string
     {
-        dump($this);
         $thead = new TableHeader($this);
         $tbody = new HtmlElement('tbody', parent::renderContent());
         return $thead . $tbody;

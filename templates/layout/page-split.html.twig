@@ -1,0 +1,16 @@
+{% extends '@Tabler/layout/page-full.html.twig') %}
+{% set main_width = main_width|default(6) %}
+{% block page_content %}
+    <div class="row">
+        <div class="{% block left_class %}{{ left_class|default('col-md-'~main_width) }}{% endblock %}">
+            {% block left_side %}
+                {{ content|raw }}
+            {% endblock %}
+        </div>
+        <div class="{% block right_class %}{{ right_class|default('col-md-'~(12-main_width)) }}{% endblock %}">
+            {% block right_side %}
+                {{ second_content|raw }}
+            {% endblock %}
+        </div>
+    </div>
+{% endblock %}
