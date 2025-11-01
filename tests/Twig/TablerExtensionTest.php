@@ -1,19 +1,20 @@
 <?php
 
 /*
- * This file is part of the Tabler bundle, created by Kevin Papst (www.kevinpapst.de).
+ * This file is part of the Tabler bundle, created by Kevin Papst (www.kevinpapst.de)
+ * and fully revamped and upgraded by Marcelo Saldanha (marcelosaldanha.com.br)
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
 
-namespace KevinPapst\TablerBundle\Tests\Twig;
+namespace Saldanhakun\TablerBundle\Tests\Twig;
 
-use KevinPapst\TablerBundle\Twig\TablerExtension;
 use PHPUnit\Framework\TestCase;
+use Saldanhakun\TablerBundle\Twig\TablerExtension;
 
 /**
- * @covers \KevinPapst\TablerBundle\Twig\TablerExtension
+ * @covers \Saldanhakun\TablerBundle\Twig\TablerExtension
  */
 class TablerExtensionTest extends TestCase
 {

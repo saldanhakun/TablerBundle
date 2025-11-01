@@ -38,7 +38,7 @@
                 <div class="carousel-item {% if loop.first %}active{% endif %}">
                 {% if _has_custom %}
                     {# This is useless: breaks contents and no additional value as making everything same size is cumbersome #}
-                    {{ item.customContent | raw }}
+                    {{ item.customContent|raw }}
                 {% else %}
                     <img src="{{ item.image }}" class="d-block w-100" alt="{% if item.title is defined %}{{ item.title }}{% endif %}">
                     {% if item.title is defined or item.description is defined %}

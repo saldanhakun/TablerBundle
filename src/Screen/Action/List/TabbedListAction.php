@@ -1,13 +1,20 @@
 <?php
 
-namespace KevinPapst\TablerBundle\Screen\Action\List;
+/*
+ * This file is part of the Tabler bundle, created by Kevin Papst (www.kevinpapst.de)
+ * and fully revamped and upgraded by Marcelo Saldanha (marcelosaldanha.com.br)
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
 
-use KevinPapst\TablerBundle\Screen\Element\PlugElement;
-use KevinPapst\TablerBundle\Screen\Plug\TabbedCardPlug;
+namespace Saldanhakun\TablerBundle\Screen\Action\List;
+
+use Saldanhakun\TablerBundle\Screen\Element\PlugElement;
+use Saldanhakun\TablerBundle\Screen\Plug\TabbedCardPlug;
 
 class TabbedListAction extends ListAction
 {
-
     private TabbedCardPlug $tabbedCardPlug;
 
     protected function configure(): void

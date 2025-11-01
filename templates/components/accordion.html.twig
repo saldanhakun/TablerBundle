@@ -32,17 +32,17 @@
                     <button class="accordion-button {% if not _item_open %}collapsed{% endif %}"
                             type="button" data-bs-toggle="collapse" data-bs-target="#{{ _id_collapse }}"
                             aria-expanded="true">
-                        {% if _raw %}{{ _item_title | raw }}{% else %}{{ _item_title }}{% endif %}
+                        {% if _raw %}{{ _item_title|raw }}{% else %}{{ _item_title }}{% endif %}
                     </button>
                 </div>
 
                 <div id="{{ _id_collapse }}" {% if _always_open == false %}data-bs-parent="#{{ _id }}"{% endif %}
                      class="accordion-collapse collapse {% if _item_open %}show{% endif %} {{ _item_body_extraClass }}">
-                    {% if _raw %}{{ _item_body_before | raw }}{% else %}{{ _item_body_before }}{% endif %}
+                    {% if _raw %}{{ _item_body_before|raw }}{% else %}{{ _item_body_before }}{% endif %}
                     <div class="accordion-body {{ _item_body_classes }}">
-                        {% if _raw %}{{ _item_body | raw }}{% else %}{{ _item_body }}{% endif %}
+                        {% if _raw %}{{ _item_body|raw }}{% else %}{{ _item_body }}{% endif %}
                     </div>
-                    {% if _raw %}{{ _item_body_after | raw }}{% else %}{{ _item_body_after }}{% endif %}
+                    {% if _raw %}{{ _item_body_after|raw }}{% else %}{{ _item_body_after }}{% endif %}
                 </div>
             </div>
 

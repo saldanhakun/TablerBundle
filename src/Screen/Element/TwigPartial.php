@@ -1,12 +1,19 @@
 <?php
 
-namespace KevinPapst\TablerBundle\Screen\Element;
+/*
+ * This file is part of the Tabler bundle, created by Kevin Papst (www.kevinpapst.de)
+ * and fully revamped and upgraded by Marcelo Saldanha (marcelosaldanha.com.br)
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
+namespace Saldanhakun\TablerBundle\Screen\Element;
 
 use Twig\TemplateWrapper;
 
 class TwigPartial extends Element
 {
-
     use UiTemplatedTrait;
 
     public function __construct(TemplateWrapper $template, array $context = [])
@@ -23,6 +30,7 @@ class TwigPartial extends Element
     public function setTemplate(TemplateWrapper $template): self
     {
         $this->template = $template;
+
         return $this;
     }
 
@@ -30,5 +38,4 @@ class TwigPartial extends Element
     {
         return $this->template->render($this->templateContext);
     }
-
 }

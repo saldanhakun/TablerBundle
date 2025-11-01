@@ -6,7 +6,7 @@
     <div class="{% block container_classes %}container container-tight py-4{% endblock %}">
         <div class="text-center mb-4">
             {% block security_logo %}
-                {% include '@Tabler/includes/security-logo.html.twig' %}
+                {{ include('@Tabler/includes/security-logo.html.twig') }}
             {% endblock %}
         </div>
 
@@ -40,15 +40,15 @@
                                 <div class="input-group input-group-flat">
                                     <input autocomplete="new-password" id="password" name="_password" type="password" tabindex="20" class="form-control" placeholder="{{ 'Password'|trans({}, 'TablerBundle') }}" required="required">
                                     {% block password_show %}
-                                        {% include '@Tabler/includes/login-show-password.html.twig' %}
+                                        {{ include('@Tabler/includes/login-show-password.html.twig') }}
                                         <script>
-                                            {% include '@Tabler/includes/login-show-password.js.twig' %}
+                                            {{ include('@Tabler/includes/login-show-password.js.twig') }}
                                         </script>
                                     {% endblock %}{# password_show #}
                                 </div>
                             </div>
                             {% block remember_me %}
-                                {% include '@Tabler/includes/security-remember.html.twig' %}
+                                {{ include('@Tabler/includes/security-remember.html.twig') }}
                             {% endblock %}
                             <div class="form-footer">
                                 <button type="submit" tabindex="40" class="btn btn-primary w-100">{{ 'Sign In'|trans({}, 'TablerBundle') }}</button>
@@ -63,7 +63,7 @@
             {% endblock %}{# login_box #}
 
             {% block login_social_auth %}
-                {% include '@Tabler/includes/login-social.html.twig' %}
+                {{ include('@Tabler/includes/login-social.html.twig') }}
             {% endblock %}
         </div>
 

@@ -40,7 +40,7 @@
                     </h6>
                 {% else %}
                     <div class="dropdown-item {{ _extraClass }}" {{ macros.attr_to_html(_attr) }}>
-                        {{ _html | raw }}
+                        {{ _html|raw }}
                     </div>
                 {% endif %}
             {% else %}
@@ -52,14 +52,14 @@
                                 {{ tabler_icon(_icon, true) }}
                             </span>
                         {% elseif _html %}
-                            {{ _html | raw }}
+                            {{ _html|raw }}
                         {% endif %}
                         {{ _title }}
                         {{ badge }}
                     </a>
-                {% elseif _type in ['radio','checkbox','switch'] %}
+                {% elseif _type in ['radio', 'checkbox', 'switch'] %}
                     <label class="{{ classes }} {% if _type is same as 'switch' %}form-switch{% endif %}" {{ macros.attr_to_html(_attr) }}>
-                        {{ _html | raw }}
+                        {{ _html|raw }}
                         {{ _title }}
                     </label>
                 {% endif %}

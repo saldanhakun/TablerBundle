@@ -2,12 +2,12 @@
 
 ## Data Model
 
-In order to use this component, your user class has to implement the `KevinPapst\TablerBundle\Model\NotificationInterface`:
+In order to use this component, your user class has to implement the `Saldanhakun\TablerBundle\Model\NotificationInterface`:
 ```php
 <?php
 namespace App\Model;
 
-use KevinPapst\TablerBundle\Model\NotificationInterface;
+use Saldanhakun\TablerBundle\Model\NotificationInterface;
 
 class NotificationModel implements NotificationInterface
 {
@@ -25,9 +25,9 @@ be automatically registered in your container:
 ```php
 <?php
 
-use KevinPapst\TablerBundle\Event\NotificationEvent;
-use KevinPapst\TablerBundle\Helper\Constants;
-use KevinPapst\TablerBundle\Model\NotificationModel;
+use Saldanhakun\TablerBundle\Event\NotificationEvent;
+use Saldanhakun\TablerBundle\Helper\Constants;
+use Saldanhakun\TablerBundle\Model\NotificationModel;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
 class NotificationSubscriber implements EventSubscriberInterface

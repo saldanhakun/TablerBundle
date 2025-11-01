@@ -1,15 +1,16 @@
 <?php
 
 /*
- * Este arquivo é parte da aplicação Sistema Tio Edy
- * Copyright 2025 Marcelo Saldanha - saldanha@uttara.com.br
+ * This file is part of the Tabler bundle, created by Kevin Papst (www.kevinpapst.de)
+ * and fully revamped and upgraded by Marcelo Saldanha (marcelosaldanha.com.br)
  *
- * Software proprietário, distribuição e reuso estão proibidos.
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
  */
 
-namespace KevinPapst\TablerBundle\Screen\Plug;
+namespace Saldanhakun\TablerBundle\Screen\Plug;
 
-use KevinPapst\TablerBundle\Screen\Element\Element;
+use Saldanhakun\TablerBundle\Screen\Element\Element;
 
 class ElementPlug extends AbstractPlug
 {
@@ -24,6 +25,7 @@ class ElementPlug extends AbstractPlug
     public function setElement(?Element $element): self
     {
         $this->element = $element;
+
         return $this;
     }
 
@@ -35,6 +37,7 @@ class ElementPlug extends AbstractPlug
     public function setWrapper(?Element $wrapper): self
     {
         $this->wrapper = $wrapper;
+
         return $this;
     }
 
@@ -56,5 +59,4 @@ class ElementPlug extends AbstractPlug
     {
         return '';
     }
-
 }

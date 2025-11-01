@@ -9,10 +9,10 @@
     title: block('title') ?? '',
     body: block('body') ?? '',
     bodyClasses: '',
-    options: { open: open ?? false, bodyExtraClass: ((border ?? true) ? 'border-top pt-3' : '') }
-} | merge(item ?? {}) %}
+    options: {open: open ?? false, bodyExtraClass: ((border ?? true) ? 'border-top pt-3' : '')},
+}|merge(item ?? {}) %}
 
-{% set options = {flush: flush ?? false} | merge(options ?? {}) %}
+{% set options = {flush: flush ?? false}|merge(options ?? {}) %}
 
 {% block box_body %}
     {{ accordion([item], options) }}

@@ -1,21 +1,22 @@
 <?php
 
 /*
- * Este arquivo é parte da aplicação Sistema Tio Edy
- * Copyright 2025 Marcelo Saldanha - saldanha@uttara.com.br
+ * This file is part of the Tabler bundle, created by Kevin Papst (www.kevinpapst.de)
+ * and fully revamped and upgraded by Marcelo Saldanha (marcelosaldanha.com.br)
  *
- * Software proprietário, distribuição e reuso estão proibidos.
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
  */
 
-namespace KevinPapst\TablerBundle\EventSubscriber;
+namespace Saldanhakun\TablerBundle\EventSubscriber;
 
-use KevinPapst\TablerBundle\Controller\DemoController;
-use KevinPapst\TablerBundle\Event\MenuEvent;
-use KevinPapst\TablerBundle\Event\UserDetailsEvent;
-use KevinPapst\TablerBundle\Model\MenuItemInterface;
-use KevinPapst\TablerBundle\Model\MenuItemModel;
-use KevinPapst\TablerBundle\Router\AbstractAppRouteHelper;
-use KevinPapst\TablerBundle\Security\TablerAppAccessControl;
+use Saldanhakun\TablerBundle\Controller\DemoController;
+use Saldanhakun\TablerBundle\Event\MenuEvent;
+use Saldanhakun\TablerBundle\Event\UserDetailsEvent;
+use Saldanhakun\TablerBundle\Model\MenuItemInterface;
+use Saldanhakun\TablerBundle\Model\MenuItemModel;
+use Saldanhakun\TablerBundle\Router\AbstractAppRouteHelper;
+use Saldanhakun\TablerBundle\Security\TablerAppAccessControl;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\String\Slugger\SluggerInterface;
 
@@ -41,9 +42,9 @@ abstract class AbstractMainMenuBuilder
             if (!$this->accessControl->isGranted(TablerAppAccessControl::ROLE_SUPPORT)) {
                 return true;
             }
+
             return !$this->isDemoAware();
-        }
-        else {
+        } else {
             return $this->isDemoAware();
         }
     }
@@ -83,21 +84,20 @@ abstract class AbstractMainMenuBuilder
         ?string $route = null,
         array $routeArgs = [],
         ?string $icon = null
-    ): MenuItemInterface
-    {
+    ): MenuItemInterface {
         $item = new MenuItemModel($identifier, $label, $route, $routeArgs, $icon);
         if ($event instanceof UserDetailsEvent) {
             $event->addLink($item);
-        }
-        else {
+        } else {
             $event->addItem($item);
         }
+
         return $item;
     }
 
-    protected function createSpacer(MenuEvent|UserDetailsEvent $event, string $label, ?string $icon=null): MenuItemInterface
+    protected function createSpacer(MenuEvent|UserDetailsEvent $event, string $label, ?string $icon = null): MenuItemInterface
     {
-        return $this->createItem($event, $this->slugger->slug($label).uniqid(), $label, null, [], $icon);
+        return $this->createItem($event, $this->slugger->slug($label) . uniqid(), $label, null, [], $icon);
     }
 
     /**

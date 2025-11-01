@@ -1,13 +1,14 @@
 <?php
 
 /*
- * Este arquivo é parte da aplicação Sistema Tio Edy
- * Copyright 2025 Marcelo Saldanha - saldanha@uttara.com.br
+ * This file is part of the Tabler bundle, created by Kevin Papst (www.kevinpapst.de)
+ * and fully revamped and upgraded by Marcelo Saldanha (marcelosaldanha.com.br)
  *
- * Software proprietário, distribuição e reuso estão proibidos.
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
  */
 
-namespace KevinPapst\TablerBundle\Screen\Filter;
+namespace Saldanhakun\TablerBundle\Screen\Filter;
 
 use Doctrine\Common\Collections\Order;
 use Doctrine\ORM\QueryBuilder;

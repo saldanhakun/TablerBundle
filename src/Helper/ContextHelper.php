@@ -1,13 +1,14 @@
 <?php
 
 /*
- * This file is part of the Tabler bundle, created by Kevin Papst (www.kevinpapst.de).
+ * This file is part of the Tabler bundle, created by Kevin Papst (www.kevinpapst.de)
+ * and fully revamped and upgraded by Marcelo Saldanha (marcelosaldanha.com.br)
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
 
-namespace KevinPapst\TablerBundle\Helper;
+namespace Saldanhakun\TablerBundle\Helper;
 
 /**
  * @extends \ArrayObject<string, mixed>
@@ -131,7 +132,7 @@ class ContextHelper extends \ArrayObject
             return $cover;
         }
         if (\is_array($cover) && !empty($cover)) {
-            return $cover[random_int(0, count($cover)-1)];
+            return $cover[random_int(0, \count($cover) - 1)];
         }
 
         return '';
@@ -139,7 +140,7 @@ class ContextHelper extends \ArrayObject
 
     public function setSecurityCoverUrl(string|array $url): void
     {
-        $this->setOption('security_cover_url', is_array($url) ? $url : [$url]);
+        $this->setOption('security_cover_url', \is_array($url) ? $url : [$url]);
     }
 
     /**

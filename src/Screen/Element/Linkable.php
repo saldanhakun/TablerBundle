@@ -1,8 +1,16 @@
 <?php
 
-namespace KevinPapst\TablerBundle\Screen\Element;
+/*
+ * This file is part of the Tabler bundle, created by Kevin Papst (www.kevinpapst.de)
+ * and fully revamped and upgraded by Marcelo Saldanha (marcelosaldanha.com.br)
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
 
-use KevinPapst\TablerBundle\Enum\LinkTarget;
+namespace Saldanhakun\TablerBundle\Screen\Element;
+
+use Saldanhakun\TablerBundle\Enum\LinkTarget;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
 class Linkable extends Element
@@ -10,19 +18,18 @@ class Linkable extends Element
     use UiLinkableTrait;
     use UiRoutableTrait;
 
-    private ?UrlGeneratorInterface $urlGenerator=null;
+    private ?UrlGeneratorInterface $urlGenerator = null;
     public const array ACCEPTED_TAGS = [
         'a',
         'button',
     ];
 
-    public function __construct(Element|string $content, string $urlOrRoute, bool $button=false, array $attributes = [])
+    public function __construct(Element|string $content, string $urlOrRoute, bool $button = false, array $attributes = [])
     {
-        parent::__construct($button?'button':'a', $content, $attributes);
+        parent::__construct($button ? 'button' : 'a', $content, $attributes);
         if (preg_match('/^[a-z_0-9.]+$/', $urlOrRoute)) {
             $this->route = $urlOrRoute;
-        }
-        else {
+        } else {
             $this->link = $urlOrRoute;
         }
     }
@@ -40,6 +47,7 @@ class Linkable extends Element
     public function setUrlGenerator(?UrlGeneratorInterface $urlGenerator): self
     {
         $this->urlGenerator = $urlGenerator;
+
         return $this;
     }
 
@@ -47,14 +55,13 @@ class Linkable extends Element
     {
         if (!empty($this->route)) {
             if (!$this->urlGenerator) {
-                throw new \LogicException("Url generator must be set before rendering");
+                throw new \LogicException('Url generator must be set before rendering');
             }
+
             return $this->urlGenerator->generate($this->route, $this->routeParams);
-        }
-        elseif (!empty($this->link)) {
+        } elseif (!empty($this->link)) {
             return $this->link;
-        }
-        else {
+        } else {
             return '#';
         }
     }
@@ -65,10 +72,8 @@ class Linkable extends Element
         $this->attr['href'] = $this->getUrl();
         if ($this->getTarget() != LinkTarget::NONE) {
             $this->attr['target'] = $this->getTarget();
-        }
-        else {
+        } else {
             unset($this->attr['target']);
         }
     }
-
 }

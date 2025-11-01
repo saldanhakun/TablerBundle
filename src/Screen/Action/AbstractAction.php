@@ -1,18 +1,19 @@
 <?php
 
 /*
- * Este arquivo é parte da aplicação Sistema Tio Edy
- * Copyright 2025 Marcelo Saldanha - saldanha@uttara.com.br
+ * This file is part of the Tabler bundle, created by Kevin Papst (www.kevinpapst.de)
+ * and fully revamped and upgraded by Marcelo Saldanha (marcelosaldanha.com.br)
  *
- * Software proprietário, distribuição e reuso estão proibidos.
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
  */
 
-namespace KevinPapst\TablerBundle\Screen\Action;
+namespace Saldanhakun\TablerBundle\Screen\Action;
 
-use KevinPapst\TablerBundle\Screen\AbstractUi;
-use KevinPapst\TablerBundle\Screen\Element\Element;
-use KevinPapst\TablerBundle\Screen\Screen;
 use Saldanhakun\DoctrineBundle\Describer\BaseDescriber;
+use Saldanhakun\TablerBundle\Screen\AbstractUi;
+use Saldanhakun\TablerBundle\Screen\Element\Element;
+use Saldanhakun\TablerBundle\Screen\Screen;
 use Symfony\Component\Uid\Ulid;
 
 abstract class AbstractAction extends AbstractUi
@@ -20,7 +21,7 @@ abstract class AbstractAction extends AbstractUi
     private ?BaseDescriber $describer = null;
     private ?Screen $screen = null;
     private ?string $entryPoint = null;
-    protected ?Element $output=null;
+    protected ?Element $output = null;
 
     protected function identify(object $record): string
     {
@@ -52,6 +53,7 @@ abstract class AbstractAction extends AbstractUi
     public function setEntryPoint(?string $entryPoint): self
     {
         $this->entryPoint = $entryPoint;
+
         return $this;
     }
 

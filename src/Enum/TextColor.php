@@ -1,12 +1,19 @@
 <?php
 
-namespace KevinPapst\TablerBundle\Enum;
+/*
+ * This file is part of the Tabler bundle, created by Kevin Papst (www.kevinpapst.de)
+ * and fully revamped and upgraded by Marcelo Saldanha (marcelosaldanha.com.br)
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
+namespace Saldanhakun\TablerBundle\Enum;
 
 use Saldanhakun\BrazilianValidators\Enum\BaseEnum;
 
 class TextColor extends BaseEnum
 {
-
     public const string PRIMARY = 'primary';
     public const string SECONDARY = 'secondary';
     public const string BODY = 'body';
@@ -30,27 +37,26 @@ class TextColor extends BaseEnum
     public const string LIGHT = 'light';
 
     public const array OPTIONS = [
-        self::PRIMARY => "Primária",
-        self::SECONDARY => "Secundária",
-        self::BODY => "Corpo da Página",
-        self::SUCCESS => "Sucesso",
-        self::INFO => "Informação",
-        self::WARNING => "Aviso",
-        self::DANGER => "Perigo",
-        self::BLUE => "Azul",
-        self::AZURE => "Azul Claro",
-        self::INDIGO => "Azul Escuro",
-        self::PURPLE => "Roxo",
-        self::PINK => "Rosa",
-        self::RED => "Vermelho",
-        self::ORANGE => "Laranja",
-        self::YELLOW => "Amarelo",
-        self::LIME => "Verde Limão",
-        self::GREEN => "Verde",
-        self::TEAL => "Verde-azulado",
-        self::CYAN => "Ciano",
-        self::DARK => "Escuro",
-        self::LIGHT => "Claro",
+        self::PRIMARY => 'Primária',
+        self::SECONDARY => 'Secundária',
+        self::BODY => 'Corpo da Página',
+        self::SUCCESS => 'Sucesso',
+        self::INFO => 'Informação',
+        self::WARNING => 'Aviso',
+        self::DANGER => 'Perigo',
+        self::BLUE => 'Azul',
+        self::AZURE => 'Azul Claro',
+        self::INDIGO => 'Azul Escuro',
+        self::PURPLE => 'Roxo',
+        self::PINK => 'Rosa',
+        self::RED => 'Vermelho',
+        self::ORANGE => 'Laranja',
+        self::YELLOW => 'Amarelo',
+        self::LIME => 'Verde Limão',
+        self::GREEN => 'Verde',
+        self::TEAL => 'Verde-azulado',
+        self::CYAN => 'Ciano',
+        self::DARK => 'Escuro',
+        self::LIGHT => 'Claro',
     ];
-
 }

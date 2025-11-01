@@ -1,6 +1,14 @@
 <?php
 
-namespace KevinPapst\TablerBundle\Form\Extension;
+/*
+ * This file is part of the Tabler bundle, created by Kevin Papst (www.kevinpapst.de)
+ * and fully revamped and upgraded by Marcelo Saldanha (marcelosaldanha.com.br)
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
+namespace Saldanhakun\TablerBundle\Form\Extension;
 
 use Symfony\Component\Form\AbstractTypeExtension;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
@@ -52,5 +60,4 @@ class CheckboxCustomizer extends AbstractTypeExtension
         // use FormType::class to modify (nearly) every field in the system
         return [CheckboxType::class];
     }
-
 }

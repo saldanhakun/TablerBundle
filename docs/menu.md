@@ -5,12 +5,12 @@ the menu is currently limited to two levels.
 
 ## Data Model
 
-In order to use this component, your have to create a `MenuItemModel` class that implements `\KevinPapst\TablerBundle\Model\MenuItemInterface`:
+In order to use this component, your have to create a `MenuItemModel` class that implements `\Saldanhakun\TablerBundle\Model\MenuItemInterface`:
 ```php
 <?php
 namespace App\Model;
 
-use KevinPapst\TablerBundle\Model\MenuItemInterface;
+use Saldanhakun\TablerBundle\Model\MenuItemInterface;
 
 class MenuItemModel implements MenuItemInterface
 {
@@ -21,12 +21,12 @@ The bundle provides the `MenuItemModel` as a ready to use implementation of the 
 You can use it to create a menu item:
 
 ```php
-$menuItem = new \KevinPapst\TablerBundle\Model\MenuItemModel('item', 'Item', 'item_route_name');
+$menuItem = new \Saldanhakun\TablerBundle\Model\MenuItemModel('item', 'Item', 'item_route_name');
 ```
 
 or a menu label:
 ```php
-$menuLabel = new \KevinPapst\TablerBundle\Model\MenuItemModel('label', 'Label', null);
+$menuLabel = new \Saldanhakun\TablerBundle\Model\MenuItemModel('label', 'Label', null);
 ```
 
 ## EventSubscriber
@@ -38,8 +38,8 @@ be automatically registered in your container:
 <?php
 namespace App\EventSubscriber;
 
-use KevinPapst\TablerBundle\Event\MenuEvent;
-use KevinPapst\TablerBundle\Model\MenuItemModel;
+use Saldanhakun\TablerBundle\Event\MenuEvent;
+use Saldanhakun\TablerBundle\Model\MenuItemModel;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
 class MenuBuilderSubscriber implements EventSubscriberInterface

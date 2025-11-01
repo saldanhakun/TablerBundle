@@ -1,13 +1,21 @@
 <?php
 
-namespace KevinPapst\TablerBundle\Form;
+/*
+ * This file is part of the Tabler bundle, created by Kevin Papst (www.kevinpapst.de)
+ * and fully revamped and upgraded by Marcelo Saldanha (marcelosaldanha.com.br)
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
 
-use KevinPapst\TablerBundle\Entity\User;
-use KevinPapst\TablerBundle\Form\Widget\TwigType;
-use KevinPapst\TablerBundle\Security\TablerAppAccessControl;
-use Saldanhakun\DoctrineBundle\Entity\Attachment;
-use KevinPapst\TablerBundle\Repository\UserRepository;
+namespace Saldanhakun\TablerBundle\Form;
+
 use Doctrine\ORM\QueryBuilder;
+use Saldanhakun\DoctrineBundle\Entity\Attachment;
+use Saldanhakun\TablerBundle\Entity\User;
+use Saldanhakun\TablerBundle\Form\Widget\TwigType;
+use Saldanhakun\TablerBundle\Repository\UserRepository;
+use Saldanhakun\TablerBundle\Security\TablerAppAccessControl;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
@@ -48,7 +56,7 @@ class AttachmentCrudForm extends AbstractType
                 if ($options['allow_upload']) {
                     $form
                         ->add('upload', FileType::class, [
-                            'label' => "Novo Arquivo",
+                            'label' => 'Novo Arquivo',
                             'required' => $options['required'],
                             'mapped' => false,
                         ]);
@@ -56,17 +64,16 @@ class AttachmentCrudForm extends AbstractType
                 if ($options['allow_remote']) {
                     $form
                         ->add('originalFileName', UrlType::class, [
-                            'label' => "Link",
+                            'label' => 'Link',
                             'required' => $options['required'],
                         ]);
                 }
-            }
-            else {
+            } else {
                 if ($options['allow_upload'] || !$file->getIsRemote()) {
                     if ($options['allow_replace']) {
                         $form
                             ->add('upload', FileType::class, [
-                                'label' => "Arquivo",
+                                'label' => 'Arquivo',
                                 'required' => false,
                                 'mapped' => false,
                             ]);
@@ -75,7 +82,7 @@ class AttachmentCrudForm extends AbstractType
                 if ($options['allow_remote'] || $file->getIsRemote()) {
                     $form
                         ->add('originalFileName', UrlType::class, [
-                            'label' => "Link",
+                            'label' => 'Link',
                             'required' => !$options['allow_upload'],
                         ]);
                 }
@@ -106,7 +113,7 @@ class AttachmentCrudForm extends AbstractType
                 ->add('role', ChoiceType::class, [
                     'label' => 'Permissão',
                     'required' => false,
-                    'placeholder' => "(nenhuma permissão necessária)",
+                    'placeholder' => '(nenhuma permissão necessária)',
                     'choices' => array_flip(TablerAppAccessControl::ROLES),
                 ]);
             if (!$creating) {
@@ -128,6 +135,7 @@ class AttachmentCrudForm extends AbstractType
         if (!$this->accessControl->isDev()) {
             $qb = $this->userRepository->getUsersQueryBuilder(true, $this->accessControl->getUser(), null);
         }
+
         return $qb;
     }
 

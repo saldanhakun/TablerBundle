@@ -7,7 +7,7 @@
 {# Header #}
 <div class="{% if not _tabs %}card-header{% endif %} {% block card_header_class %}{% endblock %}">
     <ul
-            class="nav nav-{{ _navType }} {% if _bottom %}nav-tabs-bottom{% endif%} {% if not _tabs %}card-header-{{ _navType }}{% endif %}"
+            class="nav nav-{{ _navType }} {% if _bottom %}nav-tabs-bottom{% endif %} {% if not _tabs %}card-header-{{ _navType }}{% endif %}"
             {% if _tabs %}role="tablist"{% endif %}
     >
         {% block card_nav_before %}{% endblock %}
@@ -20,7 +20,7 @@
             {# Item Options #}
             {% set _active = item.active ?? false %}
             {% set _disabled = item.disabled ?? false %}
-            {% set _url = item.url ?? ("#tabs-" ~ item.id) %}
+            {% set _url = item.url ?? ('#tabs-' ~ item.id) %}
             {% set _raw = item.raw ?? false %}
 
             <li
@@ -38,7 +38,7 @@
                         {% if item.url is not defined and not _manualContent %}data-bs-toggle="tab"{% endif %}
                 >
                     {% if _raw %}
-                        {{ _name | raw }}
+                        {{ _name|raw }}
                     {% else %}
                         {{ _name }}
                     {% endif %}
@@ -48,4 +48,3 @@
         {% block card_nav_after %}{% endblock %}
     </ul>
 </div>
-

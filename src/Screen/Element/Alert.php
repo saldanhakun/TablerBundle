@@ -1,9 +1,17 @@
 <?php
 
-namespace KevinPapst\TablerBundle\Screen\Element;
+/*
+ * This file is part of the Tabler bundle, created by Kevin Papst (www.kevinpapst.de)
+ * and fully revamped and upgraded by Marcelo Saldanha (marcelosaldanha.com.br)
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
 
-use KevinPapst\TablerBundle\Enum\AlertCategory;
-use KevinPapst\TablerBundle\Enum\AlertType;
+namespace Saldanhakun\TablerBundle\Screen\Element;
+
+use Saldanhakun\TablerBundle\Enum\AlertCategory;
+use Saldanhakun\TablerBundle\Enum\AlertType;
 
 class Alert extends Element
 {
@@ -15,7 +23,6 @@ class Alert extends Element
     private ?string $title = null;
     private Linkable $action;
     private Icon $icon;
-
 
     public const array ACCEPTED_TAGS = [
         'div',
@@ -44,7 +51,7 @@ class Alert extends Element
         return $this->action;
     }
 
-    public function getCategory(bool $asString=true): AlertCategory|string
+    public function getCategory(bool $asString = true): AlertCategory|string
     {
         return AlertCategory::instanceOrString($this->category, $asString);
     }
@@ -52,10 +59,11 @@ class Alert extends Element
     public function setCategory(AlertCategory|string $category): self
     {
         $this->category = AlertCategory::assert($category);
+
         return $this;
     }
 
-    public function getType(bool $asString=true): AlertType|string
+    public function getType(bool $asString = true): AlertType|string
     {
         return AlertType::instanceOrString($this->type, $asString);
     }
@@ -63,6 +71,7 @@ class Alert extends Element
     public function setType(AlertType|string $type): self
     {
         $this->type = AlertType::assert($type);
+
         return $this;
     }
 
@@ -74,6 +83,7 @@ class Alert extends Element
     public function setDismissable(bool $dismissable): self
     {
         $this->dismissable = $dismissable;
+
         return $this;
     }
 
@@ -85,6 +95,7 @@ class Alert extends Element
     public function setTitle(?string $title): self
     {
         $this->title = $title;
+
         return $this;
     }
 
@@ -95,8 +106,7 @@ class Alert extends Element
         $this->addClass('alert', "alert-{$type->getKey()}");
         if ($this->category === AlertCategory::IMPORTANT) {
             $this->addClass('alert-important');
-        }
-        elseif ($this->category === AlertCategory::MINOR) {
+        } elseif ($this->category === AlertCategory::MINOR) {
             $this->addClass('alert-minor');
         }
 
@@ -115,19 +125,19 @@ class Alert extends Element
 
     protected function renderContent(): string
     {
-        $html = sprintf('<div class="alert-icon">%s</div>', $this->icon->render());
+        $html = \sprintf('<div class="alert-icon">%s</div>', $this->icon->render());
         $description = parent::renderContent();
         $title = $this->title ?? $this->getType(false)->getName();
         if (empty($description)) {
-            $html .= sprintf('<div>%s</div>', $title);
-        }
-        else {
-            $html .= sprintf('<div><h4 class="alert-heading">%s</h4><div class="alert-description">%s</div></div>', $title, $description);
+            $html .= \sprintf('<div>%s</div>', $title);
+        } else {
+            $html .= \sprintf('<div><h4 class="alert-heading">%s</h4><div class="alert-description">%s</div></div>', $title, $description);
         }
         $html .= $this->action->render();
         if ($this->dismissable) {
             $html .= '<a class="btn-close" data-bs-dismiss="alert" aria-label="close"></a>';
         }
+
         return $html;
     }
 }

@@ -1,13 +1,14 @@
 <?php
 
 /*
- * Este arquivo é parte da aplicação Sistema Tio Edy
- * Copyright 2025 Marcelo Saldanha - saldanha@uttara.com.br
+ * This file is part of the Tabler bundle, created by Kevin Papst (www.kevinpapst.de)
+ * and fully revamped and upgraded by Marcelo Saldanha (marcelosaldanha.com.br)
  *
- * Software proprietário, distribuição e reuso estão proibidos.
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
  */
 
-namespace KevinPapst\TablerBundle\Twig;
+namespace Saldanhakun\TablerBundle\Twig;
 
 final class HtmlEscaper
 {
@@ -36,12 +37,10 @@ final class HtmlEscaper
         $html = '';
         foreach ($attr as $name => $value) {
             if ($value === null) {
-                $html .= sprintf(' %s', self::safeAttribute($name));
-            }
-            elseif ($value === true || $value === false) {
-                $html .= sprintf(' %s="%s"', self::safeAttribute($name), $value ? 'true' : 'false');
-            }
-            else {
+                $html .= \sprintf(' %s', self::safeAttribute($name));
+            } elseif ($value === true || $value === false) {
+                $html .= \sprintf(' %s="%s"', self::safeAttribute($name), $value ? 'true' : 'false');
+            } else {
                 $html .= \sprintf(' %s="%s"', self::safeAttribute($name), self::safeAttribute($value));
             }
         }

@@ -1,9 +1,17 @@
 <?php
 
-namespace KevinPapst\TablerBundle\Screen\Element;
+/*
+ * This file is part of the Tabler bundle, created by Kevin Papst (www.kevinpapst.de)
+ * and fully revamped and upgraded by Marcelo Saldanha (marcelosaldanha.com.br)
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
 
-use KevinPapst\TablerBundle\Enum\AlertType;
-use KevinPapst\TablerBundle\Enum\TooltipPlacement;
+namespace Saldanhakun\TablerBundle\Screen\Element;
+
+use Saldanhakun\TablerBundle\Enum\AlertType;
+use Saldanhakun\TablerBundle\Enum\TooltipPlacement;
 
 class Tooltip extends Element
 {
@@ -15,7 +23,7 @@ class Tooltip extends Element
         'a',
     ];
 
-    public function __construct(string $content, AlertType|string|null $color=AlertType::INFO)
+    public function __construct(string $content, AlertType|string|null $color = AlertType::INFO)
     {
         parent::__construct('abbr', $content, []);
         $this->setColor($color);
@@ -37,10 +45,11 @@ class Tooltip extends Element
         if ($title === null) {
             unset($this->attr['title']);
         }
+
         return $this;
     }
 
-    public function getPlacement(bool $asString=true): TooltipPlacement|string|null
+    public function getPlacement(bool $asString = true): TooltipPlacement|string|null
     {
         return TooltipPlacement::instanceOrString($this->attr['data-bs-placement'] ?? null, $asString);
     }
@@ -51,6 +60,7 @@ class Tooltip extends Element
         if ($placement === null) {
             unset($this->attr['data-bs-placement']);
         }
+
         return $this;
     }
 
@@ -63,14 +73,14 @@ class Tooltip extends Element
     {
         if ($allow) {
             $this->attr['data-bs-html'] = true;
-        }
-        else {
+        } else {
             unset($this->attr['data-bs-html']);
         }
+
         return $this;
     }
 
-    public function getColor(bool $asString=true): AlertType|string|null
+    public function getColor(bool $asString = true): AlertType|string|null
     {
         return AlertType::instanceOrString($this->color, $asString);
     }
@@ -78,6 +88,7 @@ class Tooltip extends Element
     public function setColor(AlertType|string|null $color): self
     {
         $this->color = AlertType::assertOrNull($color);
+
         return $this;
     }
 
@@ -92,7 +103,8 @@ class Tooltip extends Element
         $this->attr['data-bs-toggle'] = 'tooltip';
     }
 
-    public function applyTo(Element $element) {
+    public function applyTo(Element $element)
+    {
         if ($this->getIsEnabled()) {
             $element->attr['data-bs-toggle'] = 'tooltip';
             foreach (['data-bs-html', 'data-bs-placement', 'title'] as $attr) {
@@ -100,5 +112,4 @@ class Tooltip extends Element
             }
         }
     }
-
 }

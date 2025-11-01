@@ -1,4 +1,4 @@
-{# @var notificationEvent \KevinPapst\TablerBundle\Event\NotificationEvent #}
+{# @var notificationEvent \Saldanhakun\TablerBundle\Event\NotificationEvent #}
 {% set notificationEvent = tabler_notifications() %}
 
 {% if notificationEvent.visible %}
@@ -20,7 +20,7 @@
             <div class="card">
                 {# Header #}
                 {% if notificationEvent.titleHtml %}
-                    {{ notificationEvent.titleHtml | raw }}
+                    {{ notificationEvent.titleHtml|raw }}
                 {% else %}
                     <div class="card-header">
                         <div class="card-title text-truncate">
@@ -38,7 +38,7 @@
                     <div class="list-group list-group-flush list-group-hoverable">
                         {% for notification in notificationEvent.notifications %}
                             {% if notification.html ?? false %}
-                                {{ notification.message | raw }}
+                                {{ notification.message|raw }}
                             {% else %}
                                 <div
                                     class="list-group-item {% if notification.active ?? false %}active{% endif %} {% if notification.disabled ?? false %}disabled{% endif %}"
@@ -64,7 +64,7 @@
 
                         {# "More.." part #}
                         {% if notificationEvent.total > notificationEvent.maxDisplay %}
-                            <li class="list-group-item disabled">{{ 'And %count% more…' | trans({'%count%' : notificationEvent.total - notificationEvent.maxDisplay}, 'TablerBundle') }}</li>
+                            <li class="list-group-item disabled">{{ 'And %count% more…'|trans({'%count%': notificationEvent.total - notificationEvent.maxDisplay}, 'TablerBundle') }}</li>
                         {% endif %}
                     </div>
                 {% endif %}

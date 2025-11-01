@@ -1,13 +1,14 @@
 <?php
 
 /*
- * Este arquivo é parte da aplicação Sistema Tio Edy
- * Copyright 2025 Marcelo Saldanha - saldanha@uttara.com.br
+ * This file is part of the Tabler bundle, created by Kevin Papst (www.kevinpapst.de)
+ * and fully revamped and upgraded by Marcelo Saldanha (marcelosaldanha.com.br)
  *
- * Software proprietário, distribuição e reuso estão proibidos.
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
  */
 
-namespace KevinPapst\TablerBundle\Screen\Filter;
+namespace Saldanhakun\TablerBundle\Screen\Filter;
 
 use Doctrine\ORM\QueryBuilder;
 use Symfony\Component\HttpFoundation\Request;
@@ -43,7 +44,7 @@ abstract class BaseFilter
         return $this;
     }
 
-    protected function fromRequest(Request $request, array|string|null $default, string $listSeparator=''): array|string|null
+    protected function fromRequest(Request $request, array|string|null $default, string $listSeparator = ''): array|string|null
     {
         if ($request->query->has($this->name)) {
             $str = html_entity_decode($request->query->get($this->name));
@@ -52,6 +53,7 @@ abstract class BaseFilter
                     // Não suporta listas, ou vai tratar a parte (ex: json)
                     return $str;
                 }
+
                 return explode($listSeparator, $str);
             }
         }

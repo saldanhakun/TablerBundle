@@ -1,20 +1,21 @@
 <?php
 
 /*
- * This file is part of the Tabler bundle, created by Kevin Papst (www.kevinpapst.de).
+ * This file is part of the Tabler bundle, created by Kevin Papst (www.kevinpapst.de)
+ * and fully revamped and upgraded by Marcelo Saldanha (marcelosaldanha.com.br)
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
 
-namespace KevinPapst\TablerBundle\Tests\Model;
+namespace Saldanhakun\TablerBundle\Tests\Model;
 
-use KevinPapst\TablerBundle\Helper\Constants;
-use KevinPapst\TablerBundle\Model\NotificationModel;
 use PHPUnit\Framework\TestCase;
+use Saldanhakun\TablerBundle\Helper\Constants;
+use Saldanhakun\TablerBundle\Model\NotificationModel;
 
 /**
- * @covers \KevinPapst\TablerBundle\Model\NotificationModel
+ * @covers \Saldanhakun\TablerBundle\Model\NotificationModel
  */
 class NotificationModelTest extends TestCase
 {

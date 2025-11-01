@@ -18,18 +18,18 @@ Enjoy your theme!
                 </button>
                 {% block app_logo %}
                     <h1 class="{% block navbar_brand_classes %}navbar-brand d-none-navbar-horizontal pe-0 pe-md-3 {% block navbar_brand_class %}navbar-brand-autodark{% endblock %}{% endblock %}">
-                        {% include '@Tabler/includes/logo.html.twig' %}
+                        {{ include('@Tabler/includes/logo.html.twig') }}
                     </h1>
                 {% endblock %}
                 <div class="navbar-nav flex-row order-md-last">
                     {% block navbar_start %}
-                        {% include '@Tabler/includes/navbar-accessibiilty.html.twig' %}
+                        {{ include('@Tabler/includes/navbar-accessibiilty.html.twig') }}
                     {% endblock %}
                     {% block navbar_notifications %}
-                        {% include '@Tabler/includes/navbar_notifications.html.twig' %}
+                        {{ include('@Tabler/includes/navbar_notifications.html.twig') }}
                     {% endblock %}
                     {% block navbar_user %}
-                        {% include '@Tabler/includes/navbar_user.html.twig' %}
+                        {{ include('@Tabler/includes/navbar_user.html.twig') }}
                     {% endblock %}
                     {% block navbar_end %}{% endblock %}
                 </div>
@@ -37,7 +37,7 @@ Enjoy your theme!
                     <div class="collapse navbar-collapse" id="navbar-menu">
                         <div class="d-flex flex-column flex-md-row flex-fill align-items-stretch align-items-md-center">
                             {% block navbar_menu_condensed %}
-                                {% include '@Tabler/includes/menu.html.twig' %}
+                                {{ include('@Tabler/includes/menu.html.twig') }}
                             {% endblock %}
                         </div>
                     </div>
@@ -53,10 +53,10 @@ Enjoy your theme!
                     <div class="navbar" data-bs-theme="{{ tabler_bundle.isNavbarDark() or tabler_bundle.isDarkMode() ? 'dark' : 'light' }}">
                         <div class="{{ ''|tabler_container }}">
                             {% block navbar_menu %}
-                                {% include '@Tabler/includes/menu.html.twig' %}
+                                {{ include('@Tabler/includes/menu.html.twig') }}
                             {% endblock %}
                             {% block navbar_search %}
-                                {% include '@Tabler/includes/navbar_search.html.twig' %}
+                                {{ include('@Tabler/includes/navbar_search.html.twig') }}
                             {% endblock %}
                         </div>
                     </div>
@@ -130,7 +130,7 @@ Enjoy your theme!
             {% block footer %}
                 <footer id="{% block footer_id %}{% endblock %}" class="footer footer-transparent d-print-none {% block footer_class %}{% endblock %}">
                     <div class="{{ ''|tabler_container }}">
-                        {% include '@Tabler/includes/footer.html.twig' %}
+                        {{ include('@Tabler/includes/footer.html.twig') }}
                     </div>
                 </footer>
             {% endblock %}{# footer #}

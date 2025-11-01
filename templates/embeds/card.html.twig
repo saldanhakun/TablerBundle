@@ -1,14 +1,14 @@
 {# Options #}
-{% set _id                  = id|default(null) %}
-{% set _boxtype             = boxtype ?? null %}
-{% set _status_position     = status_position ?? 'top' %}
-{% set _fullsize            = fullsize ?? false %}
-{% set _margin_bottom       = margin_bottom ?? 3 %}
-{% set _collapsed           = collapsed ?? false %}
-{% set _collapsible         = collapsible ?? _collapsed %}
-{% set _footer_collapsible  = footer_collapsible ?? true %}
-{% set _use_footer          = use_footer ?? false %}
-{% set _use_body            = use_body ?? true %}
+{% set _id = id|default(null) %}
+{% set _boxtype = boxtype ?? null %}
+{% set _status_position = status_position ?? 'top' %}
+{% set _fullsize = fullsize ?? false %}
+{% set _margin_bottom = margin_bottom ?? 3 %}
+{% set _collapsed = collapsed ?? false %}
+{% set _collapsible = collapsible ?? _collapsed %}
+{% set _footer_collapsible = footer_collapsible ?? true %}
+{% set _use_footer = use_footer ?? false %}
+{% set _use_body = use_body ?? true %}
 
 {# Common blocks : Declared this way to use `is not empty` and prevent the `has already been rendered` form field twig error #}
 {% set header %}{% block box_header %}{% endblock %}{% endset %}
@@ -17,12 +17,12 @@
 {% set footer %}{% block box_footer %}{% endblock %}{% endset %}
 {% set title %}{% block box_title %}{% endblock %}{% endset %}
 
-{% set _collapsible_class   = tabler_unique_id('collapse_') %}
-{% set _hasTitle            = title is not empty %}
-{% set _hasTools            = tools is not empty %}
-{% set _hasHeader           = header is not empty %}
-{% set _hasBody             = _use_body or body is not empty %}
-{% set _hasFooter           = _use_footer or footer is not empty %}
+{% set _collapsible_class = tabler_unique_id('collapse_') %}
+{% set _hasTitle = title is not empty %}
+{% set _hasTools = tools is not empty %}
+{% set _hasHeader = header is not empty %}
+{% set _hasBody = _use_body or body is not empty %}
+{% set _hasFooter = _use_footer or footer is not empty %}
 
 {% import '@Tabler/components/buttons.html.twig' as button %}
 
@@ -49,7 +49,7 @@
                     {% if _collapsible %}
                         {{ button.action_collapsebutton(
                             collapsible_title|default('Toggle visibility'|trans({}, 'TablerBundle')),
-                            '.' ~ _collapsible_class
+                            '.' ~ _collapsible_class,
                         ) }}
                     {% endif %}
                 </div>

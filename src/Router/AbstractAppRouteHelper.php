@@ -1,13 +1,14 @@
 <?php
 
 /*
- * Este arquivo é parte da aplicação Sistema Tio Edy
- * Copyright 2025 Marcelo Saldanha - saldanha@uttara.com.br
+ * This file is part of the Tabler bundle, created by Kevin Papst (www.kevinpapst.de)
+ * and fully revamped and upgraded by Marcelo Saldanha (marcelosaldanha.com.br)
  *
- * Software proprietário, distribuição e reuso estão proibidos.
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
  */
 
-namespace KevinPapst\TablerBundle\Router;
+namespace Saldanhakun\TablerBundle\Router;
 
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use function Symfony\Component\String\u;
@@ -40,7 +41,6 @@ abstract class AbstractAppRouteHelper
 
     //---NEW_CONST---
 
-
     /** @var AbstractRouter[] */
     private array $routers;
 
@@ -60,8 +60,7 @@ abstract class AbstractAppRouteHelper
         foreach ($routers as $key => $router) {
             if ($router === null) {
                 unset($this->routers[$key]);
-            }
-            else {
+            } else {
                 $this->routers[$key] = $router;
             }
         }
@@ -119,9 +118,10 @@ abstract class AbstractAppRouteHelper
     protected function getModules(): array
     {
         $const = static::class . '::MODULES';
-        if (defined($const)) {
-            return constant($const);
+        if (\defined($const)) {
+            return \constant($const);
         }
+
         return [];
     }
 
@@ -160,26 +160,21 @@ abstract class AbstractAppRouteHelper
         $module = null;
         if (str_ends_with($name, 'Module')) {
             $module = lcfirst(substr($name, 0, -6));
-            if (array_key_exists($module, $this->getModules())) {
+            if (\array_key_exists($module, $this->getModules())) {
                 return $this->generateUrl($module);
-            }
-            else {
+            } else {
                 throw new \Exception(\sprintf('Módulo não existe: %s', $module));
             }
-        }
-        elseif (str_ends_with($name, 'ModuleRoute')) {
+        } elseif (str_ends_with($name, 'ModuleRoute')) {
             $module = lcfirst(substr($name, 0, -11));
-            if (array_key_exists($module, $this->getModules())) {
+            if (\array_key_exists($module, $this->getModules())) {
                 return $module;
-            }
-            else {
+            } else {
                 throw new \Exception(\sprintf('Módulo não existe: %s', $module));
             }
-        }
-        elseif ($name === 'startRoute') {
+        } elseif ($name === 'startRoute') {
             return self::START;
-        }
-        else {
+        } else {
             throw new \Exception(\sprintf('Propriedade não existe: %s::%s', \get_class($this), $name));
         }
     }

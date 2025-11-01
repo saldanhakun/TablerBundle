@@ -5,7 +5,7 @@
 
     <div class="{{ show_card_width|default('col-8') }}">
         {% embed '@Tabler/embeds/card.html.twig' with {
-            title: show_card_title|default("Detalhes "~describer.of),
+            title: show_card_title|default('Detalhes ' ~ describer.of),
             use_footer: true,
         } %}
             {% block box_body %}

@@ -1,19 +1,20 @@
 <?php
 
 /*
- * Este arquivo é parte da aplicação Sistema Tio Edy
- * Copyright 2025 Marcelo Saldanha - saldanha@uttara.com.br
+ * This file is part of the Tabler bundle, created by Kevin Papst (www.kevinpapst.de)
+ * and fully revamped and upgraded by Marcelo Saldanha (marcelosaldanha.com.br)
  *
- * Software proprietário, distribuição e reuso estão proibidos.
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
  */
 
-namespace KevinPapst\TablerBundle\Screen\Action;
+namespace Saldanhakun\TablerBundle\Screen\Action;
 
-use KevinPapst\TablerBundle\Screen\Element\Element;
-use KevinPapst\TablerBundle\Screen\Filter\BaseFilter;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\EntityRepository;
 use Doctrine\ORM\QueryBuilder;
+use Saldanhakun\TablerBundle\Screen\Element\Element;
+use Saldanhakun\TablerBundle\Screen\Filter\BaseFilter;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Twig\Environment;
 
@@ -43,6 +44,7 @@ abstract class DoctrineAction extends AbstractAction
     public function setEmptyAlert(?Element $emptyAlert): self
     {
         $this->emptyAlert = $emptyAlert;
+
         return $this;
     }
 
@@ -54,6 +56,7 @@ abstract class DoctrineAction extends AbstractAction
     public function setFilterControl(?Element $filterControl): self
     {
         $this->filterControl = $filterControl;
+
         return $this;
     }
 

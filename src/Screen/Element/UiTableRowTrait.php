@@ -1,15 +1,23 @@
 <?php
 
-namespace KevinPapst\TablerBundle\Screen\Element;
+/*
+ * This file is part of the Tabler bundle, created by Kevin Papst (www.kevinpapst.de)
+ * and fully revamped and upgraded by Marcelo Saldanha (marcelosaldanha.com.br)
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
 
-use KevinPapst\TablerBundle\Screen\Column\AbstractColumn;
-use KevinPapst\TablerBundle\Screen\Column\PropertyColumn;
-use KevinPapst\TablerBundle\Screen\Element\Data\AbstractRecordData;
+namespace Saldanhakun\TablerBundle\Screen\Element;
+
+use Saldanhakun\TablerBundle\Screen\Column\AbstractColumn;
+use Saldanhakun\TablerBundle\Screen\Column\PropertyColumn;
+use Saldanhakun\TablerBundle\Screen\Element\Data\AbstractRecordData;
 
 trait UiTableRowTrait
 {
     private HtmlElement $tr;
-    private ?array $colCache=null;
+    private ?array $colCache = null;
     private bool $ignoreDisabled = true;
 
     protected function createTr(): void
@@ -30,6 +38,7 @@ trait UiTableRowTrait
     public function setIgnoreDisabled(bool $ignoreDisabled): self
     {
         $this->ignoreDisabled = $ignoreDisabled;
+
         return $this;
     }
 
@@ -43,13 +52,12 @@ trait UiTableRowTrait
 
     protected function createTableCell(AbstractColumn $column, bool $header): TableCell
     {
-        $cell = (new TableCell($header ? ($column->getLabel()??''):'', $header?'th':'td'))
+        $cell = (new TableCell($header ? ($column->getLabel() ?? '') : '', $header ? 'th' : 'td'))
             ->setRowSpan($column->getRowSpan())
             ->setcolSpan($column->getColSpan());
         if ($header) {
             $cell->getTooltip()->setTitle($column->getTitle());
-        }
-        else {
+        } else {
             if ($column instanceof PropertyColumn && $column->getLinkRoute()) {
                 $cell->setLinkable(new DynamicLinkable('', $column->getLinkRoute(), $column->getLinkRouteArgs(), $column->getLinkRoutePlaceholders()));
                 if ($this instanceof AbstractRecordData) {
@@ -57,6 +65,7 @@ trait UiTableRowTrait
                 }
             }
         }
+
         return $cell;
     }
 
@@ -71,7 +80,7 @@ trait UiTableRowTrait
                 $this->colCache[] = $this->createTableCell($column, $header);
             }
         }
+
         return $this->colCache;
     }
-
 }

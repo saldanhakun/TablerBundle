@@ -64,7 +64,7 @@ in the `config/bundles.php` file of your project:
 
 return [
     // ...
-    KevinPapst\TablerBundle\TablerBundle::class => ['all' => true],
+    Saldanhakun\TablerBundle\TablerBundle::class => ['all' => true],
 ];
 ```
 

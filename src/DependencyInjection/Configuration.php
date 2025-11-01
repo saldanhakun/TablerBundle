@@ -1,13 +1,14 @@
 <?php
 
 /*
- * This file is part of the Tabler bundle, created by Kevin Papst (www.kevinpapst.de).
+ * This file is part of the Tabler bundle, created by Kevin Papst (www.kevinpapst.de)
+ * and fully revamped and upgraded by Marcelo Saldanha (marcelosaldanha.com.br)
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
 
-namespace KevinPapst\TablerBundle\DependencyInjection;
+namespace Saldanhakun\TablerBundle\DependencyInjection;
 
 use Symfony\Component\Config\Definition\Builder\ArrayNodeDefinition;
 use Symfony\Component\Config\Definition\Builder\NodeDefinition;
@@ -62,7 +63,7 @@ class Configuration implements ConfigurationInterface
                 ->scalarNode('tabler_logout')
                     ->defaultValue('logout')
                     ->info('name of the logout route')
-                    ->setDeprecated('kevinpapst/tabler-bundle', '1.5.0')
+                    ->setDeprecated('saldanhakun/tabler-bundle', '1.5.0')
                 ->end()
                 ->scalarNode('tabler_login_check')
                     ->defaultValue('login_check')
@@ -167,5 +168,4 @@ class Configuration implements ConfigurationInterface
 
         return $rootNode;
     }
-
 }

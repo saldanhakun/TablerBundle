@@ -23,7 +23,7 @@ Enjoy your theme!
                 </button>
                 {% block app_logo %}
                     <h1 class="{% block navbar_brand_classes %}navbar-brand {% block navbar_brand_class %}navbar-brand-autodark{% endblock %}{% endblock %}">
-                        {% include '@Tabler/includes/logo.html.twig' %}
+                        {{ include('@Tabler/includes/logo.html.twig') }}
                     </h1>
                 {% endblock %}
                 <div class="navbar-nav flex-row d-lg-none">
@@ -31,7 +31,7 @@ Enjoy your theme!
                 </div>
                 <div id="navbar-menu" class="collapse navbar-collapse">
                     {% block navbar_menu_start %}{% endblock %}
-                    {% include '@Tabler/includes/menu.html.twig' with {layout_type: 'vertical', navbar_class : 'pt-lg-3'} %}
+                    {{ include('@Tabler/includes/menu.html.twig', {layout_type: 'vertical', navbar_class: 'pt-lg-3'}) }}
                     {% block navbar_menu_end %}{% endblock %}
                 </div>
             </div>
@@ -52,7 +52,7 @@ Enjoy your theme!
 
                     <div class="collapse navbar-collapse" id="navbar-menu">
                         {% block navbar_search %}
-                            {% include '@Tabler/includes/navbar_search.html.twig' %}
+                            {{ include('@Tabler/includes/navbar_search.html.twig') }}
                         {% endblock %}
                     </div>
                 </div>
@@ -125,7 +125,7 @@ Enjoy your theme!
             {% block footer %}
                 <footer id="{% block footer_id %}{% endblock %}" class="footer footer-transparent d-print-none {% block footer_class %}{% endblock %}">
                     <div class="{{ ''|tabler_container }}">
-                        {% include '@Tabler/includes/footer.html.twig' %}
+                        {{ include('@Tabler/includes/footer.html.twig') }}
                     </div>
                 </footer>
             {% endblock %}{# page_footer #}
@@ -134,20 +134,20 @@ Enjoy your theme!
 {% endblock %}{# container #}
 
 {% macro navbar(navbar_start, navbar_notifications, navbar_user, navbar_end) %}
-    {% block navbar_start %}{{ (navbar_start ?? '') | raw }}{% endblock %}
+    {% block navbar_start %}{{ (navbar_start ?? '')|raw }}{% endblock %}
     {% block navbar_notifications %}
         {% if navbar_notifications is defined %}
             {{ navbar_notifications|raw }}
         {% else %}
-            {% include '@Tabler/includes/navbar_notifications.html.twig' %}
+            {{ include('@Tabler/includes/navbar_notifications.html.twig') }}
         {% endif %}
     {% endblock %}
     {% block navbar_user %}
         {% if navbar_user is defined %}
             {{ navbar_user|raw }}
         {% else %}
-            {% include '@Tabler/includes/navbar_user.html.twig' %}
+            {{ include('@Tabler/includes/navbar_user.html.twig') }}
         {% endif %}
     {% endblock %}
-    {% block navbar_end %}{{ (navbar_end ?? '') | raw }}{% endblock %}
+    {% block navbar_end %}{{ (navbar_end ?? '')|raw }}{% endblock %}
 {% endmacro %}

@@ -4,24 +4,24 @@
 
 {% block page_content %}
     {% set errorTitleKey = "http_error_#{status_code}.title" %}
-    {% set errorTitleTrans = errorTitleKey|trans({ '%status_code%': status_code }, 'TablerBundle') %}
+    {% set errorTitleTrans = errorTitleKey|trans({'%status_code%': status_code}, 'TablerBundle') %}
     {% if errorTitleKey == errorTitleTrans %}
         {% set errorTitleKey = 'http_error.title' %}
-        {% set errorTitleTrans = errorTitleKey|trans({ '%status_code%': status_code }, 'TablerBundle') %}
+        {% set errorTitleTrans = errorTitleKey|trans({'%status_code%': status_code}, 'TablerBundle') %}
     {% endif %}
 
     {% set errorMessageKey = "http_error_#{status_code}.description" %}
-    {% set errorMessageTrans = errorMessageKey|trans({ '%status_code%': status_code }, 'TablerBundle') %}
+    {% set errorMessageTrans = errorMessageKey|trans({'%status_code%': status_code}, 'TablerBundle') %}
     {% if errorMessageKey == errorMessageTrans %}
         {% set errorMessageKey = 'http_error.description' %}
-        {% set errorMessageTrans = errorMessageKey|trans({ '%status_code%': status_code }, 'TablerBundle') %}
+        {% set errorMessageTrans = errorMessageKey|trans({'%status_code%': status_code}, 'TablerBundle') %}
     {% endif %}
 
     {% set errorSuggestionKey = "http_error_#{status_code}.suggestion" %}
-    {% set errorSuggestionTrans = errorSuggestionKey|trans({ '%status_code%': status_code }, 'TablerBundle') %}
+    {% set errorSuggestionTrans = errorSuggestionKey|trans({'%status_code%': status_code}, 'TablerBundle') %}
     {% if errorSuggestionKey == errorSuggestionTrans %}
         {% set errorSuggestionKey = 'http_error.suggestion' %}
-        {% set errorSuggestionTrans = errorSuggestionKey|trans({ '%status_code%': status_code }, 'TablerBundle') %}
+        {% set errorSuggestionTrans = errorSuggestionKey|trans({'%status_code%': status_code}, 'TablerBundle') %}
     {% endif %}
 
     {% if errorSuggestionKey != errorSuggestionTrans and errorMessageKey != errorMessageTrans %}

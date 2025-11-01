@@ -1,19 +1,20 @@
 <?php
 
 /*
- * Este arquivo é parte da aplicação Sistema Tio Edy
- * Copyright 2025 Marcelo Saldanha - saldanha@uttara.com.br
+ * This file is part of the Tabler bundle, created by Kevin Papst (www.kevinpapst.de)
+ * and fully revamped and upgraded by Marcelo Saldanha (marcelosaldanha.com.br)
  *
- * Software proprietário, distribuição e reuso estão proibidos.
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
  */
 
-namespace KevinPapst\TablerBundle\Controller;
+namespace Saldanhakun\TablerBundle\Controller;
 
 use Doctrine\ORM\EntityManagerInterface;
-use KevinPapst\TablerBundle\Entity\User;
-use KevinPapst\TablerBundle\Form\RegistrationFormType;
-use KevinPapst\TablerBundle\Router\AbstractAppRouteHelper;
-use KevinPapst\TablerBundle\Security\EmailVerifier;
+use Saldanhakun\TablerBundle\Entity\User;
+use Saldanhakun\TablerBundle\Form\RegistrationFormType;
+use Saldanhakun\TablerBundle\Router\AbstractAppRouteHelper;
+use Saldanhakun\TablerBundle\Security\EmailVerifier;
 use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Bundle\SecurityBundle\Security;
@@ -24,14 +25,14 @@ use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Contracts\Translation\TranslatorInterface;
 use SymfonyCasts\Bundle\VerifyEmail\Exception\VerifyEmailExceptionInterface;
 
-##[Route(name: AbstractAppRouteHelper::SECURITY . '.')]
+//#[Route(name: AbstractAppRouteHelper::SECURITY . '.')]
 abstract class RegistrationController extends AbstractController
 {
     public function __construct(private readonly EmailVerifier $emailVerifier)
     {
     }
 
-    ##[Route('/cadastro', name: 'registration', methods: ['GET', 'POST'])]
+    //#[Route('/cadastro', name: 'registration', methods: ['GET', 'POST'])]
     public function registration(Request $request, UserPasswordHasherInterface $userPasswordHasher, Security $security, EntityManagerInterface $entityManager, AbstractAppRouteHelper $appRouteHelper): Response
     {
         $user = new User();
@@ -69,7 +70,7 @@ abstract class RegistrationController extends AbstractController
         ]);
     }
 
-    ##[Route('/confirmar-email', name: 'verify_email', methods: ['GET', 'POST'])]
+    //#[Route('/confirmar-email', name: 'verify_email', methods: ['GET', 'POST'])]
     public function verifyEmail(Request $request, TranslatorInterface $translator, AbstractAppRouteHelper $appRouteHelper): Response
     {
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');

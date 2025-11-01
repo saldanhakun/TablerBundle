@@ -1,14 +1,22 @@
 <?php
 
-namespace KevinPapst\TablerBundle\Screen\Element;
+/*
+ * This file is part of the Tabler bundle, created by Kevin Papst (www.kevinpapst.de)
+ * and fully revamped and upgraded by Marcelo Saldanha (marcelosaldanha.com.br)
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
 
-use KevinPapst\TablerBundle\Enum\ButtonSize;
+namespace Saldanhakun\TablerBundle\Screen\Element;
+
+use Saldanhakun\TablerBundle\Enum\ButtonSize;
 
 class Card extends Element
 {
-    private ?ButtonSize $size=null;
+    private ?ButtonSize $size = null;
 
-    public function getSize(bool $asString=true): ButtonSize|string|null
+    public function getSize(bool $asString = true): ButtonSize|string|null
     {
         return ButtonSize::instanceOrString($this->size, $asString);
     }
@@ -16,6 +24,7 @@ class Card extends Element
     public function setSize(ButtonSize|string|null $color): self
     {
         $this->size = ButtonSize::assertOrNull($color);
+
         return $this;
     }
 
@@ -23,5 +32,4 @@ class Card extends Element
     {
         return parent::renderContent();
     }
-
 }

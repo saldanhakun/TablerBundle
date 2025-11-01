@@ -1,13 +1,14 @@
 <?php
 
 /*
- * Este arquivo é parte da aplicação Sistema Tio Edy
- * Copyright 2025 Marcelo Saldanha - saldanha@uttara.com.br
+ * This file is part of the Tabler bundle, created by Kevin Papst (www.kevinpapst.de)
+ * and fully revamped and upgraded by Marcelo Saldanha (marcelosaldanha.com.br)
  *
- * Software proprietário, distribuição e reuso estão proibidos.
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
  */
 
-namespace KevinPapst\TablerBundle\Screen\Column;
+namespace Saldanhakun\TablerBundle\Screen\Column;
 
 class NumberColumn extends PropertyColumn
 {
@@ -62,7 +63,7 @@ class NumberColumn extends PropertyColumn
         }
         $this->_colorize = $this->colorize([-1 => $this->negativeColor, 0 => $this->zeroColor, 1 => $this->positiveColor][$c]);
 
-        return number_format($value, $this->alwaysDecimals ? $this->decimals : 0, $this->decimalsSeparator?',':'', $this->thousandsSeparator?'.':'');
+        return number_format($value, $this->alwaysDecimals ? $this->decimals : 0, $this->decimalsSeparator ? ',' : '', $this->thousandsSeparator ? '.' : '');
     }
 
     protected function renderFloatValue(float $value): string
@@ -76,7 +77,7 @@ class NumberColumn extends PropertyColumn
         }
         $this->_colorize = $this->colorize([-1 => $this->negativeColor, 0 => $this->zeroColor, 1 => $this->positiveColor][$c]);
 
-        return number_format($value, $this->decimals, $this->decimalsSeparator?',':'', $this->thousandsSeparator?'.':'');
+        return number_format($value, $this->decimals, $this->decimalsSeparator ? ',' : '', $this->thousandsSeparator ? '.' : '');
     }
 
     protected function wrapContent(string $content): string

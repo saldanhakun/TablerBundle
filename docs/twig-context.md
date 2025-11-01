@@ -5,7 +5,7 @@
 Using a EventSubscriber you can set global theme options, e.g. by Cookies or from your user profile.
 
 ```php
-use KevinPapst\TablerBundle\Helper\ContextHelper;
+use Saldanhakun\TablerBundle\Helper\ContextHelper;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpKernel\Event\KernelEvent;
 use Symfony\Component\HttpKernel\KernelEvents;

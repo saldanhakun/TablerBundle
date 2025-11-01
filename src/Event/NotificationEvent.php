@@ -1,16 +1,17 @@
 <?php
 
 /*
- * This file is part of the Tabler bundle, created by Kevin Papst (www.kevinpapst.de).
+ * This file is part of the Tabler bundle, created by Kevin Papst (www.kevinpapst.de)
+ * and fully revamped and upgraded by Marcelo Saldanha (marcelosaldanha.com.br)
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
 
-namespace KevinPapst\TablerBundle\Event;
+namespace Saldanhakun\TablerBundle\Event;
 
-use KevinPapst\TablerBundle\Model\NotificationInterface;
-use KevinPapst\TablerBundle\Model\NotificationV2Interface;
+use Saldanhakun\TablerBundle\Model\NotificationInterface;
+use Saldanhakun\TablerBundle\Model\NotificationV2Interface;
 
 class NotificationEvent extends ThemeEvent
 {
@@ -184,7 +185,7 @@ class NotificationEvent extends ThemeEvent
         if ($max === null) {
             return $this->notifications;
         } elseif ($max !== 10) {
-            trigger_deprecation('kevinpapst/tabler-bundle', '1.1.0', 'Setting `$max` parameter is deprecated. Use setMaxDisplay() instead!');
+            trigger_deprecation('saldanhakun/tabler-bundle', '1.1.0', 'Setting `$max` parameter is deprecated. Use setMaxDisplay() instead!');
         }
 
         return \array_slice($this->notifications, 0, $this->maxDisplay);
@@ -193,7 +194,7 @@ class NotificationEvent extends ThemeEvent
     public function addNotification(NotificationV2Interface|NotificationInterface $notification): void
     {
         //        if (($notification instanceof NotificationV2Interface) === false) {
-        //            trigger_deprecation('kevinpapst/tabler-bundle', '1.2.0', 'Notification should implement NotificationV2Interface::class!');
+        //            trigger_deprecation('saldanhakun/tabler-bundle', '1.2.0', 'Notification should implement NotificationV2Interface::class!');
         //        }
 
         $this->notifications[] = $notification;

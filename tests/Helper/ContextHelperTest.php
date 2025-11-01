@@ -1,19 +1,20 @@
 <?php
 
 /*
- * This file is part of the Tabler bundle, created by Kevin Papst (www.kevinpapst.de).
+ * This file is part of the Tabler bundle, created by Kevin Papst (www.kevinpapst.de)
+ * and fully revamped and upgraded by Marcelo Saldanha (marcelosaldanha.com.br)
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
 
-namespace KevinPapst\TablerBundle\Tests\Helper;
+namespace Saldanhakun\TablerBundle\Tests\Helper;
 
-use KevinPapst\TablerBundle\Helper\ContextHelper;
 use PHPUnit\Framework\TestCase;
+use Saldanhakun\TablerBundle\Helper\ContextHelper;
 
 /**
- * @covers \KevinPapst\TablerBundle\Helper\ContextHelper
+ * @covers \Saldanhakun\TablerBundle\Helper\ContextHelper
  */
 class ContextHelperTest extends TestCase
 {

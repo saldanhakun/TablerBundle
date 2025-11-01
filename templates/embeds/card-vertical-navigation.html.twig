@@ -3,10 +3,10 @@
 {% for key, item in items ?? [] %}
     {% if item.id is not defined %}
         {# Generate id of item for "Boostrap tab" #}
-        {% set item = item|merge({id : tabler_unique_id()}) %}
+        {% set item = item|merge({id: tabler_unique_id()}) %}
     {% endif %}
 
-    {% set _items = _items|merge({ (key) : item }) %}
+    {% set _items = _items|merge({(key): item}) %}
 {% endfor %}
 
 {% block card_before %}{% endblock %}
@@ -24,7 +24,7 @@
                         {% set _header = item.header ?? false %}
                         {% set _active = item.active ?? false %}
                         {% set _name = item.name ?? '' %}
-                        {% set _url = item.url ?? ("#tabs-" ~ item.id) %}
+                        {% set _url = item.url ?? ('#tabs-' ~ item.id) %}
                         {% set _raw = item.raw ?? false %}
 
                         {% if _header %}
@@ -36,7 +36,7 @@
                                     {% if item.url is not defined and not block('content') is defined %}data-bs-toggle="tab"{% endif %}
                             >
                                 {% if _raw %}
-                                    {{ _name | raw }}
+                                    {{ _name|raw }}
                                 {% else %}
                                     {{ _name }}
                                 {% endif %}

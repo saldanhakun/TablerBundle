@@ -1,17 +1,18 @@
 <?php
 
 /*
- * Este arquivo é parte da aplicação Sistema Tio Edy
- * Copyright 2025 Marcelo Saldanha - saldanha@uttara.com.br
+ * This file is part of the Tabler bundle, created by Kevin Papst (www.kevinpapst.de)
+ * and fully revamped and upgraded by Marcelo Saldanha (marcelosaldanha.com.br)
  *
- * Software proprietário, distribuição e reuso estão proibidos.
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
  */
 
-namespace KevinPapst\TablerBundle\Screen;
+namespace Saldanhakun\TablerBundle\Screen;
 
-use KevinPapst\TablerBundle\Router\AbstractAppRouteHelper;
-use KevinPapst\TablerBundle\Screen\Action\AbstractAction;
-use KevinPapst\TablerBundle\Screen\Element\Json;
+use Saldanhakun\TablerBundle\Router\AbstractAppRouteHelper;
+use Saldanhakun\TablerBundle\Screen\Action\AbstractAction;
+use Saldanhakun\TablerBundle\Screen\Element\Json;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
@@ -94,16 +95,14 @@ abstract class Screen extends AbstractController
             return $this
                 ->copyTitles($action)
                 ->render($action->getTemplate(), $params)
-                ;
-        }
-        elseif ($output instanceof Json) {
+            ;
+        } elseif ($output instanceof Json) {
             return new JsonResponse($output->getData());
-        }
-        elseif ($action->getRequestStack()->getMainRequest()->isXmlHttpRequest()) {
+        } elseif ($action->getRequestStack()->getMainRequest()->isXmlHttpRequest()) {
             return new Response($output);
-        }
-        else {
+        } else {
             $params['content'] = $output;
+
             return $this->render($this->getPageLayout($action), $params);
         }
     }

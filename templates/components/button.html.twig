@@ -3,11 +3,11 @@
 
     {%- if type is same as (false) -%}
         {# when using in dropdown actions for example, which might not have a "btn" class #}
-        {%- set class = "" %}
+        {%- set class = '' %}
     {%- elseif type is null -%}
-        {%- set class = "btn " -%}
+        {%- set class = 'btn ' -%}
     {%- else -%}
-        {%- set class = "btn btn-" ~ type ~ " " -%}
+        {%- set class = 'btn btn-' ~ type ~ ' ' -%}
     {%- endif -%}
 
     {%- set icon = values.icon ?? icon -%}
@@ -20,7 +20,7 @@
     {%- set target = values.target ?? null -%}
     {%- set id = values.id ?? null -%}
     {%- set title = values.title ?? null -%}
-    {%- set class = class ~ ( values.class | default("")) -%}
+    {%- set class = class ~ (values.class|default('')) -%}
     {%- set attr = values.attr ?? {} -%}
     {%- set forceTitle = icon is same as (false) or (values.combined ?? false) -%}
     {%- set badge = values.badge ?? (values.label ?? null) -%}
@@ -37,11 +37,11 @@
     {%- endif -%}
 
     {%- if disabled is same as (true) %}
-        {%- set class = class ~ " disabled" -%}
+        {%- set class = class ~ ' disabled' -%}
     {%- endif -%}
 
-    <{{ buttonType|raw }} class="{{ class | trim }}"
-    {%- if buttonType is not same as ("button") %} href="{{ url }}"{% endif -%}
+    <{{ buttonType|raw }} class="{{ class|trim }}"
+    {%- if buttonType is not same as ('button') %} href="{{ url }}"{% endif -%}
     {%- if disabled is same as (true) %} disabled="disabled"{% endif -%}
     {%- if id is not empty %} id="{{ id }}"{% endif -%}
     {%- if toggle is not empty %} data-bs-toggle="{{ toggle }}"{% endif -%}
@@ -54,7 +54,7 @@
     {{- macros.attr_to_html(attr) -}}
     >
     {%- if icon is not same as (false) -%}
-        {{ tabler_icon(icon, ("btn-sm" not in class and "btn-lg" not in class), icon) }}
+        {{ tabler_icon(icon, ('btn-sm' not in class and 'btn-lg' not in class), icon) }}
     {%- endif -%}
     {%- if (forceTitle or icon is same as (false)) and title is not null -%}
         {{ title|trans(translation_params, translation_domain) }}

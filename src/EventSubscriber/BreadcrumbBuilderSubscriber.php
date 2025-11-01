@@ -1,17 +1,18 @@
 <?php
 
 /*
- * Este arquivo é parte da aplicação Sistema Tio Edy
- * Copyright 2025 Marcelo Saldanha - saldanha@uttara.com.br
+ * This file is part of the Tabler bundle, created by Kevin Papst (www.kevinpapst.de)
+ * and fully revamped and upgraded by Marcelo Saldanha (marcelosaldanha.com.br)
  *
- * Software proprietário, distribuição e reuso estão proibidos.
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
  */
 
-namespace KevinPapst\TablerBundle\EventSubscriber;
+namespace Saldanhakun\TablerBundle\EventSubscriber;
 
-use KevinPapst\TablerBundle\Model\MenuItemModel;
-use KevinPapst\TablerBundle\Router\AbstractAppRouteHelper;
-use KevinPapst\TablerBundle\Screen\BreadCrumbEvent;
+use Saldanhakun\TablerBundle\Model\MenuItemModel;
+use Saldanhakun\TablerBundle\Router\AbstractAppRouteHelper;
+use Saldanhakun\TablerBundle\Screen\BreadCrumbEvent;
 use Symfony\Component\EventDispatcher\Attribute\AsEventListener;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 

@@ -1,6 +1,14 @@
 <?php
 
-namespace KevinPapst\TablerBundle\Screen\Element;
+/*
+ * This file is part of the Tabler bundle, created by Kevin Papst (www.kevinpapst.de)
+ * and fully revamped and upgraded by Marcelo Saldanha (marcelosaldanha.com.br)
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
+namespace Saldanhakun\TablerBundle\Screen\Element;
 
 class Tab extends Linkable
 {
@@ -13,7 +21,7 @@ class Tab extends Linkable
     private Badge $badge;
     private Caption $label;
     private Tooltip $title;
-    private bool $active=false;
+    private bool $active = false;
     private bool $renderMode = self::RENDER_TAB;
 
     public function __construct(string $label, Element|string|null $content)
@@ -54,6 +62,7 @@ class Tab extends Linkable
     public function setActive(TabSet $group): self
     {
         $this->active = $group->getActive() === $this;
+
         return $this;
     }
 
@@ -65,6 +74,7 @@ class Tab extends Linkable
     public function setId(?string $id): self
     {
         $this->attr['id'] = $id;
+
         return $this;
     }
 
@@ -76,8 +86,7 @@ class Tab extends Linkable
             if ($this->getActive()) {
                 $this->addClass('active');
                 $this->attr['aria-selected'] = true;
-            }
-            else {
+            } else {
                 $this->attr['aria-selected'] = false;
                 $this->attr['tabindex'] = -1;
             }
@@ -91,8 +100,9 @@ class Tab extends Linkable
     public function getUrl(): string
     {
         if ($this->hasPane()) {
-            return sprintf('#%s-pane', $this->getId());
+            return \sprintf('#%s-pane', $this->getId());
         }
+
         return parent::getUrl();
     }
 
@@ -110,6 +120,7 @@ class Tab extends Linkable
         $this->setContent($content);
         $html = parent::renderContent();
         $this->setEnabled($enabled)->setContent($backup);
+
         return $html;
     }
 
@@ -124,6 +135,7 @@ class Tab extends Linkable
         if (empty($this->getLink()) || $this->getLink() === '#' || !str_starts_with($this->getLink(), '#')) {
             return $this->active;
         }
+
         return true;
     }
 
@@ -132,12 +144,14 @@ class Tab extends Linkable
         $tag = $group->getTag() === 'div' ? 'div' : 'li';
         $this->renderMode = self::RENDER_TAB;
         $tabLink = $this->render();
-        return sprintf('<%s class="nav-item" role="presentation">%s</%s>', $tag, $tabLink, $tag);
+
+        return \sprintf('<%s class="nav-item" role="presentation">%s</%s>', $tag, $tabLink, $tag);
     }
 
     public function renderPane(TabSet $group): string
     {
         $this->renderMode = self::RENDER_PANE;
+
         return $this->render();
     }
 
@@ -152,11 +166,13 @@ class Tab extends Linkable
                 if ($this->getActive()) {
                     $pane->addClass('active', 'show');
                 }
+
                 return $pane;
             } else {
                 return '';
             }
         }
+
         return parent::render();
     }
 }

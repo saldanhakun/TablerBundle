@@ -1,18 +1,19 @@
 <?php
 
 /*
- * Este arquivo é parte da aplicação Sistema Tio Edy
- * Copyright 2025 Marcelo Saldanha - saldanha@uttara.com.br
+ * This file is part of the Tabler bundle, created by Kevin Papst (www.kevinpapst.de)
+ * and fully revamped and upgraded by Marcelo Saldanha (marcelosaldanha.com.br)
  *
- * Software proprietário, distribuição e reuso estão proibidos.
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
  */
 
-namespace KevinPapst\TablerBundle\Repository;
+namespace Saldanhakun\TablerBundle\Repository;
 
-use KevinPapst\TablerBundle\Entity\User;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\QueryBuilder;
 use Doctrine\Persistence\ManagerRegistry;
+use Saldanhakun\TablerBundle\Entity\User;
 use Symfony\Component\Security\Core\Exception\UnsupportedUserException;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\PasswordUpgraderInterface;
@@ -56,11 +57,12 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
             foreach ($roles as $index => $role) {
                 $ors[] = "(JSON_CONTAINS(u.roles, :role$index) = 1)";
             }
-            $qb->andWhere('('.implode(' OR ', $ors).')');
+            $qb->andWhere('(' . implode(' OR ', $ors) . ')');
             foreach ($roles as $index => $role) {
                 $qb->setParameter("role$index", $role);
             }
         }
+
         return $qb;
     }
 
@@ -68,5 +70,4 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
     {
         return $this->getUsersQueryBuilder(null, $record, null);
     }
-
 }

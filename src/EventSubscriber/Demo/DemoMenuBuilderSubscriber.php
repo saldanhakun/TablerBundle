@@ -1,19 +1,20 @@
 <?php
 
 /*
- * Este arquivo é parte da aplicação Sistema Tio Edy
- * Copyright 2025 Marcelo Saldanha - saldanha@uttara.com.br
+ * This file is part of the Tabler bundle, created by Kevin Papst (www.kevinpapst.de)
+ * and fully revamped and upgraded by Marcelo Saldanha (marcelosaldanha.com.br)
  *
- * Software proprietário, distribuição e reuso estão proibidos.
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
  */
 
-namespace KevinPapst\TablerBundle\EventSubscriber\Demo;
+namespace Saldanhakun\TablerBundle\EventSubscriber\Demo;
 
-use KevinPapst\TablerBundle\EventSubscriber\AbstractMainMenuBuilder;
-use KevinPapst\TablerBundle\Event\MenuEvent;
-use KevinPapst\TablerBundle\Event\UserDetailsEvent;
-use KevinPapst\TablerBundle\Model\MenuItemInterface;
-use KevinPapst\TablerBundle\Model\MenuItemModel;
+use Saldanhakun\TablerBundle\Event\MenuEvent;
+use Saldanhakun\TablerBundle\Event\UserDetailsEvent;
+use Saldanhakun\TablerBundle\EventSubscriber\AbstractMainMenuBuilder;
+use Saldanhakun\TablerBundle\Model\MenuItemInterface;
+use Saldanhakun\TablerBundle\Model\MenuItemModel;
 use Symfony\Component\EventDispatcher\Attribute\AsEventListener;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
@@ -115,7 +116,6 @@ class DemoMenuBuilderSubscriber extends AbstractMainMenuBuilder implements Event
         }
 
         $event->addItem(new MenuItemModel('Empty URL', 'Empty URL'));
-
     }
 
     /**

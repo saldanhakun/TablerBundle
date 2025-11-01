@@ -41,29 +41,37 @@
         "phpstan/phpstan-phpunit": "^2.0",
         "phpstan/phpstan-strict-rules": "^2.0",
         "phpstan/phpstan-symfony": "^2.0",
-        "knplabs/knp-menu-bundle": "^3.6"
+        "knplabs/knp-menu-bundle": "^3.6",
+        "vincentlanglet/twig-cs-fixer": "^3.9"
     },
     "suggest" : {
         "knplabs/knp-menu-bundle" : "Allows easy menu integration"
     },
     "autoload": {
         "psr-4": {
-            "KevinPapst\\TablerBundle\\": "src/"
+            "Saldanhakun\\TablerBundle\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "KevinPapst\\TablerBundle\\Tests\\": "tests/"
+            "Saldanhakun\\TablerBundle\\Tests\\": "tests/"
         }
     },
     "scripts": {
         "tests": "vendor/bin/phpunit tests/",
         "phpstan": [
-            "vendor/bin/phpstan analyse -c phpstan.neon src/",
-            "vendor/bin/phpstan analyse -c tests/phpstan.neon tests/"
+            "vendor/bin/phpstan analyse -c phpstan.neon src/ --level=5",
+            "vendor/bin/phpstan analyse -c tests/phpstan.neon tests/ --level=5"
         ],
-        "codestyle": "vendor/bin/php-cs-fixer fix --dry-run --verbose --show-progress=none",
-        "codestyle-fix": "vendor/bin/php-cs-fixer fix"
+        "cs": [
+            "vendor/bin/php-cs-fixer fix --dry-run --show-progress=bar --format=@auto,txt",
+            "vendor/bin/twig-cs-fixer lint templates"
+        ],
+        "csfix": [
+            "vendor/bin/php-cs-fixer fix --show-progress=bar --format=@auto,txt",
+            "vendor/bin/twig-cs-fixer lint --fix templates"
+        ],
+        "csdebug": "vendor/bin/php-cs-fixer fix --dry-run"
     },
     "extra": {
         "symfony": {

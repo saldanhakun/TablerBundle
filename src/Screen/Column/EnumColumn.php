@@ -1,13 +1,14 @@
 <?php
 
 /*
- * Este arquivo é parte da aplicação Sistema Tio Edy
- * Copyright 2025 Marcelo Saldanha - saldanha@uttara.com.br
+ * This file is part of the Tabler bundle, created by Kevin Papst (www.kevinpapst.de)
+ * and fully revamped and upgraded by Marcelo Saldanha (marcelosaldanha.com.br)
  *
- * Software proprietário, distribuição e reuso estão proibidos.
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
  */
 
-namespace KevinPapst\TablerBundle\Screen\Column;
+namespace Saldanhakun\TablerBundle\Screen\Column;
 
 use Saldanhakun\BrazilianValidators\Enum\BaseEnum;
 
@@ -25,23 +26,24 @@ class EnumColumn extends PropertyColumn
     {
         $value = parent::renderContentValue($value);
         if ($this->enumClass !== null) {
-            return call_user_func([$this->enumClass, 'instance'], $value)->getName();
+            return \call_user_func([$this->enumClass, 'instance'], $value)->getName();
         }
+
         return $value;
     }
 
-public function getEnumClass(): ?string
+    public function getEnumClass(): ?string
     {
         return $this->enumClass;
     }
 
     public function setEnumClass(?string $enumClass): self
     {
-        if (!in_array(BaseEnum::class, class_parents($enumClass))) {
+        if (!\in_array(BaseEnum::class, class_parents($enumClass))) {
             throw new \InvalidArgumentException("$enumClass não é um Enum");
         }
         $this->enumClass = $enumClass;
+
         return $this;
     }
-
 }

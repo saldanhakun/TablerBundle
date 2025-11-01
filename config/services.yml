@@ -1,13 +1,13 @@
 services:
 
-    KevinPapst\TablerBundle\:
+    Saldanhakun\TablerBundle\:
         resource: '../src'
         exclude:
             - '../src/{Entity,DependencyInjection,TablerBundle.php}'
         autowire: true
 
-    KevinPapst\TablerBundle\Twig\RuntimeExtension:
-        class: KevinPapst\TablerBundle\Twig\RuntimeExtension
+    Saldanhakun\TablerBundle\Twig\RuntimeExtension:
+        class: Saldanhakun\TablerBundle\Twig\RuntimeExtension
         arguments:
             - '@event_dispatcher'
             - '@tabler_bundle.context_helper'
@@ -17,31 +17,31 @@ services:
         tags:
             - { name: twig.runtime }
 
-    KevinPapst\TablerBundle\Twig\TablerExtension:
-        class: KevinPapst\TablerBundle\Twig\TablerExtension
+    Saldanhakun\TablerBundle\Twig\TablerExtension:
+        class: Saldanhakun\TablerBundle\Twig\TablerExtension
         tags:
             - { name: twig.extension }
 
     tabler_bundle.context_helper:
-        class: KevinPapst\TablerBundle\Helper\ContextHelper
+        class: Saldanhakun\TablerBundle\Helper\ContextHelper
         arguments:
             - '%tabler_bundle.options%'
 
-    KevinPapst\TablerBundle\Helper\ContextHelper:
+    Saldanhakun\TablerBundle\Helper\ContextHelper:
         alias: tabler_bundle.context_helper
 
-    KevinPapst\TablerBundle\Security\EmailVerifier:
-        class: KevinPapst\TablerBundle\Security\EmailVerifier
+    Saldanhakun\TablerBundle\Security\EmailVerifier:
+        class: Saldanhakun\TablerBundle\Security\EmailVerifier
         autowire: true
 
-    KevinPapst\TablerBundle\EventSubscriber\:
+    Saldanhakun\TablerBundle\EventSubscriber\:
         resource: '../src/EventSubscriber/'
         autowire: true
         tags:
             - { name: kernel.event_subscriber }
 
-    KevinPapst\TablerBundle\Repository\UserRepository:
-        class: KevinPapst\TablerBundle\Repository\UserRepository
+    Saldanhakun\TablerBundle\Repository\UserRepository:
+        class: Saldanhakun\TablerBundle\Repository\UserRepository
         tags:
             - { name: doctrine.repository_service }
         arguments:

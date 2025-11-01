@@ -1,6 +1,14 @@
 <?php
 
-namespace KevinPapst\TablerBundle\Screen\Element;
+/*
+ * This file is part of the Tabler bundle, created by Kevin Papst (www.kevinpapst.de)
+ * and fully revamped and upgraded by Marcelo Saldanha (marcelosaldanha.com.br)
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
+namespace Saldanhakun\TablerBundle\Screen\Element;
 
 trait UiClassTrait
 {
@@ -19,42 +27,44 @@ trait UiClassTrait
 
     public function hasClass(string $name): bool
     {
-        return in_array($name, $this->getAllClasses());
+        return \in_array($name, $this->getAllClasses());
     }
 
     public function addClass(string ...$class): self
     {
         $this->classes = array_unique(array_merge($this->classes, $class));
+
         return $this;
     }
 
     public function removeClass(string ...$class): self
     {
         $this->classes = array_diff($this->classes, $class);
+
         return $this;
     }
 
     public function toggleClass(string ...$class): self
     {
         foreach ($class as $className) {
-            if (in_array($className, $this->classes)) {
+            if (\in_array($className, $this->classes)) {
                 $this->removeClass($className);
-            }
-            else {
+            } else {
                 $this->addClass($className);
             }
         }
+
         return $this;
     }
 
-    public function requireClass(string $class, bool $state=true): self
+    public function requireClass(string $class, bool $state = true): self
     {
         if ($state) {
             $this->addClass($class);
-        }
-        else {
+        } else {
             $this->removeClass($class);
         }
+
         return $this;
     }
 
@@ -76,6 +86,7 @@ trait UiClassTrait
     public function clearClasses(): self
     {
         $this->classes = [];
+
         return $this;
     }
 
@@ -87,6 +98,7 @@ trait UiClassTrait
     protected function setFixedClasses(array $fixedClasses): self
     {
         $this->fixedClasses = $fixedClasses;
+
         return $this;
     }
 
@@ -94,5 +106,4 @@ trait UiClassTrait
     {
         return array_unique(array_merge($this->fixedClasses, $this->classes));
     }
-
 }

@@ -1,22 +1,23 @@
 <?php
 
 /*
- * Este arquivo é parte da aplicação Sistema Tio Edy
- * Copyright 2025 Marcelo Saldanha - saldanha@uttara.com.br
+ * This file is part of the Tabler bundle, created by Kevin Papst (www.kevinpapst.de)
+ * and fully revamped and upgraded by Marcelo Saldanha (marcelosaldanha.com.br)
  *
- * Software proprietário, distribuição e reuso estão proibidos.
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
  */
 
-namespace KevinPapst\TablerBundle\Controller;
+namespace Saldanhakun\TablerBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 
-##[IsGranted(TablerAppAccessControl::ROLE_SUPPORT)]
-##[Route(path: '/demo/{_locale}', name: AbstractAppRouteHelper::DEMO . '.')]
+//#[IsGranted(TablerAppAccessControl::ROLE_SUPPORT)]
+//#[Route(path: '/demo/{_locale}', name: AbstractAppRouteHelper::DEMO . '.')]
 abstract class TablerDocController extends AbstractController
 {
-    ##[Route(path: '/documentation/{chapter}', name: 'documentation')]
+    //#[Route(path: '/documentation/{chapter}', name: 'documentation')]
     public function documentation(?string $chapter = null): Response
     {
         if ($chapter === null) {
@@ -41,5 +42,4 @@ abstract class TablerDocController extends AbstractController
             'docs' => $markdown,
         ]);
     }
-
 }

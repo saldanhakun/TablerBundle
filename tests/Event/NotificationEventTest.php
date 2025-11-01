@@ -1,21 +1,22 @@
 <?php
 
 /*
- * This file is part of the Tabler bundle, created by Kevin Papst (www.kevinpapst.de).
+ * This file is part of the Tabler bundle, created by Kevin Papst (www.kevinpapst.de)
+ * and fully revamped and upgraded by Marcelo Saldanha (marcelosaldanha.com.br)
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
 
-namespace KevinPapst\TablerBundle\Tests\Event;
+namespace Saldanhakun\TablerBundle\Tests\Event;
 
-use KevinPapst\TablerBundle\Event\NotificationEvent;
-use KevinPapst\TablerBundle\Helper\Constants;
-use KevinPapst\TablerBundle\Model\NotificationModel;
 use PHPUnit\Framework\TestCase;
+use Saldanhakun\TablerBundle\Event\NotificationEvent;
+use Saldanhakun\TablerBundle\Helper\Constants;
+use Saldanhakun\TablerBundle\Model\NotificationModel;
 
 /**
- * @covers \KevinPapst\TablerBundle\Event\NotificationEvent
+ * @covers \Saldanhakun\TablerBundle\Event\NotificationEvent
  */
 class NotificationEventTest extends TestCase
 {

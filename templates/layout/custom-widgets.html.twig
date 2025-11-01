@@ -10,7 +10,7 @@
 
 {% block mobile_phone_widget %}
     {%- set attr = attr|merge({
-        'data-mask': attr['data-mask']|default('(00) 90000-0000')
+        'data-mask': attr['data-mask']|default('(00) 90000-0000'),
     }) -%}
     <div class="input-group input-group-flat">
         <span class="input-icon-addon">
@@ -30,7 +30,7 @@
 
 {% block phone_widget %}
     {%- set attr = attr|merge({
-        'data-mask': attr['data-mask']|default('(00) 0000-0000')
+        'data-mask': attr['data-mask']|default('(00) 0000-0000'),
     }) -%}
     <div class="input-group input-group-flat">
         {{ block('form_widget_simple') }}
@@ -47,7 +47,7 @@
 
 {% block cpf_widget %}
     {%- set attr = attr|merge({
-        'data-mask': attr['data-mask']|default('000.000.000-00')
+        'data-mask': attr['data-mask']|default('000.000.000-00'),
     }) -%}
     {% if not attr.disabled|default(false) and not attr.readonly|default(false) and access.dev %}
         <div class="input-group input-group-flat">
@@ -65,7 +65,7 @@
 
 {% block cnpj_widget %}
     {%- set attr = attr|merge({
-        'data-mask': attr['data-mask']|default('00.000.000/0000-00')
+        'data-mask': attr['data-mask']|default('00.000.000/0000-00'),
     }) -%}
     {% if not attr.disabled|default(false) and not attr.readonly|default(false) and access.dev %}
         <div class="input-group input-group-flat">
@@ -80,4 +80,3 @@
         {{ block('form_widget_simple') }}
     {% endif %}
 {% endblock %}
-

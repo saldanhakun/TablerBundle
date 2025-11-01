@@ -1,26 +1,27 @@
 <?php
 
 /*
- * Este arquivo é parte da aplicação Sistema Tio Edy
- * Copyright 2025 Marcelo Saldanha - saldanha@uttara.com.br
+ * This file is part of the Tabler bundle, created by Kevin Papst (www.kevinpapst.de)
+ * and fully revamped and upgraded by Marcelo Saldanha (marcelosaldanha.com.br)
  *
- * Software proprietário, distribuição e reuso estão proibidos.
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
  */
 
-namespace KevinPapst\TablerBundle\Screen\Action\List;
+namespace Saldanhakun\TablerBundle\Screen\Action\List;
 
 use Doctrine\ORM\EntityManagerInterface;
-use KevinPapst\TablerBundle\Screen\Action\DoctrineAction;
-use KevinPapst\TablerBundle\Screen\Column\AbstractColumn;
-use KevinPapst\TablerBundle\Screen\Element\Alert;
-use KevinPapst\TablerBundle\Screen\Element\Data\DatasetData;
-use KevinPapst\TablerBundle\Screen\Element\Data\TableRowRecordData;
-use KevinPapst\TablerBundle\Screen\Element\Table;
 use Saldanhakun\DoctrineBundle\Describer\BaseDescriber;
+use Saldanhakun\TablerBundle\Screen\Action\DoctrineAction;
+use Saldanhakun\TablerBundle\Screen\Column\AbstractColumn;
+use Saldanhakun\TablerBundle\Screen\Element\Alert;
+use Saldanhakun\TablerBundle\Screen\Element\Data\DatasetData;
+use Saldanhakun\TablerBundle\Screen\Element\Data\TableRowRecordData;
+use Saldanhakun\TablerBundle\Screen\Element\Table;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
-use Twig\Environment;
 use function Symfony\Component\String\u;
+use Twig\Environment;
 
 class ListAction extends DoctrineAction
 {
@@ -45,6 +46,7 @@ class ListAction extends DoctrineAction
     public function setDescriber(?BaseDescriber $describer): self
     {
         $this->table->getColumns()->setDescriber($describer)->setTwig($this->getTwig());
+
         return parent::setDescriber($describer);
     }
 
@@ -82,17 +84,15 @@ class ListAction extends DoctrineAction
             $data = new DatasetData($this->_params['records'], $handler);
             $this->table->setContent($data);
             $this->output = $this->table;
-        }
-        else {
+        } else {
             if ($this->getEmptyAlert()) {
                 $this->output = $this->getEmptyAlert();
-            }
-            else {
+            } else {
                 $male = $this->getDescriber()?->isMale();
                 $this->output = new Alert(implode(' ', [
-                    $male ? "Nenhum" : "Nenhuma",
-                    ($this->getDescriber()?->getSingular()) ?? "registro",
-                    $male ? "encontrado" : "encontrada",
+                    $male ? 'Nenhum' : 'Nenhuma',
+                    ($this->getDescriber()?->getSingular()) ?? 'registro',
+                    $male ? 'encontrado' : 'encontrada',
                 ]));
             }
         }

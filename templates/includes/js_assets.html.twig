@@ -1,4 +1,4 @@
-{% deprecated "Você precisa fazer o override do includes/js_assets.html.twig para definir como carregar os assets" %}
+{% deprecated 'Você precisa fazer o override do includes/js_assets.html.twig para definir como carregar os assets' %}
 
 <script src="{{ asset('bundles/tabler/font-awesome.js', 'tabler') }}"></script>
 
@@ -16,4 +16,3 @@
 
 {# Quinta opção: tabler incorporado. Provavelmente a opção mais interessante para seu projeto #}
 {{ encore_entry_script_tags(entrypoint|default('tabler-full')) }}
-

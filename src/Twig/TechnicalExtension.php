@@ -1,14 +1,21 @@
 <?php
 
-namespace KevinPapst\TablerBundle\Twig;
+/*
+ * This file is part of the Tabler bundle, created by Kevin Papst (www.kevinpapst.de)
+ * and fully revamped and upgraded by Marcelo Saldanha (marcelosaldanha.com.br)
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
 
+namespace Saldanhakun\TablerBundle\Twig;
+
+use function Symfony\Component\String\u;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFilter;
-use function Symfony\Component\String\u;
 
 class TechnicalExtension extends AbstractExtension
 {
-
     public function getFilters(): array
     {
         return [
@@ -27,28 +34,30 @@ class TechnicalExtension extends AbstractExtension
         return base64_encode($text);
     }
 
-    public function getJsonPick($options, $value, $default=''): string
+    public function getJsonPick($options, $value, $default = ''): string
     {
         if (empty($options) || empty($value)) {
             return $default;
         }
-        if (is_string($options)) {
+        if (\is_string($options)) {
             if (strpos($options, 'json-pick:') === 0) {
-                $options = substr($options, strlen('json-pick:'));
+                $options = substr($options, \strlen('json-pick:'));
             }
             $options = json_decode($options, true);
         }
-        if (array_key_exists($value, $options)) {
+        if (\array_key_exists($value, $options)) {
             return $options[$value];
         }
+
         return $default;
     }
 
     public function getJsonPretty($value): string
     {
-        if (is_string($value)) {
+        if (\is_string($value)) {
             $value = json_decode($value, true);
         }
+
         return json_encode($value, JSON_PRETTY_PRINT);
     }
 
@@ -59,39 +68,47 @@ class TechnicalExtension extends AbstractExtension
 
     protected function normalizeClasses($value): array
     {
-        if (is_array($value)) return $value;
-        elseif (is_string($value)) return explode(' ', $value);
-        else return [];
+        if (\is_array($value)) {
+            return $value;
+        } elseif (\is_string($value)) {
+            return explode(' ', $value);
+        } else {
+            return [];
+        }
     }
 
     public function getAddClass($current, $class): string
     {
         return implode(' ', array_unique(array_filter(array_merge(
-            $this->normalizeClasses($current), $this->normalizeClasses($class)
+            $this->normalizeClasses($current),
+            $this->normalizeClasses($class)
         ))));
     }
 
     public function getRemoveClass($current, $class): string
     {
         return implode(' ', array_unique(array_filter(array_diff(
-            $this->normalizeClasses($current), $this->normalizeClasses($class)
+            $this->normalizeClasses($current),
+            $this->normalizeClasses($class)
         ))));
     }
 
-    public function getRGBA($value, $alpha=0): string
+    public function getRGBA($value, $alpha = 0): string
     {
         return self::rgba($value, $alpha);
     }
 
-    public static function rgba($value, $alpha=0): string
+    public static function rgba($value, $alpha = 0): string
     {
-        if (empty($value) || !preg_match('/^#[0-9a-f]{6}([0-9a-f]{2})?$/i', $value)) return sprintf('rgba(%d,%d,%d,0)', 0,0,0);
-        if (strlen($value) > 7) {
-            list($r, $g, $b) = sscanf(strtolower($value), "#%02x%02x%02x");
+        if (empty($value) || !preg_match('/^#[0-9a-f]{6}([0-9a-f]{2})?$/i', $value)) {
+            return \sprintf('rgba(%d,%d,%d,0)', 0, 0, 0);
         }
-        else {
-            list($r, $g, $b, $alpha) = sscanf(strtolower($value), "#%02x%02x%02x%02x");
+        if (\strlen($value) > 7) {
+            list($r, $g, $b) = sscanf(strtolower($value), '#%02x%02x%02x');
+        } else {
+            list($r, $g, $b, $alpha) = sscanf(strtolower($value), '#%02x%02x%02x%02x');
         }
-        return sprintf('rgba(%d,%d,%d,%d)', $r, $g, $b, $alpha);
+
+        return \sprintf('rgba(%d,%d,%d,%d)', $r, $g, $b, $alpha);
     }
 }

@@ -9,7 +9,7 @@
     {% set _extraClass = options.extraClass ?? '' %}
 
     <div
-            class="steps {{ _counter ? 'steps-counter' : '' }} {{ 'steps-'~_color }} {{ _extraClass }}"
+            class="steps {{ _counter ? 'steps-counter' : '' }} {{ 'steps-' ~ _color }} {{ _extraClass }}"
             {{ macros.attr_to_html(_attr) }}
     >
 

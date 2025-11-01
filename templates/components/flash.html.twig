@@ -1,5 +1,5 @@
 {% macro flash(type, message, close, use_raw, class, domain) %}
-    {% from "@Tabler/components/alert.html.twig" import alert %}
+    {% from '@Tabler/components/alert.html.twig' import alert %}
     {% if type == 'error' %}
         {% set type = 'danger' %}
     {% endif %}
@@ -9,7 +9,7 @@
         dismissible: close|default(false),
         important: true,
         raw: use_raw|default(false),
-        class: class|default('')
+        class: class|default(''),
     }) }}
 {% endmacro %}
 

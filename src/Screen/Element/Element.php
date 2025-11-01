@@ -1,8 +1,16 @@
 <?php
 
-namespace KevinPapst\TablerBundle\Screen\Element;
+/*
+ * This file is part of the Tabler bundle, created by Kevin Papst (www.kevinpapst.de)
+ * and fully revamped and upgraded by Marcelo Saldanha (marcelosaldanha.com.br)
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
 
-use KevinPapst\TablerBundle\Twig\HtmlEscaper;
+namespace Saldanhakun\TablerBundle\Screen\Element;
+
+use Saldanhakun\TablerBundle\Twig\HtmlEscaper;
 
 class Element
 {
@@ -13,29 +21,29 @@ class Element
     private bool $enabled = true;
     protected HtmlEscaper $htmlEscaper;
 
-    public function __construct(string $name, protected Element|string $content, array $attributes=[])
+    public function __construct(string $name, protected Element|string $content, array $attributes = [])
     {
         $this->setName($name);
         $this->htmlEscaper = HtmlEscaper::singleton();
         foreach ($attributes as $attr => $value) {
-            $setter = 'set'.ucfirst($attr);
+            $setter = 'set' . ucfirst($attr);
             if (method_exists($this, $setter)) {
                 $this->$setter($name);
-            }
-            else {
-                throw new \InvalidArgumentException(sprintf('The attribute "%s" is not supported in %s', $attr, get_class($this)));
+            } else {
+                throw new \InvalidArgumentException(\sprintf('The attribute "%s" is not supported in %s', $attr, \get_class($this)));
             }
         }
     }
 
     protected function assertName(string $name, array $valid, array $invalid): string
     {
-        if (in_array($name, $invalid, true)) {
-            throw new \InvalidArgumentException(sprintf('The name "%s" is invalid for %s.', $name, get_class($this)));
+        if (\in_array($name, $invalid, true)) {
+            throw new \InvalidArgumentException(\sprintf('The name "%s" is invalid for %s.', $name, \get_class($this)));
         }
-        if (!empty($valid) && !in_array($name, $valid, true)) {
-            throw new \InvalidArgumentException(sprintf('The name "%s" is invalid for %s.', $name, get_class($this)));
+        if (!empty($valid) && !\in_array($name, $valid, true)) {
+            throw new \InvalidArgumentException(\sprintf('The name "%s" is invalid for %s.', $name, \get_class($this)));
         }
+
         return $name;
     }
 
@@ -44,6 +52,7 @@ class Element
         if ($this->enabled) {
             return $this->render();
         }
+
         return '';
     }
 
@@ -55,6 +64,7 @@ class Element
     public function setName(string $name): self
     {
         $this->name = $this->assertName($name, [], []);
+
         return $this;
     }
 
@@ -66,6 +76,7 @@ class Element
     public function setContent(Element|string $content): self
     {
         $this->content = $content;
+
         return $this;
     }
 
@@ -77,6 +88,7 @@ class Element
     public function setEnabled(bool $enabled): self
     {
         $this->enabled = $enabled;
+
         return $this;
     }
 
@@ -85,10 +97,13 @@ class Element
         return $this->attr['id'] ?? null;
     }
 
-    protected function renderAttributes(array $attributes, bool $spaceBefore=false): string
+    protected function renderAttributes(array $attributes, bool $spaceBefore = false): string
     {
         $html = $this->htmlEscaper->safeAttributeSet($attributes);
-        if (!$spaceBefore) return trim($html);
+        if (!$spaceBefore) {
+            return trim($html);
+        }
+
         return $html;
     }
 
@@ -111,6 +126,7 @@ class Element
         $content = $this->renderContent();
         $this->attr = $backupAttr;
         $this->classes = $backupClass;
-        return sprintf('<%s%s>%s</%s>', $this->getName(), $attr, $content, $this->getName());
+
+        return \sprintf('<%s%s>%s</%s>', $this->getName(), $attr, $content, $this->getName());
     }
 }

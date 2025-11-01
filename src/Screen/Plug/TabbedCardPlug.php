@@ -1,8 +1,16 @@
 <?php
 
-namespace KevinPapst\TablerBundle\Screen\Plug;
+/*
+ * This file is part of the Tabler bundle, created by Kevin Papst (www.kevinpapst.de)
+ * and fully revamped and upgraded by Marcelo Saldanha (marcelosaldanha.com.br)
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
 
-use KevinPapst\TablerBundle\Screen\Element\TabSet;
+namespace Saldanhakun\TablerBundle\Screen\Plug;
+
+use Saldanhakun\TablerBundle\Screen\Element\TabSet;
 
 class TabbedCardPlug extends AbstractPlug
 {
@@ -32,5 +40,4 @@ class TabbedCardPlug extends AbstractPlug
         $this->_params['tab_panes'] = $this->tabs->render(TabSet::RENDER_CONTENT);
         $this->rendered = $this->getTwig()->render($this->getTemplate(), $this->_params);
     }
-
 }

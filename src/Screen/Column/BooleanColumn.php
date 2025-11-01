@@ -1,13 +1,14 @@
 <?php
 
 /*
- * Este arquivo é parte da aplicação Sistema Tio Edy
- * Copyright 2025 Marcelo Saldanha - saldanha@uttara.com.br
+ * This file is part of the Tabler bundle, created by Kevin Papst (www.kevinpapst.de)
+ * and fully revamped and upgraded by Marcelo Saldanha (marcelosaldanha.com.br)
  *
- * Software proprietário, distribuição e reuso estão proibidos.
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
  */
 
-namespace KevinPapst\TablerBundle\Screen\Column;
+namespace Saldanhakun\TablerBundle\Screen\Column;
 
 class BooleanColumn extends PropertyColumn
 {
@@ -109,6 +110,7 @@ class BooleanColumn extends PropertyColumn
     public function setIsFemale(bool $isFemale): self
     {
         $this->isFemale = $isFemale;
+
         return $this;
     }
 
@@ -129,18 +131,30 @@ class BooleanColumn extends PropertyColumn
     public function readSet(array $labelSet, bool $isFemale, ?string &$true, ?string &$false, ?string &$null): self
     {
         $set = $labelSet;
-        if ($isFemale && array_key_exists(self::ARRAY_FEMALE, $set)) {
+        if ($isFemale && \array_key_exists(self::ARRAY_FEMALE, $set)) {
             $set = $set[self::ARRAY_FEMALE];
         }
-        if (array_key_exists(self::ARRAY_TRUE, $set)) $true = $set[self::ARRAY_TRUE];
-        elseif (array_key_exists('true', $set)) $true = $set['true'];
-        else $true = '';
-        if (array_key_exists(self::ARRAY_FALSE, $set)) $false = $set[self::ARRAY_FALSE];
-        elseif (array_key_exists('false', $set)) $false = $set['false'];
-        else $false = '';
-        if (array_key_exists(self::ARRAY_NULL, $set)) $null = $set[self::ARRAY_NULL];
-        elseif (array_key_exists('null', $set)) $null = $set['null'];
-        else $null = '';
+        if (\array_key_exists(self::ARRAY_TRUE, $set)) {
+            $true = $set[self::ARRAY_TRUE];
+        } elseif (\array_key_exists('true', $set)) {
+            $true = $set['true'];
+        } else {
+            $true = '';
+        }
+        if (\array_key_exists(self::ARRAY_FALSE, $set)) {
+            $false = $set[self::ARRAY_FALSE];
+        } elseif (\array_key_exists('false', $set)) {
+            $false = $set['false'];
+        } else {
+            $false = '';
+        }
+        if (\array_key_exists(self::ARRAY_NULL, $set)) {
+            $null = $set[self::ARRAY_NULL];
+        } elseif (\array_key_exists('null', $set)) {
+            $null = $set['null'];
+        } else {
+            $null = '';
+        }
 
         return $this;
     }
@@ -210,6 +224,7 @@ class BooleanColumn extends PropertyColumn
     {
         $this->readset($original, false, $originalTrue, $originalFalse, $originalNull);
         $this->readset($new, false, $true, $false, $null);
+
         return $this->makeSet(
             $this->combineStrings($originalTrue, $true),
             $this->combineStrings($originalFalse, $false),
@@ -235,5 +250,4 @@ class BooleanColumn extends PropertyColumn
 
         return $final;
     }
-
 }

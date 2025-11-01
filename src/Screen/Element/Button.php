@@ -1,9 +1,17 @@
 <?php
 
-namespace KevinPapst\TablerBundle\Screen\Element;
+/*
+ * This file is part of the Tabler bundle, created by Kevin Papst (www.kevinpapst.de)
+ * and fully revamped and upgraded by Marcelo Saldanha (marcelosaldanha.com.br)
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
 
-use KevinPapst\TablerBundle\Enum\ButtonFormat;
-use KevinPapst\TablerBundle\Enum\ButtonSize;
+namespace Saldanhakun\TablerBundle\Screen\Element;
+
+use Saldanhakun\TablerBundle\Enum\ButtonFormat;
+use Saldanhakun\TablerBundle\Enum\ButtonSize;
 
 class Button extends Linkable
 {
@@ -37,12 +45,12 @@ class Button extends Linkable
             ->addClass($this->format)
             ->addClass("btn-{$this->size}")
             ->addClass("btn-{$this->color}");
-
     }
 
     protected function renderContent(): string
     {
         $this->tooltip->applyTo($this);
+
         return $this->icon->renderWithIcon(parent::renderContent());
     }
 }

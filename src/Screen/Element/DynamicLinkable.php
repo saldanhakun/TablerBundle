@@ -1,10 +1,17 @@
 <?php
 
-namespace KevinPapst\TablerBundle\Screen\Element;
+/*
+ * This file is part of the Tabler bundle, created by Kevin Papst (www.kevinpapst.de)
+ * and fully revamped and upgraded by Marcelo Saldanha (marcelosaldanha.com.br)
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
 
-use KevinPapst\TablerBundle\Screen\Column\BasePropertyColumn;
-use KevinPapst\TablerBundle\Screen\Element\Data\AbstractRecordData;
-use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
+namespace Saldanhakun\TablerBundle\Screen\Element;
+
+use Saldanhakun\TablerBundle\Screen\Column\BasePropertyColumn;
+use Saldanhakun\TablerBundle\Screen\Element\Data\AbstractRecordData;
 
 class DynamicLinkable extends Element
 {
@@ -15,7 +22,7 @@ class DynamicLinkable extends Element
         'button',
     ];
     private array $linkRoutePlaceholders = ['id' => 'id'];
-    private ?AbstractRecordData $dataLink=null;
+    private ?AbstractRecordData $dataLink = null;
 
     public function __construct(Element|string $content, string $route, array $routeArgs = [], array $placeholders = [])
     {
@@ -24,7 +31,6 @@ class DynamicLinkable extends Element
             ->setRoute($route)
             ->setRouteParams($routeArgs)
             ->setLinkRoutePlaceholders($placeholders);
-
     }
 
     protected function assertName(string $name, array $valid, array $invalid): string
@@ -40,6 +46,7 @@ class DynamicLinkable extends Element
     public function setLinkRoutePlaceholders(array $linkRoutePlaceholders): self
     {
         $this->linkRoutePlaceholders = $linkRoutePlaceholders;
+
         return $this;
     }
 
@@ -51,6 +58,7 @@ class DynamicLinkable extends Element
     public function setDataLink(?AbstractRecordData $dataLink): self
     {
         $this->dataLink = $dataLink;
+
         return $this;
     }
 
@@ -79,5 +87,4 @@ class DynamicLinkable extends Element
             $this->attr['href'] = $generator->generate($this->getRoute(), $this->generateRouteArguments());
         }
     }
-
 }

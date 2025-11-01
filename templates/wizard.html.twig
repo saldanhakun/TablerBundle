@@ -15,7 +15,7 @@
         {% block wizard_logo %}
             <div class="text-center mb-4">
                 <h1 class="{% block navbar_brand_classes %}navbar-brand {% block navbar_brand_class %}navbar-brand-autodark{% endblock %}{% endblock %}">
-                    {% include '@Tabler/includes/logo.html.twig' %}
+                    {{ include('@Tabler/includes/logo.html.twig') }}
                 </h1>
             </div>
         {% endblock %}
@@ -44,11 +44,11 @@
                 <div class="col">
                     <div class="btn-list justify-content-end">
                         {% block wizard_previous_button %}
-                            {{ button(false, { title : 'Previous'|trans({}, 'TablerBundle'), combined: true, url : '#' }, 'link') }}
+                            {{ button(false, {title: 'Previous'|trans({}, 'TablerBundle'), combined: true, url: '#'}, 'link') }}
                         {% endblock %}
 
                         {% block wizard_next_button %}
-                            {{ submit_button(false, { title : 'Next'|trans({}, 'TablerBundle'), combined: true }, 'primary') }}
+                            {{ submit_button(false, {title: 'Next'|trans({}, 'TablerBundle'), combined: true}, 'primary') }}
                         {% endblock %}
                     </div>
                 </div>
@@ -60,4 +60,3 @@
     </div>
 
 {% endblock %}
-

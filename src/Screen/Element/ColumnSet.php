@@ -1,25 +1,26 @@
 <?php
 
 /*
- * Este arquivo é parte da aplicação Sistema Tio Edy
- * Copyright 2025 Marcelo Saldanha - saldanha@uttara.com.br
+ * This file is part of the Tabler bundle, created by Kevin Papst (www.kevinpapst.de)
+ * and fully revamped and upgraded by Marcelo Saldanha (marcelosaldanha.com.br)
  *
- * Software proprietário, distribuição e reuso estão proibidos.
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
  */
 
-namespace KevinPapst\TablerBundle\Screen\Element;
+namespace Saldanhakun\TablerBundle\Screen\Element;
 
-use KevinPapst\TablerBundle\Screen\Column\AbstractColumn;
-use KevinPapst\TablerBundle\Screen\Column\BasePropertyColumn;
-use KevinPapst\TablerBundle\Screen\Column\BooleanColumn;
-use KevinPapst\TablerBundle\Screen\Column\CallbackColumn;
-use KevinPapst\TablerBundle\Screen\Column\DateTimeColumn;
-use KevinPapst\TablerBundle\Screen\Column\EnumColumn;
-use KevinPapst\TablerBundle\Screen\Column\NumberColumn;
-use KevinPapst\TablerBundle\Screen\Column\PhoneColumn;
-use KevinPapst\TablerBundle\Screen\Column\PropertyColumn;
-use KevinPapst\TablerBundle\Screen\Column\TwigColumn;
 use Saldanhakun\DoctrineBundle\Describer\BaseDescriber;
+use Saldanhakun\TablerBundle\Screen\Column\AbstractColumn;
+use Saldanhakun\TablerBundle\Screen\Column\BasePropertyColumn;
+use Saldanhakun\TablerBundle\Screen\Column\BooleanColumn;
+use Saldanhakun\TablerBundle\Screen\Column\CallbackColumn;
+use Saldanhakun\TablerBundle\Screen\Column\DateTimeColumn;
+use Saldanhakun\TablerBundle\Screen\Column\EnumColumn;
+use Saldanhakun\TablerBundle\Screen\Column\NumberColumn;
+use Saldanhakun\TablerBundle\Screen\Column\PhoneColumn;
+use Saldanhakun\TablerBundle\Screen\Column\PropertyColumn;
+use Saldanhakun\TablerBundle\Screen\Column\TwigColumn;
 use Symfony\Component\PropertyAccess\Exception\AccessException;
 use Symfony\Component\PropertyAccess\PropertyPathInterface;
 use Twig\Environment;
@@ -45,20 +46,23 @@ class ColumnSet extends Element
     public function setDescriber(?BaseDescriber $describer): self
     {
         $this->describer = $describer;
+
         return $this;
     }
 
-    public function getTwig(bool $required=false): ?Environment
+    public function getTwig(bool $required = false): ?Environment
     {
         if ($required && !$this->twig) {
             throw new \LogicException('Twig needs to be set before using getTwig()');
         }
+
         return $this->twig;
     }
 
     public function setTwig(?Environment $twig): self
     {
         $this->twig = $twig;
+
         return $this;
     }
 
@@ -213,5 +217,4 @@ class ColumnSet extends Element
             return $column->isEnabled() ? $column->getColSpan() : 0;
         }, $this->columns));
     }
-
 }

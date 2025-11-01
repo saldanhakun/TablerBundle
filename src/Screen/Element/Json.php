@@ -1,10 +1,17 @@
 <?php
 
-namespace KevinPapst\TablerBundle\Screen\Element;
+/*
+ * This file is part of the Tabler bundle, created by Kevin Papst (www.kevinpapst.de)
+ * and fully revamped and upgraded by Marcelo Saldanha (marcelosaldanha.com.br)
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
+namespace Saldanhakun\TablerBundle\Screen\Element;
 
 class Json extends Element
 {
-
     protected mixed $data;
 
     public const array ACCEPTED_TAGS = [
@@ -41,6 +48,7 @@ class Json extends Element
     public function setData(mixed $data): self
     {
         $this->data = $data;
+
         return $this;
     }
 }

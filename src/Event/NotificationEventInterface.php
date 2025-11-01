@@ -1,16 +1,17 @@
 <?php
 
 /*
- * This file is part of the Tabler bundle, created by Kevin Papst (www.kevinpapst.de).
+ * This file is part of the Tabler bundle, created by Kevin Papst (www.kevinpapst.de)
+ * and fully revamped and upgraded by Marcelo Saldanha (marcelosaldanha.com.br)
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
 
-namespace KevinPapst\TablerBundle\Event;
+namespace Saldanhakun\TablerBundle\Event;
 
-use KevinPapst\TablerBundle\Model\NotificationInterface;
-use KevinPapst\TablerBundle\Model\NotificationV2Interface;
+use Saldanhakun\TablerBundle\Model\NotificationInterface;
+use Saldanhakun\TablerBundle\Model\NotificationV2Interface;
 
 interface NotificationEventInterface
 {

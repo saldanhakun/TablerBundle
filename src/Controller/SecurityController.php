@@ -1,24 +1,25 @@
 <?php
 
 /*
- * Este arquivo é parte da aplicação Sistema Tio Edy
- * Copyright 2025 Marcelo Saldanha - saldanha@uttara.com.br
+ * This file is part of the Tabler bundle, created by Kevin Papst (www.kevinpapst.de)
+ * and fully revamped and upgraded by Marcelo Saldanha (marcelosaldanha.com.br)
  *
- * Software proprietário, distribuição e reuso estão proibidos.
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
  */
 
-namespace KevinPapst\TablerBundle\Controller;
+namespace Saldanhakun\TablerBundle\Controller;
 
-use KevinPapst\TablerBundle\Router\AbstractAppRouteHelper;
-use KevinPapst\TablerBundle\Security\TablerAppAccessControl;
+use Saldanhakun\TablerBundle\Router\AbstractAppRouteHelper;
+use Saldanhakun\TablerBundle\Security\TablerAppAccessControl;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
-##[Route(name: AbstractAppRouteHelper::SECURITY . '.')]
+//#[Route(name: AbstractAppRouteHelper::SECURITY . '.')]
 abstract class SecurityController extends AbstractController
 {
-    ##[Route(path: '/entrar', name: 'login', methods: ['GET', 'POST'])]
+    //#[Route(path: '/entrar', name: 'login', methods: ['GET', 'POST'])]
     public function login(AuthenticationUtils $authenticationUtils, AbstractAppRouteHelper $appRouteHelper): Response
     {
         if ($this->getUser()) {
@@ -33,26 +34,26 @@ abstract class SecurityController extends AbstractController
         return $this->render('@Tabler/security/login.html.twig', ['last_username' => $lastUsername, 'error' => $error]);
     }
 
-    ##[Route(path: '/sair', name: 'logout', methods: ['GET'])]
+    //#[Route(path: '/sair', name: 'logout', methods: ['GET'])]
     public function logout(): void
     {
         throw new \LogicException('This method can be blank - it will be intercepted by the logout key on your firewall.');
     }
 
-    ##[Route(path: '/perfil', name: 'profile', methods: ['GET', 'POST'])]
-    ##[IsGranted(TablerAppAccessControl::ROLE_USER)]
+    //#[Route(path: '/perfil', name: 'profile', methods: ['GET', 'POST'])]
+    //#[IsGranted(TablerAppAccessControl::ROLE_USER)]
     public function profile(TablerAppAccessControl $accessControl): Response
     {
         return $this->render('@Tabler/security/profile.html.twig', ['profile' => $accessControl->getUserProfile()]);
     }
 
-    ##[Route(path: '/recuperar-senha', name: 'reset', methods: ['GET', 'POST'])]
+    //#[Route(path: '/recuperar-senha', name: 'reset', methods: ['GET', 'POST'])]
     public function reset(TablerAppAccessControl $accessControl): Response
     {
         return $this->render('@Tabler/security/profile.html.twig', ['profile' => $accessControl->getUserProfile()]);
     }
 
-    ##[Route(path: '/gerar-senha-forte', name: 'generate_password', methods: ['POST'])]
+    //#[Route(path: '/gerar-senha-forte', name: 'generate_password', methods: ['POST'])]
     public function generatePassword(): Response
     {
         return $this->json([
@@ -60,5 +61,4 @@ abstract class SecurityController extends AbstractController
             'password' => uniqid(),
         ]);
     }
-
 }

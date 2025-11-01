@@ -1,10 +1,17 @@
 <?php
 
-namespace KevinPapst\TablerBundle\Screen\Element;
+/*
+ * This file is part of the Tabler bundle, created by Kevin Papst (www.kevinpapst.de)
+ * and fully revamped and upgraded by Marcelo Saldanha (marcelosaldanha.com.br)
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
+namespace Saldanhakun\TablerBundle\Screen\Element;
 
 class TabSet extends Element implements \ArrayAccess, \Countable
 {
-
     public const ?bool RENDER_FULL = null;
     public const ?bool RENDER_CONTENT = false;
     public const ?bool RENDER_TABS = true;
@@ -22,7 +29,7 @@ class TabSet extends Element implements \ArrayAccess, \Countable
         'ol',
     ];
 
-    public function __construct(string $name='div', array $attributes = [])
+    public function __construct(string $name = 'div', array $attributes = [])
     {
         parent::__construct($name, '', $attributes);
     }
@@ -39,23 +46,25 @@ class TabSet extends Element implements \ArrayAccess, \Countable
 
     public function offsetExists(mixed $offset): bool
     {
-        if (is_string($offset)) {
+        if (\is_string($offset)) {
             try {
                 $this->getTabById($offset);
+
                 return true;
-            }
-            catch (\Exception $e) {
+            } catch (\Exception $e) {
                 return false;
             }
         }
-        return array_key_exists($offset, $this->tabs);
+
+        return \array_key_exists($offset, $this->tabs);
     }
 
     public function offsetGet(mixed $offset): ?Tab
     {
-        if (is_string($offset)) {
+        if (\is_string($offset)) {
             return $this->getTabById($offset);
         }
+
         return $this->tabs[$offset];
     }
 
@@ -64,10 +73,9 @@ class TabSet extends Element implements \ArrayAccess, \Countable
         if (!$value instanceof Tab) {
             throw new \InvalidArgumentException('The value must be a Tab instance');
         }
-        if (is_string($offset) || $offset >= count($this->tabs)) {
+        if (\is_string($offset) || $offset >= \count($this->tabs)) {
             $this->pushTab($value);
-        }
-        else {
+        } else {
             $this->insertTab($value, $offset);
         }
     }
@@ -79,7 +87,7 @@ class TabSet extends Element implements \ArrayAccess, \Countable
 
     public function count(): int
     {
-        return count($this->tabs);
+        return \count($this->tabs);
     }
 
     /**
@@ -108,7 +116,7 @@ class TabSet extends Element implements \ArrayAccess, \Countable
 
     public function getTabByIndex(int $index): Tab
     {
-        if ($index >= 0 && $index < count($this->tabs)) {
+        if ($index >= 0 && $index < \count($this->tabs)) {
             return $this->tabs[$index];
         }
         throw new \LogicException("Tab '$index' does not exist.");
@@ -116,12 +124,12 @@ class TabSet extends Element implements \ArrayAccess, \Countable
 
     public function pushTab(Tab $newTab): self
     {
-        return $this->insertTab($newTab, count($this->tabs));
+        return $this->insertTab($newTab, \count($this->tabs));
     }
 
-    public function insertTab(Tab $newTab, int $position=0): self
+    public function insertTab(Tab $newTab, int $position = 0): self
     {
-        $position = min(count($this->tabs), max(0, $position));
+        $position = min(\count($this->tabs), max(0, $position));
         foreach ($this->tabs as $tab) {
             if ($tab->getId() === $newTab->getId()) {
                 throw new \InvalidArgumentException("Tab '{$newTab->getId()}' already exists.");
@@ -132,11 +140,12 @@ class TabSet extends Element implements \ArrayAccess, \Countable
             $newTabs[] = $this->tabs[$k];
         }
         $this->tabs[] = $newTab;
-        for ($k = $position; $k < count($this->tabs); $k++) {
+        for ($k = $position; $k < \count($this->tabs); $k++) {
             $newTabs[] = $this->tabs[$k];
         }
         $this->tabs = $newTabs;
         $this->setActive($this->getActive() ?? $this->tabs[0]);
+
         return $this;
     }
 
@@ -144,17 +153,20 @@ class TabSet extends Element implements \ArrayAccess, \Countable
     {
         usort($this->tabs, $comparator);
         $this->tabs = array_values($this->tabs);
+
         return $this;
     }
 
     public function popTab(): ?Tab
     {
         if (!empty($this->tabs)) {
-            if ($this->active === $this->tabs[count($this->tabs) - 1]) {
+            if ($this->active === $this->tabs[\count($this->tabs) - 1]) {
                 $this->setActive(null);
             }
+
             return array_pop($this->tabs);
         }
+
         return null;
     }
 
@@ -164,24 +176,25 @@ class TabSet extends Element implements \ArrayAccess, \Countable
             $this->setActive(null);
         }
         foreach ($this->tabs as $index => $test) {
-            if (is_int($tab)) {
+            if (\is_int($tab)) {
                 if ($index === $tab) {
                     unset($this->tabs[$index]);
                     $this->tabs = array_values($this->tabs);
+
                     return $this;
                 }
-            }
-            elseif (is_string($tab)) {
+            } elseif (\is_string($tab)) {
                 if ($test->getId() === $tab) {
                     unset($this->tabs[$index]);
                     $this->tabs = array_values($this->tabs);
+
                     return $this;
                 }
-            }
-            else {
+            } else {
                 if ($test === $tab) {
                     unset($this->tabs[$index]);
                     $this->tabs = array_values($this->tabs);
+
                     return $this;
                 }
             }
@@ -203,6 +216,7 @@ class TabSet extends Element implements \ArrayAccess, \Countable
         foreach ($this->tabs as $other) {
             $other->setActive($this);
         }
+
         return $this;
     }
 
@@ -214,6 +228,7 @@ class TabSet extends Element implements \ArrayAccess, \Countable
     public function setFill(bool $fill): self
     {
         $this->fill = $fill;
+
         return $this;
     }
 
@@ -225,6 +240,7 @@ class TabSet extends Element implements \ArrayAccess, \Countable
     public function setReverse(bool $reverse): self
     {
         $this->reverse = $reverse;
+
         return $this;
     }
 
@@ -247,26 +263,27 @@ class TabSet extends Element implements \ArrayAccess, \Countable
             $this->setContent(implode('', array_map(function (Tab $tab) {
                 return $tab->renderTab($this);
             }, $this->tabs)));
+
             return parent::renderContent();
-        }
-        elseif ($this->renderMode === self::RENDER_CONTENT) {
+        } elseif ($this->renderMode === self::RENDER_CONTENT) {
             $this->setContent(implode('', array_map(function (Tab $tab) {
                 return $tab->renderPane($this);
             }, $this->tabs)));
+
             return parent::renderContent();
-        }
-        else {
+        } else {
             $this->renderMode = true;
             $tabs = $this->renderContent();
             $this->renderMode = false;
             $panes = $this->renderContent();
             $this->renderMode = null;
             $this->setContent('');
-            return sprintf('<div class="tabs">%s%s</div>', $tabs, $panes);
+
+            return \sprintf('<div class="tabs">%s%s</div>', $tabs, $panes);
         }
     }
 
-    public function render(?bool $mode=null): string
+    public function render(?bool $mode = null): string
     {
         $this->renderMode = $mode;
         if ($mode === self::RENDER_CONTENT) {
@@ -275,9 +292,9 @@ class TabSet extends Element implements \ArrayAccess, \Countable
             $this->clearClasses()->addClass('tab-content')->setName('div');
             $html = parent::render();
             $this->clearClasses()->mergeClasses($classes)->setName($tag);
+
             return $html;
-        }
-        else {
+        } else {
             return parent::render();
         }
     }

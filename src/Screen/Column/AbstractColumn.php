@@ -1,15 +1,16 @@
 <?php
 
 /*
- * Este arquivo é parte da aplicação Sistema Tio Edy
- * Copyright 2025 Marcelo Saldanha - saldanha@uttara.com.br
+ * This file is part of the Tabler bundle, created by Kevin Papst (www.kevinpapst.de)
+ * and fully revamped and upgraded by Marcelo Saldanha (marcelosaldanha.com.br)
  *
- * Software proprietário, distribuição e reuso estão proibidos.
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
  */
 
-namespace KevinPapst\TablerBundle\Screen\Column;
+namespace Saldanhakun\TablerBundle\Screen\Column;
 
-use KevinPapst\TablerBundle\Twig\HtmlEscaper;
+use Saldanhakun\TablerBundle\Twig\HtmlEscaper;
 
 abstract class AbstractColumn
 {
@@ -313,6 +314,7 @@ abstract class AbstractColumn
         if (empty($value)) {
             return $this->renderEmptyValue();
         }
+
         return $this->renderCustomValue($value);
     }
 }

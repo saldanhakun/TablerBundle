@@ -50,7 +50,7 @@ The bundle in your `config/bundles.php` should be auto-replaced, it changes from
 <?php
 return [
     ...
-    KevinPapst\AdminLTEBundle\AdminLTEBundle::class => ['all' => true],
+    Saldanhakun\AdminLTEBundle\AdminLTEBundle::class => ['all' => true],
 ];
 ```
 to
@@ -58,7 +58,7 @@ to
 <?php
 return [
     ...
-    KevinPapst\TablerBundle\TablerBundle::class => ['all' => true],
+    Saldanhakun\TablerBundle\TablerBundle::class => ['all' => true],
 ];
 ```
 
@@ -74,7 +74,7 @@ Due to the changes in the bundle, you have to replace all class and view referen
 
 ### Namespaces
 
-Replace `use KevinPapst\AdminLTEBundle\` with `use KevinPapst\TablerBundle\`.
+Replace `use Saldanhakun\AdminLTEBundle\` with `use Saldanhakun\TablerBundle\`.
 
 ### Template references
 
