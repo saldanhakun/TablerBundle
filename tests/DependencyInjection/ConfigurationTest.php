@@ -8,7 +8,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Saldanhakun\TablerBundle\Tests\DependencyInjection;
+namespace Saldanhakun\Tests\TablerBundle\DependencyInjection;
 
 use PHPUnit\Framework\TestCase;
 use Saldanhakun\TablerBundle\DependencyInjection\Configuration;

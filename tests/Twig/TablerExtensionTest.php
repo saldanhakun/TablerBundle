@@ -8,7 +8,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Saldanhakun\TablerBundle\Tests\Twig;
+namespace Saldanhakun\Tests\TablerBundle\Twig;
 
 use PHPUnit\Framework\TestCase;
 use Saldanhakun\TablerBundle\Twig\TablerExtension;

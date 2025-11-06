@@ -8,7 +8,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Saldanhakun\TablerBundle\Tests\Helper;
+namespace Saldanhakun\Tests\TablerBundle\Helper;
 
 use PHPUnit\Framework\TestCase;
 use Saldanhakun\TablerBundle\Helper\ContextHelper;

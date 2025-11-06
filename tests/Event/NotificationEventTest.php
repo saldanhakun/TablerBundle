@@ -8,7 +8,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Saldanhakun\TablerBundle\Tests\Event;
+namespace Saldanhakun\Tests\TablerBundle\Event;
 
 use PHPUnit\Framework\TestCase;
 use Saldanhakun\TablerBundle\Event\NotificationEvent;

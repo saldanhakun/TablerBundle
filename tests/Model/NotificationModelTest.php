@@ -8,7 +8,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Saldanhakun\TablerBundle\Tests\Model;
+namespace Saldanhakun\Tests\TablerBundle\Model;
 
 use PHPUnit\Framework\TestCase;
 use Saldanhakun\TablerBundle\Helper\Constants;
