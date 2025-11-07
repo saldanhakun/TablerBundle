@@ -1,0 +1,16 @@
+
+{% embed '@Tabler/embeds/card.html.twig' with {
+    title: form_card_title|default(''),
+    use_footer: not fieldsets_assume_actions,
+} %}
+    {% block box_body %}
+        {% for property in fieldsets_default %}
+            {{ form_row(form[property]) }}
+        {% endfor %}
+    {% endblock %}
+    {% block box_footer %}
+        {% if not fieldsets_assume_actions %}
+            {% include '@Tabler/crud/_form-actions.html.twig' %}
+        {% endif %}
+    {% endblock %}
+{% endembed %}

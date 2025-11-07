@@ -11,6 +11,8 @@
 namespace Saldanhakun\TablerBundle\Screen\Action;
 
 use Doctrine\ORM\EntityManagerInterface;
+use Saldanhakun\TablerBundle\Enum\FieldsetPlacementEnum;
+use Saldanhakun\TablerBundle\Form\Fieldset;
 use Symfony\Component\Form\Exception\LogicException;
 use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\Form\FormInterface;
@@ -130,5 +132,39 @@ abstract class BaseFormAction extends RecordAction
             $this->getEntityManager()->persist($this->getRecord());
         }
         $this->_params['form'] = $this->form->createView();
+        $this->handleFieldsets();
     }
+
+    protected function handleFieldsets(): void
+    {
+        $fieldsets = [];
+        $assumedActions = false;
+        $columns = false;
+        $defaultFieldset = [];
+        foreach ($this->form->all() as $property => $child) {
+            if ($child->getConfig()->hasOption('fieldset')) {
+                /** @var ?Fieldset $fieldset */
+                $fieldset = $child->getConfig()->getOption('fieldset');
+                if ($fieldset !== null && !in_array($fieldset, $fieldsets)) {
+                    $fieldsets[] = $fieldset;
+                    if ($fieldset->getAssumeActions()) {
+                        $assumedActions = true;
+                    }
+                    if ($fieldset->getPlacement() !== FieldsetPlacementEnum::NONE) {
+                        $columns = true;
+                    }
+                }
+                if (!$fieldset) {
+                    $defaultFieldset[] = $property;
+                }
+            }
+        }
+        if (!empty($fieldsets)) {
+            $this->_params['fieldsets'] = $fieldsets;
+            $this->_params['fieldsets_assume_actions'] = $assumedActions;
+            $this->_params['fieldsets_columns'] = $columns;
+            $this->_params['fieldsets_default'] = $defaultFieldset;
+        }
+    }
+
 }

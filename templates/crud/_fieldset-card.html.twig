@@ -1,0 +1,23 @@
+{% embed '@Tabler/embeds/card.html.twig' %}
+    {% dump(fieldset.label) %}
+    {%- block box_header -%}
+        {%- set _label = fieldset.label -%}
+        {%- if _label is not empty -%}
+            <h3>{{ _label | raw }}</h3>
+        {%- endif -%}
+    {%- endblock -%}
+    {% block box_body %}
+        {% set _description = fieldset.description %}
+        {% if _description is not empty %}
+            <div class="fieldset-description">{{ _description|raw }}</div>
+        {% endif %}
+        {% for child in fieldset %}
+            {{ form_row(child.view) }}
+        {% endfor %}
+    {% endblock %}
+    {%- block box_footer -%}
+        {% if fieldset.assumeActions %}
+            {% include '@Tabler/crud/_form-actions.html.twig' %}
+        {% endif %}
+    {%- endblock -%}
+{% endembed %}

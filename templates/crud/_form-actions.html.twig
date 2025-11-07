@@ -1,0 +1,4 @@
+<button class="btn btn-primary" type="submit">{{ form_submit_label|default('Enviar') }}</button>
+{% for link in form_actions %}
+    {{ include('@Tabler/includes/action-button.html.twig', link) }}
+{% endfor %}

@@ -21,8 +21,8 @@ services:
         class: Saldanhakun\TablerBundle\Twig\TablerExtension
         tags:
             - { name: twig.extension }
-    Saldanhakun\TablerBundle\Form\Extension\CheckboxCustomizer:
-        class: Saldanhakun\TablerBundle\Form\Extension\CheckboxCustomizer
+    Saldanhakun\TablerBundle\Form\Extension\:
+        resource: '../src/Form/Extension'
         tags:
             - { name: form.type_extension }
 

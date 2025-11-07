@@ -2,18 +2,43 @@
 
 {% block page_content %}
 
+    {{ form_start(form) }}
     <div class="row">
-        {{ form_start(form) }}
         {% if fieldsets is defined and fieldsets is not empty %}
-            {# @todo: suporte a um Card por Fieldset #}
+            {% set form_submit_label = button_label|default('Salvar') %}
+            {% set form_actions = single_actions %}
+            {% if fieldsets_columns %}
+                <div class="{{ form_card_width|default('col-6') }}">
+                    {% include '@Tabler/crud/_default-fieldset-card.html.twig' %}
+                    {% for fieldset in fieldsets %}
+                        {% if (not fieldset.placement.isRight) %}
+                            {% include '@Tabler/crud/_fieldset-card.html.twig' %}
+                        {% endif %}
+                    {% endfor %}
+                </div>
+                <div class="{{ form_card_side_width|default('col-6') }}">
+                    {% for fieldset in fieldsets %}
+                        {% if (fieldset.placement.isRight) %}
+                            {% include '@Tabler/crud/_fieldset-card.html.twig' %}
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            {% else %}
+                <div class="{{ form_card_side_width|default('col-6') }}">
+                    {% include '@Tabler/crud/_default-fieldset-card.html.twig' %}
+                    {% for fieldset in fieldsets %}
+                        {% include '@Tabler/crud/_fieldset-card.html.twig' %}
+                    {% endfor %}
+                </div>
+            {% endif %}
         {% else %}
-            {{ include('@Tabler/crud/_form.html.twig', {
+            {{ include('@Tabler/crud/_single-form-card.html.twig', {
                 form_card_title: describer.singular,
                 form_submit_label: button_label|default('Salvar'),
                 form_actions: single_actions,
             }) }}
         {% endif %}
-        {{ form_end(form) }}
     </div>
+    {{ form_end(form) }}
 
 {% endblock %}
