@@ -1,13 +1,4 @@
 
-{% block checkbox_radio_label %}
-    {{ parent() }}
-    {%- if widget is defined -%}
-        {%- if description is defined and description is not empty -%}
-            <span class="form-check-description">{{ description|raw }}</span>
-        {%- endif -%}
-    {%- endif -%}
-{% endblock %}
-
 {% block mobile_phone_widget %}
     {%- set attr = attr|merge({
         'data-mask': attr['data-mask']|default('(00) 90000-0000'),
@@ -53,10 +44,10 @@
         <div class="input-group input-group-flat">
             {{ block('form_widget_simple') }}
             <span class="input-group-text">
-            <a href="#" class="link-secondary ms-2 js-cpf-randomizer" data-remote="{{ router.security.generateCpf }}" data-bs-toggle="tooltip" aria-label="Gerar um número de CPF válido" data-bs-original-title="Gerar um número de CPF válido">
-                {{ tabler_icon('fa fa-cogs') }}
-            </a>
-        </span>
+                <a href="#" class="link-secondary ms-2 js-cpf-randomizer" data-remote="{{ router.security.generateCpf }}" data-bs-toggle="tooltip" aria-label="Gerar um número de CPF válido" data-bs-original-title="Gerar um número de CPF válido">
+                    {{ tabler_icon('fa fa-cogs') }}
+                </a>
+            </span>
         </div>
     {% else %}
         {{ block('form_widget_simple') }}
@@ -71,10 +62,10 @@
         <div class="input-group input-group-flat">
             {{ block('form_widget_simple') }}
             <span class="input-group-text">
-            <a href="#" class="link-secondary ms-2 js-cnpj-randomizer" data-remote="{{ router.security.generateCnpj }}" data-bs-toggle="tooltip" aria-label="Gerar um número de CNPJ válido" data-bs-original-title="Gerar um número de CNPJ válido">
-                {{ tabler_icon('fa fa-cogs') }}
-            </a>
-        </span>
+                <a href="#" class="link-secondary ms-2 js-cnpj-randomizer" data-remote="{{ router.security.generateCnpj }}" data-bs-toggle="tooltip" aria-label="Gerar um número de CNPJ válido" data-bs-original-title="Gerar um número de CNPJ válido">
+                    {{ tabler_icon('fa fa-cogs') }}
+                </a>
+            </span>
         </div>
     {% else %}
         {{ block('form_widget_simple') }}

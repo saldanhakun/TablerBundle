@@ -48,6 +48,7 @@ class CheckboxCustomizer extends AbstractTypeExtension
 
         $view->vars = array_replace($view->vars, [
             'label_attr' => $label_attr,
+            'required' => false,
             'description' => $options['description'],
         ]);
     }
