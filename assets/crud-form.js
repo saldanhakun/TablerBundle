@@ -10,4 +10,5 @@ import numbers from "@tabler/core/dist/libs/plyr/src/js/utils/numbers";
 
 import './includes/input-document-generator';
 import './includes/input-phone-actions';
+import './includes/input-email-actions';
 import './includes/input-mask';

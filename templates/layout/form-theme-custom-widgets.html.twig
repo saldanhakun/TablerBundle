@@ -1,40 +1,58 @@
+{% use 'bootstrap_5_horizontal_layout.html.twig' %}
+
+{% block email_widget %}
+    <div class="input-group input-group-flat">
+        <span class="input-group-text text-faded">
+            {{ tabler_icon('fa fa-at') }}
+        </span>
+        {{ parent() }}
+        <span class="input-group-text">
+            <a href="#" class="link-info js-email-input-send" data-no-bs-toggle="tooltip" title="Enviar mensagem para o e-mail" data-bs-original-title="Enviar mensagem para o e-mail">
+                {{ tabler_icon('fa fa-envelope') }}
+            </a>
+        </span>
+    </div>
+{% endblock email_widget %}
 
 {% block mobile_phone_widget %}
     {%- set attr = attr|merge({
         'data-mask': attr['data-mask']|default('(00) 90000-0000'),
     }) -%}
     <div class="input-group input-group-flat">
-        <span class="input-icon-addon">
-            {{ tabler_icon('fa fa-phone') }}
+        <span class="input-group-text text-faded">
+            {{ tabler_icon('fa fa-mobile') }}
         </span>
         {{ block('form_widget_simple') }}
         <span class="input-group-text">
-            <a href="#" class="link-secondary js-mobile-input-chat" data-bs-toggle="tooltip" aria-label="Conversar no Whatsapp" data-bs-original-title="Conversar no Whatsapp">
+            <a href="#" class="link-info js-mobile-input-chat" target="_blank" data-no-bs-toggle="tooltip" title="Conversar no Whatsapp" data-bs-original-title="Conversar no Whatsapp">
                 {{ tabler_icon('fab fa-whatsapp') }}
             </a>
-            <a href="#" class="link-secondary ms-2 js-mobile-input-call" data-bs-toggle="tooltip" aria-label="Iniciar uma Chamada" data-bs-original-title="Iniciar uma Chamada">
+            <a href="#" class="link-info ms-2 js-mobile-input-call" target="_blank" data-no-bs-toggle="tooltip" title="Iniciar uma Chamada" data-bs-original-title="Iniciar uma Chamada">
                 {{ tabler_icon('fa fa-phone') }}
             </a>
         </span>
     </div>
-{% endblock %}
+{% endblock mobile_phone_widget %}
 
 {% block phone_widget %}
     {%- set attr = attr|merge({
         'data-mask': attr['data-mask']|default('(00) 0000-0000'),
     }) -%}
     <div class="input-group input-group-flat">
+        <span class="input-group-text text-faded">
+            {{ tabler_icon('fa fa-phone-alt') }}
+        </span>
         {{ block('form_widget_simple') }}
         <span class="input-group-text">
-            <a href="#" class="link-secondary js-mobile-input-chat" target="_blank" data-bs-toggle="tooltip" aria-label="Conversar no Whatsapp" data-bs-original-title="Conversar no Whatsapp">
+            <a href="#" class="link-info js-mobile-input-chat" target="_blank" data-no-bs-toggle="tooltip" title="Conversar no Whatsapp" data-bs-original-title="Conversar no Whatsapp">
                 {{ tabler_icon('fab fa-whatsapp') }}
             </a>
-            <a href="#" class="link-secondary ms-2 js-mobile-input-call" target="_blank" data-bs-toggle="tooltip" aria-label="Iniciar uma Chamada" data-bs-original-title="Iniciar uma Chamada">
+            <a href="#" class="link-info ms-2 js-mobile-input-call" target="_blank" data-no-bs-toggle="tooltip" title="Iniciar uma Chamada" data-bs-original-title="Iniciar uma Chamada">
                 {{ tabler_icon('fa fa-phone') }}
             </a>
         </span>
     </div>
-{% endblock %}
+{% endblock phone_widget %}
 
 {% block cpf_widget %}
     {%- set attr = attr|merge({
@@ -42,9 +60,12 @@
     }) -%}
     {% if not attr.disabled|default(false) and not attr.readonly|default(false) and access.dev %}
         <div class="input-group input-group-flat">
+            <span class="input-group-text text-faded">
+                {{ tabler_icon('fa fa-id-card') }}
+            </span>
             {{ block('form_widget_simple') }}
             <span class="input-group-text">
-                <a href="#" class="link-secondary ms-2 js-cpf-randomizer" data-remote="{{ router.security.generateCpf }}" data-bs-toggle="tooltip" aria-label="Gerar um número de CPF válido" data-bs-original-title="Gerar um número de CPF válido">
+                <a href="#" class="link-info ms-2 js-cpf-randomizer" data-remote="{{ router.dev.generateCpf }}" data-no-bs-toggle="tooltip" title="Gerar um número de CPF válido" data-bs-original-title="Gerar um número de CPF válido">
                     {{ tabler_icon('fa fa-cogs') }}
                 </a>
             </span>
@@ -52,7 +73,7 @@
     {% else %}
         {{ block('form_widget_simple') }}
     {% endif %}
-{% endblock %}
+{% endblock cpf_widget %}
 
 {% block cnpj_widget %}
     {%- set attr = attr|merge({
@@ -60,9 +81,12 @@
     }) -%}
     {% if not attr.disabled|default(false) and not attr.readonly|default(false) and access.dev %}
         <div class="input-group input-group-flat">
+            <span class="input-group-text text-faded">
+                {{ tabler_icon('fa fa-registered') }}
+            </span>
             {{ block('form_widget_simple') }}
             <span class="input-group-text">
-                <a href="#" class="link-secondary ms-2 js-cnpj-randomizer" data-remote="{{ router.security.generateCnpj }}" data-bs-toggle="tooltip" aria-label="Gerar um número de CNPJ válido" data-bs-original-title="Gerar um número de CNPJ válido">
+                <a href="#" class="link-info ms-2 js-cnpj-randomizer" data-remote="{{ router.dev.generateCnpj }}" data-no-bs-toggle="tooltip" title="Gerar um número de CNPJ válido" data-bs-original-title="Gerar um número de CNPJ válido">
                     {{ tabler_icon('fa fa-cogs') }}
                 </a>
             </span>
@@ -70,4 +94,57 @@
     {% else %}
         {{ block('form_widget_simple') }}
     {% endif %}
-{% endblock %}
+{% endblock cnpj_widget %}
+
+{# Faz com que todo campo desabilitado não chame atenção para sua condição de obrigatório #}
+{% block form_label -%}
+    {% if disabled is defined and disabled %}{% set required = false %}{% endif %}
+    {{ parent() }}
+{%- endblock form_label %}
+
+{% block date_widget -%}
+    {%- if widget == 'single_text' -%}
+        <div class="input-group input-group-flat">
+            <span class="input-group-text text-faded">{{ tabler_icon('calendar') }}</span>
+            {{ parent() }}
+        </div>
+    {%- else -%}
+        {{ parent() }}
+    {%- endif -%}
+{%- endblock date_widget %}
+
+{% block time_widget -%}
+    {%- if widget == 'single_text' -%}
+        <div class="input-group input-group-flat">
+            <span class="input-group-text text-faded">{{ tabler_icon('clock') }}</span>
+            {{ parent() }}
+        </div>
+    {%- else -%}
+        {{ parent() }}
+    {%- endif -%}
+{%- endblock time_widget %}
+
+{% block datetime_widget -%}
+    {%- if widget == 'single_text' -%}
+        <div class="input-group input-group-flat">
+            <span class="input-group-text text-faded">{{ tabler_icon('calendar') }}</span>
+            {{ parent() }}
+        </div>
+    {%- else -%}
+        {{ parent() }}
+    {%- endif -%}
+{%- endblock datetime_widget %}
+
+{% block name_widget -%}
+    <div class="input-group input-group-flat">
+        <span class="input-group-text text-faded">{{ tabler_icon('fa fa-circle-user') }}</span>
+        {{ block('form_widget_simple') }}
+    </div>
+{%- endblock name_widget %}
+
+{% block title_widget -%}
+    <div class="input-group input-group-flat">
+        <span class="input-group-text text-faded">{{ tabler_icon('fa fa-ticket-simple') }}</span>
+        {{ block('form_widget_simple') }}
+    </div>
+{%- endblock title_widget %}

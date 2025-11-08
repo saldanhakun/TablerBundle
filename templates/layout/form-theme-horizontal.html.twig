@@ -1,4 +1,4 @@
-{% use 'bootstrap_5_horizontal_layout.html.twig' %}
+{% use 'custom-form-widgets.html.twig' %}
 
 {# Muda a divisão padrão das colunas de 2/10 para 4/8 #}
 {% block form_label_class -%}
@@ -71,43 +71,3 @@
         </div>
     {%- endif -%}
 {%- endblock checkbox_widget %}
-
-
-{# Faz com que todo campo desabilitado não chame atenção para sua condição de obrigatório #}
-{% block form_label -%}
-    {% if disabled is defined and disabled %}{% set required = false %}{% endif %}
-    {{ parent() }}
-{%- endblock form_label %}
-
-{% block date_widget -%}
-    {%- if widget == 'single_text' -%}
-        <div class="input-group {{ group_class|default('') }}">
-            <span class="input-group-text">{{ tabler_icon('calendar') }}</span>
-            {{- block('form_widget_simple') -}}
-        </div>
-    {%- else -%}
-        {{ parent() }}
-    {%- endif -%}
-{%- endblock date_widget %}
-
-{% block time_widget -%}
-    {%- if widget == 'single_text' -%}
-        <div class="input-group {{ group_class|default('') }}">
-            <span class="input-group-text">{{ tabler_icon('clock') }}</span>
-            {{- block('form_widget_simple') -}}
-        </div>
-    {%- else -%}
-        {{ parent() }}
-    {%- endif -%}
-{%- endblock time_widget %}
-
-{% block datetime_widget -%}
-    {%- if widget == 'single_text' -%}
-        <div class="input-group {{ group_class|default('') }}">
-            <span class="input-group-text">{{ tabler_icon('calendar') }}</span>
-            {{- block('form_widget_simple') -}}
-        </div>
-    {%- else -%}
-        {{ parent() }}
-    {%- endif -%}
-{%- endblock datetime_widget %}
