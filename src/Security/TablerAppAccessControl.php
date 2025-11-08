@@ -10,7 +10,9 @@
 
 namespace Saldanhakun\TablerBundle\Security;
 
+use Doctrine\ORM\EntityManagerInterface;
 use Saldanhakun\TablerBundle\Entity\User;
+use Saldanhakun\TablerBundle\Repository\UserRepository;
 use Saldanhakun\TablerBundle\Router\AbstractAppRouteHelper;
 use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\HttpKernel\KernelInterface;
@@ -43,13 +45,19 @@ abstract class TablerAppAccessControl
     public function __construct(
         private readonly Security $security,
         private readonly KernelInterface $kernel,
-        private readonly UrlGeneratorInterface $urlGenerator
+        private readonly UrlGeneratorInterface $urlGenerator,
+        private readonly EntityManagerInterface $entityManager
     ) {
     }
 
     public function getEnvironment(): string
     {
         return $this->kernel->getEnvironment();
+    }
+
+    public function getEntityManager(): EntityManagerInterface
+    {
+        return $this->entityManager;
     }
 
     public function isDev(): bool

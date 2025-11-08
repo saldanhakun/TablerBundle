@@ -8,7 +8,7 @@
             {% set form_submit_label = button_label|default('Salvar') %}
             {% set form_actions = single_actions %}
             {% if fieldsets_columns %}
-                <div class="{{ form_card_width|default('col-6') }}">
+                <div class="{{ form_card_width|default('col-6') }} left-fieldsets">
                     {% include '@Tabler/crud/_default-fieldset-card.html.twig' %}
                     {% for fieldset in fieldsets %}
                         {% if (not fieldset.placement.isRight) %}
@@ -16,7 +16,7 @@
                         {% endif %}
                     {% endfor %}
                 </div>
-                <div class="{{ form_card_side_width|default('col-6') }}">
+                <div class="{{ form_card_side_width|default('col-6') }} right-fieldsets">
                     {% for fieldset in fieldsets %}
                         {% if (fieldset.placement.isRight) %}
                             {% include '@Tabler/crud/_fieldset-card.html.twig' %}
@@ -24,7 +24,7 @@
                     {% endfor %}
                 </div>
             {% else %}
-                <div class="{{ form_card_side_width|default('col-6') }}">
+                <div class="{{ form_card_side_width|default('col-6') }} stacked-fieldsets">
                     {% include '@Tabler/crud/_default-fieldset-card.html.twig' %}
                     {% for fieldset in fieldsets %}
                         {% include '@Tabler/crud/_fieldset-card.html.twig' %}
